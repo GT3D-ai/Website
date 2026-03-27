@@ -526,6 +526,14 @@ a:hover {
   background-repeat: no-repeat;
 }
 
+.card-visual--restaurant {
+  background-color: #2c2a28;
+  background-image: url("Restaurant/restaurant_property_page_hero_image.png");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
 .client-card h3 {
   font-size: 0.9375rem;
   font-weight: 600;
