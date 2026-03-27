@@ -542,6 +542,14 @@ a:hover {
   background-repeat: no-repeat;
 }
 
+.card-visual--commercial-building {
+  background-color: #1a1d22;
+  background-image: url("Commercial_Building_Existing_Conditions/commercial_project_page_hero_image.png");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
 .client-card h3 {
   font-size: 0.9375rem;
   font-weight: 600;
@@ -1065,7 +1073,8 @@ a:hover {
   margin: var(--space-md) 0 var(--space-xs);
 }
 
-.read-more-details .read-more-body ul {
+.read-more-details .read-more-body ul,
+.read-more-details .read-more-body ol {
   margin: 0 0 var(--space-md);
   padding-left: 1.25rem;
 }
@@ -1093,6 +1102,24 @@ a:hover {
 .page-hero--civic .page-hero__img-wrap img {
   object-fit: contain;
   object-position: center center;
+}
+
+.page-hero__header-cta {
+  margin: 0.35rem 0 0;
+  padding-left: 5px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.35;
+}
+
+.page-hero__header-cta a {
+  color: #fff;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.page-hero__header-cta a:hover {
+  text-decoration-thickness: 2px;
 }
 
 .page-hero__cta-group {
