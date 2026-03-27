@@ -504,17 +504,6 @@ a:hover {
   align-self: stretch;
 }
 
-.card-actions a.learn-more {
-  font-size: 0.8125rem;
-  font-weight: 600;
-  text-decoration: none;
-  color: var(--accent);
-}
-
-.card-actions a.learn-more:hover {
-  text-decoration: underline;
-}
-
 /* ——— Quote ——— */
 .quote-section {
   background: var(--ink);
