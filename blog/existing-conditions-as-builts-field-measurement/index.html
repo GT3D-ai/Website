@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Existing Conditions, As-Builts, and Field Measurement — Ground Truth 3D</title>
+    <meta name="description" content="Clear definitions for existing conditions documentation, as-builts, and field measurement—so scope matches what you need." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../styles.css" />
+  </head>
+  <body class="page-stories page-story-article">
+    <header class="site-header stories-header">
+      <div class="header-inner">
+        <a class="logo" href="../../index.html">Ground Truth <span>3D</span></a>
+        <nav class="nav-primary stories-nav" aria-label="Primary">
+          <a href="../../index.html">Home</a>
+          <a href="../index.html">Stories</a>
+          <a href="../../get_in_touch/index.html">Contact</a>
+        </nav>
+        <button type="button" class="menu-toggle" id="menu-toggle" aria-expanded="false" aria-controls="dropdown-menu" aria-label="Open menu">
+          <span class="bar" aria-hidden="true"></span>
+        </button>
+      </div>
+    </header>
+    <div class="dropdown-panel" id="dropdown-panel" hidden aria-hidden="true">
+      <nav class="dropdown-inner" id="dropdown-menu" aria-label="Site menu">
+        <a href="../../index.html">Home</a>
+        <a href="../index.html">Stories</a>
+        <a href="../../get_in_touch/index.html">Get in Touch</a>
+      </nav>
+    </div>
+    <main>
+      <article class="story-article">
+        <a class="story-article__back" href="../index.html">← All stories</a>
+        <p class="story-article__label">Evergreen</p>
+        <h1 class="story-article__title">Existing conditions, as-builts, and field measurement</h1>
+        <p class="story-article__deck">Clear language for three ideas that often get used interchangeably</p>
+        <p class="story-article__meta"><time datetime="2025-09-22">September 22, 2025</time></p>
+        <figure class="story-article__hero">
+          <img src="../../Residential_Existing_Conditions/residential_category_page_hero_image.png" alt="Residential documentation context" width="1200" height="675" />
+        </figure>
+        <div class="story-article__body">
+          <p>
+            In conversations with owners and designers, “as-built” can mean a redlined PDF, a survey, a Revit model, or simply “someone went to the site and wrote things down.” That ambiguity is where schedules slip and RFIs multiply—because nobody aligned on what “done” looks like.
+          </p>
+          <p>
+            <strong>Field measurement</strong> is the act of capturing dimensions and relationships—tapes, total stations, laser scans, or photogrammetry. It produces evidence, not necessarily a formatted drawing set.
+          </p>
+          <p>
+            <strong>Existing conditions documentation</strong> is the broader product: organized deliverables (2D, 3D, point clouds, photos) that describe what is built today, structured so design and construction teams can work from them.
+          </p>
+          <p>
+            <strong>As-builts</strong> in the traditional sense often means record drawings updated to reflect construction completion. In renovation work, teams frequently need existing conditions <em>before</em> design starts—which is a different scope from post-construction as-builts even if the same tools are involved.
+          </p>
+          <h2>Practical takeaway</h2>
+          <p>
+            Start by naming the decision the documentation needs to support—permit, demo, MEP routing, lease area, or owner reserve study—and let that drive format and LOD. We’re happy to translate “as-built” into a checklist everyone can sign.
+          </p>
+        </div>
+        <div class="story-article__cta">
+          <a class="btn btn-primary" href="../../get_in_touch/index.html">Align scope with our team</a>
+        </div>
+      </article>
+    </main>
+    <footer class="site-footer stories-footer">
+      <div class="footer-inner">
+        <div class="footer-links">
+          <ul>
+            <li><a href="../../index.html">Home</a></li>
+            <li><a href="../index.html">Stories</a></li>
+            <li><a href="../../get_in_touch/index.html">Contact</a></li>
+          </ul>
+        </div>
+        <p class="stories-footer__legal">© Ground Truth 3D. All rights reserved.</p>
+      </div>
+    </footer>
+    <script>
+      (function () {
+        var t = document.getElementById("menu-toggle");
+        var p = document.getElementById("dropdown-panel");
+        if (!t || !p) return;
+        function setOpen(o) {
+          t.setAttribute("aria-expanded", o ? "true" : "false");
+          p.hidden = !o;
+          p.setAttribute("aria-hidden", o ? "false" : "true");
+          p.classList.toggle("is-open", o);
+          document.body.style.overflow = o ? "hidden" : "";
+        }
+        t.addEventListener("click", function () {
+          setOpen(t.getAttribute("aria-expanded") !== "true");
+        });
+        p.addEventListener("click", function (e) {
+          if (e.target === p) setOpen(false);
+        });
+        p.querySelectorAll("a").forEach(function (l) {
+          l.addEventListener("click", function () {
+            setOpen(false);
+          });
+        });
+      })();
+    </script>
+  </body>
+</html>

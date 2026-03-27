@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Ground Truth Basic Existing Conditions Modeling (BIM200) — Ground Truth 3D</title>
+    <meta name="description" content="What basic BIM200-style existing conditions models include—and how teams use them for planning and coordination." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../styles.css" />
+  </head>
+  <body class="page-stories page-story-article">
+    <header class="site-header stories-header">
+      <div class="header-inner">
+        <a class="logo" href="../../index.html">Ground Truth <span>3D</span></a>
+        <nav class="nav-primary stories-nav" aria-label="Primary">
+          <a href="../../index.html">Home</a>
+          <a href="../index.html">Stories</a>
+          <a href="../../get_in_touch/index.html">Contact</a>
+        </nav>
+        <button type="button" class="menu-toggle" id="menu-toggle" aria-expanded="false" aria-controls="dropdown-menu" aria-label="Open menu">
+          <span class="bar" aria-hidden="true"></span>
+        </button>
+      </div>
+    </header>
+    <div class="dropdown-panel" id="dropdown-panel" hidden aria-hidden="true">
+      <nav class="dropdown-inner" id="dropdown-menu" aria-label="Site menu">
+        <a href="../../index.html">Home</a>
+        <a href="../index.html">Stories</a>
+        <a href="../../get_in_touch/index.html">Get in Touch</a>
+      </nav>
+    </div>
+    <main>
+      <article class="story-article">
+        <a class="story-article__back" href="../index.html">← All stories</a>
+        <p class="story-article__label">Evergreen</p>
+        <h1 class="story-article__title">Ground Truth Basic Existing Conditions Modeling (BIM200)</h1>
+        <p class="story-article__deck">What “basic” BIM means in scope, LOD, and what you can do with the model</p>
+        <p class="story-article__meta"><time datetime="2025-11-10">November 10, 2025</time></p>
+        <figure class="story-article__hero">
+          <img src="../../Commercial_Existing_Conditions/commercial_category_page_hero_image.png" alt="Commercial building documentation context" width="1200" height="675" />
+        </figure>
+        <div class="story-article__body">
+          <p>
+            “BIM200” is shorthand many teams use for a schematic-level model: enough geometry to study the building, coordinate disciplines, and support early estimates—without investing in fully detailed fabrication-level content before decisions warrant it.
+          </p>
+          <p>
+            For existing conditions, a BIM200-style deliverable typically emphasizes the shell and primary interiors: grids, floor slabs, major walls, openings, stairs, and primary MEP volumes where visible. The point is a shared spatial framework anchored to field reality, not a mirror of every screw and bracket.
+          </p>
+          <h2>When it’s the right fit</h2>
+          <ul>
+            <li>Early planning and test fits before design fees ramp up.</li>
+            <li>Owner and contractor alignment on scope boundaries.</li>
+            <li>Input to energy, accessibility, or feasibility studies that need volume and area more than joinery.</li>
+          </ul>
+          <p>
+            If your next milestone is LOD 300+ for permit or construction, we’ll align scope up front so the model can evolve without throwing away work—or we’ll quote the detailed pass explicitly. The label matters less than the decision you need to make next.
+          </p>
+        </div>
+        <div class="story-article__cta">
+          <a class="btn btn-primary" href="../../get_in_touch/index.html">Ask about BIM scope</a>
+        </div>
+      </article>
+    </main>
+    <footer class="site-footer stories-footer">
+      <div class="footer-inner">
+        <div class="footer-links">
+          <ul>
+            <li><a href="../../index.html">Home</a></li>
+            <li><a href="../index.html">Stories</a></li>
+            <li><a href="../../get_in_touch/index.html">Contact</a></li>
+          </ul>
+        </div>
+        <p class="stories-footer__legal">© Ground Truth 3D. All rights reserved.</p>
+      </div>
+    </footer>
+    <script>
+      (function () {
+        var t = document.getElementById("menu-toggle");
+        var p = document.getElementById("dropdown-panel");
+        if (!t || !p) return;
+        function setOpen(o) {
+          t.setAttribute("aria-expanded", o ? "true" : "false");
+          p.hidden = !o;
+          p.setAttribute("aria-hidden", o ? "false" : "true");
+          p.classList.toggle("is-open", o);
+          document.body.style.overflow = o ? "hidden" : "";
+        }
+        t.addEventListener("click", function () {
+          setOpen(t.getAttribute("aria-expanded") !== "true");
+        });
+        p.addEventListener("click", function (e) {
+          if (e.target === p) setOpen(false);
+        });
+        p.querySelectorAll("a").forEach(function (l) {
+          l.addEventListener("click", function () {
+            setOpen(false);
+          });
+        });
+      })();
+    </script>
+  </body>
+</html>

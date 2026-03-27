@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>San Francisco Yacht Club — Piling Mapping — Ground Truth 3D</title>
+    <meta name="description" content="Case study: under-pier reality capture for marine structures—access, safety, and deliverables." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../styles.css" />
+  </head>
+  <body class="page-stories page-story-article">
+    <header class="site-header stories-header">
+      <div class="header-inner">
+        <a class="logo" href="../../index.html">Ground Truth <span>3D</span></a>
+        <nav class="nav-primary stories-nav" aria-label="Primary">
+          <a href="../../index.html">Home</a>
+          <a href="../index.html">Stories</a>
+          <a href="../../get_in_touch/index.html">Contact</a>
+        </nav>
+        <button type="button" class="menu-toggle" id="menu-toggle" aria-expanded="false" aria-controls="dropdown-menu" aria-label="Open menu">
+          <span class="bar" aria-hidden="true"></span>
+        </button>
+      </div>
+    </header>
+    <div class="dropdown-panel" id="dropdown-panel" hidden aria-hidden="true">
+      <nav class="dropdown-inner" id="dropdown-menu" aria-label="Site menu">
+        <a href="../../index.html">Home</a>
+        <a href="../index.html">Stories</a>
+        <a href="../../get_in_touch/index.html">Get in Touch</a>
+      </nav>
+    </div>
+    <main>
+      <article class="story-article">
+        <a class="story-article__back" href="../index.html">← All stories</a>
+        <p class="story-article__label">Case study</p>
+        <h1 class="story-article__title">San Francisco Yacht Club — piling mapping</h1>
+        <p class="story-article__deck">Under-pier reality capture where tides, access, and geometry all matter</p>
+        <p class="story-article__meta"><time datetime="2026-02-18">February 18, 2026</time></p>
+        <figure class="story-article__hero">
+          <video controls playsinline preload="metadata" poster="../../get_in_touch/get_in_touch_hero_image.png">
+            <source src="SFYC_Flythrough.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </figure>
+        <div class="story-article__body">
+          <p>
+            Marine documentation is a different problem from a typical interior scan. You work around water, limited windows for access, and safety rules that dictate how and when crews can be under a structure. The goal is the same as on land: a trustworthy 3D record—but the logistics are rarely generic.
+          </p>
+          <p>
+            For piling and under-deck work, teams need clear deliverables: registered point clouds, measurable linework, and context that engineers can use for assessment and maintenance planning. The scan isn’t “for its own sake”—it’s input to decisions about load paths, deterioration, and future repairs.
+          </p>
+          <h2>What we optimize for</h2>
+          <ul>
+            <li><strong>Access and sequencing</strong> — capturing coverage without putting people in unnecessary exposure.</li>
+            <li><strong>Registration quality</strong> — tying scans together so distances and alignments hold when the model moves into CAD or BIM.</li>
+            <li><strong>Deliverable fit</strong> — matching level of detail to how the owner and engineer will use the data.</li>
+          </ul>
+          <p>
+            Below is a short flythrough from the project environment—useful for orienting stakeholders who won’t walk the site in person.
+          </p>
+        </div>
+        <div class="story-article__cta">
+          <a class="btn btn-primary" href="../../get_in_touch/index.html">Discuss marine or waterfront scope</a>
+        </div>
+      </article>
+    </main>
+    <footer class="site-footer stories-footer">
+      <div class="footer-inner">
+        <div class="footer-links">
+          <ul>
+            <li><a href="../../index.html">Home</a></li>
+            <li><a href="../index.html">Stories</a></li>
+            <li><a href="../../get_in_touch/index.html">Contact</a></li>
+          </ul>
+        </div>
+        <p class="stories-footer__legal">© Ground Truth 3D. All rights reserved.</p>
+      </div>
+    </footer>
+    <script>
+      (function () {
+        var t = document.getElementById("menu-toggle");
+        var p = document.getElementById("dropdown-panel");
+        if (!t || !p) return;
+        function setOpen(o) {
+          t.setAttribute("aria-expanded", o ? "true" : "false");
+          p.hidden = !o;
+          p.setAttribute("aria-hidden", o ? "false" : "true");
+          p.classList.toggle("is-open", o);
+          document.body.style.overflow = o ? "hidden" : "";
+        }
+        t.addEventListener("click", function () {
+          setOpen(t.getAttribute("aria-expanded") !== "true");
+        });
+        p.addEventListener("click", function (e) {
+          if (e.target === p) setOpen(false);
+        });
+        p.querySelectorAll("a").forEach(function (l) {
+          l.addEventListener("click", function () {
+            setOpen(false);
+          });
+        });
+      })();
+    </script>
+  </body>
+</html>
