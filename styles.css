@@ -478,6 +478,30 @@ a:hover {
   background-repeat: no-repeat;
 }
 
+.card-visual--property-owner {
+  background-color: #1a1a1a;
+  background-image: url("Owners_Operators/property_owners_client_page_hero_image.png");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+.card-visual--property-operator {
+  background-color: #0a0f18;
+  background-image: url("Operators/property_operator_client_page_hero_image.png");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+.card-visual--civic {
+  background-color: #0a0a0a;
+  background-image: url("civic/civic_category_page_hero_image.png");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
 .client-card h3 {
   font-size: 0.9375rem;
   font-weight: 600;
