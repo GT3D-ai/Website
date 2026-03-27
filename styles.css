@@ -1022,6 +1022,22 @@ a:hover {
   color: #fff;
 }
 
+/* Architect client page PRD: wide panoramic hero, letterboxed */
+.page-hero--architect .page-hero__img-wrap img {
+  object-fit: contain;
+  object-position: center center;
+}
+
+.page-hero--architect .page-hero__cta-group .btn-outline {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.65);
+}
+
+.page-hero--architect .page-hero__cta-group .btn-outline:hover {
+  border-color: #fff;
+  color: #fff;
+}
+
 /* ——— Residential quote estimator ——— */
 .page-estimator .estimator-intro {
   padding-bottom: calc(var(--space-xl) / 2);
