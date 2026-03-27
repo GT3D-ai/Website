@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Residential Quote Estimator — Ground Truth 3D</title>
+    <meta
+      name="description"
+      content="Get an instant ballpark estimate for residential existing conditions documentation. Submit your quote request to our sales team."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body class="page-category page-estimator">
+    <header class="site-header site-header--category">
+      <div class="header-inner">
+        <a class="logo" href="../index.html">Ground Truth <span>3D</span></a>
+        <button
+          type="button"
+          class="menu-toggle"
+          id="menu-toggle"
+          aria-expanded="false"
+          aria-controls="dropdown-menu"
+          aria-label="Open menu"
+        >
+          <span class="bar" aria-hidden="true"></span>
+        </button>
+      </div>
+    </header>
+
+    <div class="dropdown-panel" id="dropdown-panel" hidden aria-hidden="true">
+      <nav class="dropdown-inner" id="dropdown-menu" aria-label="Site menu">
+        <a href="../index.html">Home</a>
+        <a href="../Residential/index.html">Residential</a>
+        <a href="../Commercial_Existing_Conditions/index.html">Commercial Existing Conditions</a>
+        <a href="../Get_in_Touch/index.html">Get in Touch</a>
+      </nav>
+    </div>
+
+    <main class="estimator-main">
+      <section class="section section--dense estimator-intro">
+        <h1 class="estimator-title">Residential quote estimator</h1>
+        <p class="estimator-lede">
+          Enter your project details for a ballpark estimate. Submit the form to send your request and calculated
+          totals to <strong>sales@gt3d.com</strong>.
+        </p>
+      </section>
+
+      <section class="section section--dense estimator-layout">
+        <form
+          id="quote-form"
+          class="estimator-form"
+          action="https://formsubmit.co/sales@gt3d.com"
+          method="POST"
+        >
+          <input type="hidden" name="_subject" value="Residential Quote — GT3D Estimator" />
+
+          <div class="estimator-form-grid">
+            <div class="form-field">
+              <label for="full_name">Full name <span class="req">*</span></label>
+              <input type="text" id="full_name" name="full_name" required autocomplete="name" />
+            </div>
+            <div class="form-field">
+              <label for="email">Email address <span class="req">*</span></label>
+              <input type="email" id="email" name="email" required autocomplete="email" />
+            </div>
+            <div class="form-field form-field--full">
+              <label for="project_address">Project address <span class="req">*</span></label>
+              <input type="text" id="project_address" name="project_address" required autocomplete="street-address" />
+            </div>
+            <div class="form-field">
+              <label for="building_sqft">Building square feet <span class="req">*</span></label>
+              <input
+                type="number"
+                id="building_sqft"
+                name="building_sqft"
+                min="0"
+                step="1"
+                required
+                inputmode="numeric"
+              />
+            </div>
+            <div class="form-field">
+              <label for="site_sqft">Site square feet <span class="req">*</span></label>
+              <input type="number" id="site_sqft" name="site_sqft" min="0" step="1" required inputmode="numeric" />
+            </div>
+          </div>
+
+          <fieldset class="estimator-fieldset">
+            <legend>Site &amp; building options</legend>
+            <label class="form-check">
+              <input type="checkbox" id="opt_attic" name="option_attic" value="yes" />
+              <span>Attic (+$500)</span>
+            </label>
+            <label class="form-check">
+              <input type="checkbox" id="opt_crawl" name="option_crawl" value="yes" />
+              <span>Crawl space (+$500)</span>
+            </label>
+            <label class="form-check">
+              <input type="checkbox" id="opt_site_map" name="option_basic_site_map" value="yes" />
+              <span>Basic site map (+$1,000)</span>
+            </label>
+          </fieldset>
+
+          <input type="hidden" id="calculated_total" name="calculated_total" value="" />
+          <textarea id="quote_message" name="message" class="estimator-message-field" rows="1" cols="1" tabindex="-1"></textarea>
+
+          <p id="form-error" class="form-error" role="alert" hidden></p>
+
+          <div class="estimator-actions">
+            <button type="submit" class="btn btn-primary">Send quote request to sales@gt3d.com</button>
+          </div>
+        </form>
+
+        <aside class="estimator-results" aria-live="polite" aria-atomic="true">
+          <h2 class="estimator-results__heading">Estimate</h2>
+          <dl class="estimator-breakdown">
+            <div>
+              <dt>Building (<span id="rate-building">$1.00</span>/sq ft)</dt>
+              <dd id="line-building">$0.00</dd>
+            </div>
+            <div>
+              <dt>Site (<span id="rate-site">$0.15</span>/sq ft)</dt>
+              <dd id="line-site">$0.00</dd>
+            </div>
+            <div id="row-attic" hidden>
+              <dt>Attic</dt>
+              <dd>$500.00</dd>
+            </div>
+            <div id="row-crawl" hidden>
+              <dt>Crawl space</dt>
+              <dd>$500.00</dd>
+            </div>
+            <div id="row-map" hidden>
+              <dt>Basic site map</dt>
+              <dd>$1,000.00</dd>
+            </div>
+          </dl>
+          <p class="estimator-total">
+            <span class="estimator-total__label">Estimated total</span>
+            <span id="display-total" class="estimator-total__value">$0.00</span>
+          </p>
+
+          <div class="estimator-addons">
+            <h3 class="estimator-addons__title">Additional options:</h3>
+            <ul class="estimator-addons__list">
+              <li><strong>$150</strong> per room — 1/4&quot; interior elevations</li>
+              <li><strong>$1,500</strong> — detailed landscape mapping</li>
+              <li><strong>$1,500</strong> — detailed electrical mapping</li>
+            </ul>
+            <p class="estimator-addons__note">These add-ons are not included in the estimate above. Discuss scope with our team.</p>
+          </div>
+        </aside>
+      </section>
+
+      <section class="section section--dense estimator-cta-bottom">
+        <p class="estimator-cta-text">Need a formal proposal or custom scope?</p>
+        <a class="btn btn-primary" href="../Get_in_Touch/index.html">Get in Touch</a>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-cta">
+          <a class="btn btn-primary" href="../Get_in_Touch/index.html">Get in Touch</a>
+        </div>
+        <div class="footer-links">
+          <ul>
+            <li><a href="../About_Us/index.html">About Ground Truth 3D</a></li>
+            <li><a href="../Get_in_touch/index.html">Contact us</a></li>
+            <li><a href="../index.html">Home</a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      (function () {
+        var R_BUILDING = 1;
+        var R_SITE = 0.15;
+        var ADD_ATTIC = 500;
+        var ADD_CRAWL = 500;
+        var ADD_MAP = 1000;
+
+        var building = document.getElementById("building_sqft");
+        var site = document.getElementById("site_sqft");
+        var optAttic = document.getElementById("opt_attic");
+        var optCrawl = document.getElementById("opt_crawl");
+        var optMap = document.getElementById("opt_site_map");
+        var lineBuilding = document.getElementById("line-building");
+        var lineSite = document.getElementById("line-site");
+        var rowAttic = document.getElementById("row-attic");
+        var rowCrawl = document.getElementById("row-crawl");
+        var rowMap = document.getElementById("row-map");
+        var displayTotal = document.getElementById("display-total");
+        var calculatedTotalInput = document.getElementById("calculated_total");
+        var quoteMessage = document.getElementById("quote_message");
+        var form = document.getElementById("quote-form");
+        var formError = document.getElementById("form-error");
+
+        function money(n) {
+          return n.toLocaleString("en-US", { style: "currency", currency: "USD" });
+        }
+
+        function parseSqft(el) {
+          var v = parseFloat(el.value, 10);
+          if (isNaN(v) || v < 0) return 0;
+          return v;
+        }
+
+        function recalc() {
+          var b = parseSqft(building);
+          var s = parseSqft(site);
+          var lb = b * R_BUILDING;
+          var ls = s * R_SITE;
+          var extra = 0;
+          if (optAttic.checked) extra += ADD_ATTIC;
+          if (optCrawl.checked) extra += ADD_CRAWL;
+          if (optMap.checked) extra += ADD_MAP;
+          var total = lb + ls + extra;
+
+          lineBuilding.textContent = money(lb);
+          lineSite.textContent = money(ls);
+          rowAttic.hidden = !optAttic.checked;
+          rowCrawl.hidden = !optCrawl.checked;
+          rowMap.hidden = !optMap.checked;
+          displayTotal.textContent = money(total);
+          calculatedTotalInput.value = total.toFixed(2);
+        }
+
+        function buildMessage() {
+          var b = parseSqft(building);
+          var s = parseSqft(site);
+          var lb = b * R_BUILDING;
+          var ls = s * R_SITE;
+          var lines = [];
+          lines.push("Residential quote request (GT3D estimator)");
+          lines.push("");
+          lines.push("CONTACT");
+          lines.push("Full name: " + document.getElementById("full_name").value.trim());
+          lines.push("Email: " + document.getElementById("email").value.trim());
+          lines.push("Project address: " + document.getElementById("project_address").value.trim());
+          lines.push("");
+          lines.push("INPUTS");
+          lines.push("Building square feet: " + b);
+          lines.push("Site square feet: " + s);
+          lines.push("Attic: " + (optAttic.checked ? "yes" : "no"));
+          lines.push("Crawl space: " + (optCrawl.checked ? "yes" : "no"));
+          lines.push("Basic site map: " + (optMap.checked ? "yes" : "no"));
+          lines.push("");
+          lines.push("CALCULATION");
+          lines.push("Building at $" + R_BUILDING + "/sq ft: " + money(lb));
+          lines.push("Site at $" + R_SITE + "/sq ft: " + money(ls));
+          if (optAttic.checked) lines.push("Attic: " + money(ADD_ATTIC));
+          if (optCrawl.checked) lines.push("Crawl space: " + money(ADD_CRAWL));
+          if (optMap.checked) lines.push("Basic site map: " + money(ADD_MAP));
+          lines.push("---");
+          lines.push("ESTIMATED TOTAL: " + document.getElementById("display-total").textContent);
+          lines.push("");
+          lines.push("ADDITIONAL OPTIONS (not in total)");
+          lines.push("$150 per room — 1/4\" interior elevations");
+          lines.push("$1,500 — detailed landscape mapping");
+          lines.push("$1,500 — detailed electrical mapping");
+          return lines.join("\n");
+        }
+
+        [building, site, optAttic, optCrawl, optMap].forEach(function (el) {
+          el.addEventListener("input", recalc);
+          el.addEventListener("change", recalc);
+        });
+
+        recalc();
+
+        form.addEventListener("submit", function (e) {
+          formError.hidden = true;
+          formError.textContent = "";
+          if (!form.checkValidity()) {
+            e.preventDefault();
+            formError.textContent = "Please fill in all required fields with valid numbers.";
+            formError.hidden = false;
+            return;
+          }
+          var b = parseSqft(building);
+          var s = parseSqft(site);
+          if (building.value === "" || site.value === "") {
+            e.preventDefault();
+            formError.textContent = "Building and site square feet are required.";
+            formError.hidden = false;
+            return;
+          }
+          quoteMessage.value = buildMessage();
+        });
+
+        var toggle = document.getElementById("menu-toggle");
+        var panel = document.getElementById("dropdown-panel");
+        if (toggle && panel) {
+          function setOpen(open) {
+            toggle.setAttribute("aria-expanded", open ? "true" : "false");
+            toggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+            panel.hidden = !open;
+            panel.setAttribute("aria-hidden", open ? "false" : "true");
+            panel.classList.toggle("is-open", open);
+            document.body.style.overflow = open ? "hidden" : "";
+          }
+          toggle.addEventListener("click", function () {
+            setOpen(toggle.getAttribute("aria-expanded") !== "true");
+          });
+          panel.addEventListener("click", function (e) {
+            if (e.target === panel) setOpen(false);
+          });
+          panel.querySelectorAll("a").forEach(function (link) {
+            link.addEventListener("click", function () {
+              setOpen(false);
+            });
+          });
+          document.addEventListener("keydown", function (e) {
+            if (e.key === "Escape") setOpen(false);
+          });
+        }
+      })();
+    </script>
+  </body>
+</html>
