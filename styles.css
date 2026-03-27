@@ -1064,7 +1064,7 @@ a:hover {
   color: #fff;
 }
 
-/* Edge-to-edge hero image in strip (opt-in: /Residential, /Architects) */
+/* Edge-to-edge hero image in strip (opt-in: /Residential, /Architects, /civic) */
 .page-hero--full-bleed .page-hero__img-wrap img {
   object-fit: cover;
   object-position: center center;
