@@ -1039,6 +1039,19 @@ a:hover {
 }
 
 /* ——— Residential quote estimator ——— */
+body.page-estimator {
+  background-color: #e8e4dd;
+  background-image: linear-gradient(
+      rgba(255, 255, 255, 0.78),
+      rgba(245, 242, 237, 0.9)
+    ),
+    url("residential_estimator/residential_estimator_bg.png");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+}
+
 .page-estimator .estimator-intro {
   padding-bottom: calc(var(--space-xl) / 2);
 }
