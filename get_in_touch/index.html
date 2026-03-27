@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Get in Touch — Ground Truth 3D</title>
+    <meta
+      name="description"
+      content="Contact Ground Truth 3D for existing conditions documentation quotes and questions."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body class="page-category page-get-in-touch">
+    <header class="site-header site-header--category site-header--on-dark">
+      <div class="header-inner">
+        <a class="logo logo--on-dark" href="../index.html">Ground Truth <span>3D</span></a>
+        <button
+          type="button"
+          class="menu-toggle menu-toggle--on-dark"
+          id="menu-toggle"
+          aria-expanded="false"
+          aria-controls="dropdown-menu"
+          aria-label="Open menu"
+        >
+          <span class="bar" aria-hidden="true"></span>
+        </button>
+      </div>
+    </header>
+
+    <div class="dropdown-panel" id="dropdown-panel" hidden aria-hidden="true">
+      <nav class="dropdown-inner" id="dropdown-menu" aria-label="Site menu">
+        <a href="../index.html">Home</a>
+        <a href="../Residential/index.html">Residential</a>
+        <a href="../Commercial_Existing_Conditions/index.html">Commercial Existing Conditions</a>
+        <a href="index.html">Get in Touch</a>
+      </nav>
+    </div>
+
+    <main class="get-in-touch-main">
+      <section class="get-in-touch-hero" aria-labelledby="git-heading">
+        <div class="get-in-touch-hero__bg" aria-hidden="true"></div>
+        <div class="get-in-touch-hero__overlay" aria-hidden="true"></div>
+        <div class="get-in-touch-hero__inner">
+          <div class="get-in-touch-panel">
+            <h1 id="git-heading" class="get-in-touch-panel__title">Get in touch</h1>
+            <p class="get-in-touch-panel__lede">
+              Send us a message and we’ll respond as soon as we can. Submissions go to
+              <strong>info@gt3d.com</strong>.
+            </p>
+            <form
+              id="contact-form"
+              class="get-in-touch-form"
+              action="https://formsubmit.co/info@gt3d.com"
+              method="POST"
+            >
+              <input type="hidden" name="_subject" value="Get in Touch — Ground Truth 3D" />
+
+              <div class="form-field">
+                <label for="contact_name">Name <span class="req">*</span></label>
+                <input type="text" id="contact_name" name="name" required autocomplete="name" />
+              </div>
+              <div class="form-field">
+                <label for="contact_company">Company <span class="req">*</span></label>
+                <input type="text" id="contact_company" name="company" required autocomplete="organization" />
+              </div>
+              <div class="form-field">
+                <label for="contact_state">State <span class="req">*</span></label>
+                <input type="text" id="contact_state" name="state" required autocomplete="address-level1" />
+              </div>
+              <div class="form-field">
+                <label for="contact_email_or_phone">Email or phone number <span class="req">*</span></label>
+                <input
+                  type="text"
+                  id="contact_email_or_phone"
+                  name="email_or_phone"
+                  required
+                  autocomplete="off"
+                  inputmode="text"
+                  placeholder="you@example.com or (555) 555-5555"
+                />
+              </div>
+
+              <div class="get-in-touch-form__actions">
+                <button type="submit" class="btn btn-primary btn-block">Send message</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer site-footer--compact">
+      <div class="footer-inner footer-inner--git">
+        <div class="footer-links">
+          <ul class="footer-links--inline">
+            <li><a href="../About_Us/index.html">About Ground Truth 3D</a></li>
+            <li><a href="../Get_in_touch/index.html">Contact us</a></li>
+            <li>
+              <a href="https://www.instagram.com/groundtruth3d/" rel="noopener noreferrer" target="_blank"
+                >Instagram</a
+              >
+            </li>
+            <li><a href="../index.html">Home</a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      (function () {
+        var toggle = document.getElementById("menu-toggle");
+        var panel = document.getElementById("dropdown-panel");
+        if (toggle && panel) {
+          function setOpen(open) {
+            toggle.setAttribute("aria-expanded", open ? "true" : "false");
+            toggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+            panel.hidden = !open;
+            panel.setAttribute("aria-hidden", open ? "false" : "true");
+            panel.classList.toggle("is-open", open);
+            document.body.style.overflow = open ? "hidden" : "";
+          }
+          toggle.addEventListener("click", function () {
+            setOpen(toggle.getAttribute("aria-expanded") !== "true");
+          });
+          panel.addEventListener("click", function (e) {
+            if (e.target === panel) setOpen(false);
+          });
+          panel.querySelectorAll("a").forEach(function (link) {
+            link.addEventListener("click", function () {
+              setOpen(false);
+            });
+          });
+          document.addEventListener("keydown", function (e) {
+            if (e.key === "Escape") setOpen(false);
+          });
+        }
+      })();
+    </script>
+  </body>
+</html>
