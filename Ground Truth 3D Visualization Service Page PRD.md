@@ -47,19 +47,27 @@ The Category Pages must be built to include the following sections in sequential
 2.2 Primary Descriptive Content
 
 * **Content:**  
-  Rapid design visualization based on basic 3D models can be done three modes based on the objective:  
+  AI-powered technology has transformed rapid 3D visualization from an expensive, desirable feature into an essential tool for design and communication. Visualizations for buildings, rooms, and sites are available in three distinct formats:  
     
 1. Photorealistic Design Ideation  
 2. 3D “Fly-through”  
 3. 3D VR model Review
 
-   New AI tools make design direction explorations fast and inexpensive. Once a model has been created, importing the model into an AI software package allows you to “look around”, capture a route through the model as a video, or select views inside or outside to test new materials, furnishings and renovation directions.
+   AI tools now offer rapid and affordable exploration of design directions. After a model is created and imported into AI software, users can navigate the space ("look around"), create video walkthroughs, and select specific interior or exterior views to quickly test new materials, furnishings, and renovation concepts.
 
    
 
    **Photorealistic Design Ideation**
 
-   With a basic 3D model, design possibilities can be visualized and shared effortlessly. Designers can use existing images or verbal prompts (“modern kitchen with dark gray floors, natural wood cabinets and modern light fixtures”) and within a couple of minutes they can get a feel for how the space might look. The resulting images are useful in sparking new ideas and clarifying client tastes, directing rapid version exploration via AI prompt changes and geometric adjustments to the model.
+   A basic 3D model allows for the effortless visualization and sharing of design possibilities.
+
+   
+
+   Designers can quickly generate an impression of a space—in just a couple of minutes—by using existing images or simple verbal prompts (e.g., "modern kitchen with dark gray floors, natural wood cabinets and modern light fixtures").
+
+   
+
+   The resulting images serve to spark new ideas and clarify a client's aesthetic preferences. This, in turn, directs rapid version exploration through changes to the AI prompt and geometric adjustments within the model.
 
    
 
@@ -67,35 +75,53 @@ The Category Pages must be built to include the following sections in sequential
 
    
 
-   Once a 3D model has been generated for the property a variety of AI tools can be used to test new designs.The most common process involves removing or opening walls in the model (a quick process), and possibly adding windows, raising ceilings, adding skylights… to alter the basic geometry.
+   After generating a 3D model of the property, various AI tools are used to test new designs.
 
    
 
-   Once the model is prepared a 3D view is generated e.g. interior perspective showing the kitchen from the point of view of the dining room, and the view is imported into the AI tool. For the example below the model was generated in Revit and exported to Veras. 
+   The initial step typically involves quickly modifying the model's basic geometry—for example, removing or opening walls, or adding features like windows, raised ceilings, or skylights.
 
    
 
-   The AI tool often has a grid of preset “prompts” that can be used to begin the process. The standard prompt we used below was; “white kitchen, white walls, white ceiling, gray wood floor, forest outside, professional photography.” The resulting image was too modern so, using the test rendering as a basis we tried a new prompt, “dark wood floors with less visible grain, light wood cabinets, add an island with honed granite surface and three red metal stools, remove ceiling surface fixtures and replace with recessed cans.”
+   Once the model is ready, a 3D view, (such as an interior perspective of the kitchen from the dining room's viewpoint) is generated and imported into the AI tool. For the example provided, the model was created in Revit and then exported to Veras.
 
    
 
-   The resulting image is visible in the side-by side below: 
+   The AI tool often provides a grid of preset "prompts" to start the design process. Our standard initial prompt was: "white kitchen, white walls, white ceiling, gray wood floor, forest outside, professional photography." This resulted in an image that was too modern.
+
+   
+
+   Using this initial rendering as a baseline, we refined the design with a new prompt: "dark wood floors with less visible grain, light wood cabinets, add an island with honed granite surface and three red metal stools, remove ceiling surface fixtures and replace with recessed cans."
+
+   
+
+   The outcome of this revised prompt is displayed in the side-by-side comparison below.
+
+ 
+
 
    
 
 2.3 Content Break \- insert a link to “Read More” when Read More is clicked the remainder of the content is displayed
 
-Rapid AI driven 3D visualization can be used to explore any view of a site, building or interior. The results are always 2D images (for quick ideation) and do not change the geometry of the base model. For example, when we added the island and new windows in the example kitchen, the model still showed only the existing windows and did not have an island.
+Rapid, AI-driven 3D visualization is a tool for exploring any site, building, or interior view. The output consists of 2D images, useful for quick ideation, but these visualizations do not alter the geometry of the underlying 3D base model. For instance, in the example kitchen, adding an island and new windows in the visualization did not change the 3D model, which still showed the existing windows and lacked an island.
 
-The results of the 3D visualization typically lead to generating new versions of the model. These new versions can be loaded back into the AI visualization tool for further exploration. 
+Typically, the outcomes from the 3D visualization process prompt the generation of new versions of the 3D model. These updated models can then be imported back into the AI visualization tool for continued exploration. 
 
 **3D “Fly-through”**
 
-A “fly-through” or “walk-through” visualization simply means that the model is viewed in a series of images or a video to allow the user to experience the space as they move through. When reviewing 3D models, modelers often use rapid 3D walkthroughs to ensure that all of the elements captured in the scanning and photography process are faithfully reproduced in the model. This process starts with a basic version of the model, without materials, finishes, trim and casework. This makes the model smaller and the rendering process faster allowing rapid back and forth between the model and the VR view. A 3D walkthrough of a basic model will render in seconds, once shading and detailing is added the rendering times become significantly longer.
+A **3D fly-through or walk-through visualization** provides a user experience of moving through a space, presented via a series of images or a video.
 
-Clients may find these basic 3D fly-throughs useful to see their space without colors, materials and furnishings allowing for more freedom to imagine what the space might become. Architects and designers can take these models and add detail, suggest structural changes and add furnishings as part of the ideation and design development process.
+**During the modeling process**, 3D modelers utilize rapid walkthroughs, often starting with a basic model lacking materials, finishes, trim, and casework. This streamlines the process by keeping the model small and rendering times fast—a basic walkthrough renders in seconds—which allows for quick feedback between the model and the VR view, ensuring all scanned elements are accurately reproduced before detailed shading and detailing are added, which significantly increases rendering time.
 
-Embedded video add video player with video “StAndrews\_Short.mp4” add a “play” and a “stop” button  
+**For Clients, Architects, and Designers:**
+
+* **Clients** may find these basic, unfinished 3D fly-throughs valuable for imagining the space's potential, as the lack of color and furnishings offers creative freedom.  
+* **Architects and designers** can leverage these models early in the ideation and design development process to suggest structural changes, add details, and incorporate furnishings.  
+    
+    
+  Embedded video add video player with video “StAndrews\_Short.mp4” add a “play” and a “stop” button
+
 	  
 **3D VR model Review**
 
@@ -103,7 +129,7 @@ A third way to use the basic 3D model is to “enter” the space virtually with
 
 2.4	Image: kitchen\_render\_side\_by\_side.png \- the image should be scaled to horizontally align with the text
 
-2.3 Call to Action \- “Get in Touch” \- Links to /Get\_In\_Touch
+2.3 Call to Action \- “Download White Paper” \- Links to: White Paper \- Using Rapid 3D Visualization Based on Existing Conditions Documentation.pdf
 
 2.10 Additional Services
 

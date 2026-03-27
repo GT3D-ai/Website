@@ -502,6 +502,22 @@ a:hover {
   background-repeat: no-repeat;
 }
 
+.card-visual--event-planner {
+  background-color: #1a1814;
+  background-image: url("Event_Planners/event_planning_hero_image.png");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+.card-visual--builder {
+  background-color: #3a3a3a;
+  background-image: url("Builders/builders_client_card_image.png");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
 .client-card h3 {
   font-size: 0.9375rem;
   font-weight: 600;
