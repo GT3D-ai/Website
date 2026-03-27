@@ -1385,7 +1385,7 @@ body.page-estimator {
 .get-in-touch-hero__bg {
   position: absolute;
   inset: 0;
-  background-image: url("get_in_touch/get_in_touch_hero_image.png");
+  background-image: url("Get_in_Touch/get_in_touch_hero_image.png");
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
