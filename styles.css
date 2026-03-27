@@ -534,6 +534,14 @@ a:hover {
   background-repeat: no-repeat;
 }
 
+.card-visual--retail {
+  background-color: #e8e6e1;
+  background-image: url("Retail/retail_property_page_hero_image.png");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
 .client-card h3 {
   font-size: 0.9375rem;
   font-weight: 600;
