@@ -988,3 +988,31 @@ a:hover {
 .white-paper-cta {
   margin-top: var(--space-lg);
 }
+
+/* Residential category PRD: hero image letterboxed (no clipping), dual CTAs on dark overlay */
+.page-hero--residential .page-hero__img-wrap img {
+  object-fit: contain;
+  object-position: center center;
+}
+
+.page-hero__cta-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+  margin-top: var(--space-xs);
+}
+
+.page-hero__cta-group .btn-primary {
+  margin-top: 0;
+}
+
+.page-hero--residential .page-hero__cta-group .btn-outline {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.65);
+}
+
+.page-hero--residential .page-hero__cta-group .btn-outline:hover {
+  border-color: #fff;
+  color: #fff;
+}
