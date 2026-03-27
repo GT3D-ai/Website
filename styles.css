@@ -1017,6 +1017,12 @@ a:hover {
   object-position: center center;
 }
 
+/* Civic category PRD: panoramic hero letterboxed (no clipping) */
+.page-hero--civic .page-hero__img-wrap img {
+  object-fit: contain;
+  object-position: center center;
+}
+
 .page-hero__cta-group {
   display: flex;
   flex-wrap: wrap;
