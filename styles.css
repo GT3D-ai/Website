@@ -442,6 +442,14 @@ a:hover {
   border: 1px solid var(--line);
 }
 
+.card-visual--interior-architect {
+  background-color: #e8e4dd;
+  background-image: url("Interior_Architects_Designers/interior_architect_client_page_hero_image.png");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
 .client-card h3 {
   font-size: 0.9375rem;
   font-weight: 600;
