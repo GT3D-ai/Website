@@ -1262,3 +1262,181 @@ a:hover {
   white-space: nowrap;
   border: 0;
 }
+
+/* ——— Get in Touch (full-bleed background + form panel) ——— */
+.page-get-in-touch {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.page-get-in-touch .get-in-touch-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.get-in-touch-hero {
+  position: relative;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: min(720px, calc(100vh - 120px));
+}
+
+.get-in-touch-hero__bg {
+  position: absolute;
+  inset: 0;
+  background-image: url("Get_in_Touch/get_in_touch_hero_image.png");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+.get-in-touch-hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(13, 13, 13, 0.5) 0%,
+    rgba(13, 13, 13, 0.62) 45%,
+    rgba(13, 13, 13, 0.72) 100%
+  );
+}
+
+.get-in-touch-hero__inner {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-xl) var(--space-md);
+  max-width: var(--max);
+  width: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.get-in-touch-panel {
+  width: 100%;
+  max-width: 440px;
+  padding: var(--space-lg);
+  background: rgba(255, 255, 255, 0.94);
+  border-radius: 2px;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.get-in-touch-panel__title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(1.35rem, 3vw, 1.65rem);
+  letter-spacing: -0.02em;
+  margin: 0 0 var(--space-sm);
+  color: var(--ink);
+}
+
+.get-in-touch-panel__lede {
+  margin: 0 0 var(--space-lg);
+  font-size: 0.9375rem;
+  color: var(--ink-muted);
+  line-height: 1.5;
+}
+
+.get-in-touch-panel__lede strong {
+  color: var(--ink);
+}
+
+.get-in-touch-form .form-field {
+  margin-bottom: var(--space-md);
+}
+
+.get-in-touch-form .form-field label {
+  display: block;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: var(--space-xs);
+  color: var(--ink);
+}
+
+.get-in-touch-form .req {
+  color: var(--accent);
+}
+
+.get-in-touch-form input[type="text"] {
+  width: 100%;
+  padding: 0.65rem 0.75rem;
+  font: inherit;
+  border: 1px solid var(--line-strong);
+  border-radius: 2px;
+  background: #fff;
+  box-sizing: border-box;
+}
+
+.get-in-touch-form input:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+.get-in-touch-form__actions {
+  margin-top: var(--space-lg);
+}
+
+.site-header--on-dark {
+  background: rgba(13, 13, 13, 0.85);
+  border-bottom-color: rgba(255, 255, 255, 0.12);
+}
+
+.logo--on-dark {
+  color: #fff;
+}
+
+.logo--on-dark:hover {
+  color: #fff;
+}
+
+.logo--on-dark span {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.menu-toggle--on-dark .bar,
+.menu-toggle--on-dark .bar::before,
+.menu-toggle--on-dark .bar::after {
+  background: #fff;
+}
+
+.site-footer--compact {
+  padding: var(--space-md) 0;
+  background: var(--secondary-block);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.site-footer--compact .footer-inner--git {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 var(--space-md);
+  justify-content: center;
+}
+
+.footer-links--inline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm) var(--space-lg);
+  justify-content: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.site-footer--compact a {
+  color: rgba(255, 255, 255, 0.88);
+  text-decoration-color: rgba(255, 255, 255, 0.35);
+}
+
+.site-footer--compact a:hover {
+  color: #fff;
+  text-decoration-color: var(--accent);
+}
