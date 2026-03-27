@@ -1058,6 +1058,12 @@ a:hover {
   color: #fff;
 }
 
+/* Edge-to-edge hero image in strip (opt-in: /Residential, /Architects) */
+.page-hero--full-bleed .page-hero__img-wrap img {
+  object-fit: cover;
+  object-position: center center;
+}
+
 /* ——— Residential quote estimator ——— */
 body.page-estimator {
   background-color: #e8e4dd;
