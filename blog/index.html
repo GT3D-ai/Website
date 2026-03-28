@@ -57,6 +57,7 @@
               id="stories-hero-video"
               class="stories-masthead__video"
               src="san-francisco-yacht-club-piling-mapping/SFYC_Flythrough.mp4"
+              poster="san-francisco-yacht-club-piling-mapping/images/sfyc-02-kayak.png"
               autoplay
               muted
               playsinline
@@ -275,8 +276,27 @@
         var video = document.getElementById("stories-hero-video");
         var btn = document.getElementById("stories-hero-video-toggle");
         if (!video || !btn) return;
+        var path = window.location.pathname || "/";
+        if (/\/index\.html$/i.test(path)) {
+          path = path.replace(/index\.html$/i, "");
+        } else if (!/\/$/.test(path)) {
+          // Treat extension-less paths like /blog as directory routes.
+          path += "/";
+        }
+        var baseHref = window.location.origin + path;
+        var resolvedSrc = new URL("san-francisco-yacht-club-piling-mapping/SFYC_Flythrough.mp4", baseHref).href;
+        var resolvedPoster = new URL("san-francisco-yacht-club-piling-mapping/images/sfyc-02-kayak.png", baseHref).href;
+        if (video.src !== resolvedSrc) {
+          video.src = resolvedSrc;
+          video.poster = resolvedPoster;
+          video.load();
+        }
         var iconPause = btn.querySelector(".stories-masthead__video-toggle-icon--pause");
         var iconPlay = btn.querySelector(".stories-masthead__video-toggle-icon--play");
+        function tryPlay() {
+          var p = video.play();
+          if (p && typeof p.catch === "function") p.catch(function () {});
+        }
         function sync() {
           var playing = !video.paused;
           btn.setAttribute("aria-pressed", playing ? "true" : "false");
@@ -288,14 +308,18 @@
         }
         btn.addEventListener("click", function () {
           if (video.paused) {
-            video.play();
+            tryPlay();
           } else {
             video.pause();
           }
         });
+        video.addEventListener("loadeddata", function () {
+          if (video.autoplay && video.paused) tryPlay();
+        });
         video.addEventListener("play", sync);
         video.addEventListener("pause", sync);
         video.addEventListener("ended", sync);
+        tryPlay();
         sync();
       })();
     </script>
