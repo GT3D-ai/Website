@@ -3,8 +3,11 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>San Francisco Yacht Club — Piling Mapping — Ground Truth 3D</title>
-    <meta name="description" content="Case study: under-pier reality capture for marine structures—access, safety, and deliverables." />
+    <title>SFYC Piling Documentation — Ground Truth 3D</title>
+    <meta
+      name="description"
+      content="Case study: mapping and photographing pilings under the docks at the San Francisco Yacht Club—custom platforms, kayak access, and scan-to-grid deliverables for repair and sea-level visualization."
+    />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -32,10 +35,18 @@
       </nav>
     </div>
     <main>
-      <article class="story-article">
+      <article class="story-article" itemscope itemtype="https://schema.org/Article">
         <header class="story-article__masthead">
           <figure class="story-article__hero">
-            <video controls playsinline preload="metadata" poster="../../Get_in_Touch/get_in_touch_hero_image.png">
+            <video
+              id="sfyc-hero-video"
+              class="story-article__hero-video"
+              playsinline
+              preload="metadata"
+              poster="../../Get_in_Touch/get_in_touch_hero_image.png"
+              autoplay
+              muted
+            >
               <source src="SFYC_Flythrough.mp4" type="video/mp4" />
               Your browser does not support the video tag.
             </video>
@@ -44,9 +55,9 @@
           <a class="story-article__back" href="../index.html">← All stories</a>
           <div class="story-article__hero-overlay">
             <p class="story-article__label">Case study</p>
-            <h1 class="story-article__title">San Francisco Yacht Club — piling mapping</h1>
-            <p class="story-article__deck">Under-pier reality capture where tides, access, and geometry all matter</p>
-            <p class="story-article__meta"><time datetime="2026-02-18">February 18, 2026</time></p>
+            <h1 class="story-article__title" itemprop="headline">SFYC Piling Documentation</h1>
+            <p class="story-article__deck">Mapping and Photographing Under the Docks</p>
+            <p class="story-article__meta"><time datetime="2026-02-09" itemprop="datePublished">February 9, 2026</time></p>
             <div class="story-article__scroll-hint" aria-hidden="true">
               <svg
                 class="story-article__scroll-hint-icon"
@@ -60,28 +71,132 @@
               </svg>
             </div>
           </div>
+          <div class="story-article__hero-video-bar">
+            <button
+              type="button"
+              class="stories-masthead__video-toggle"
+              id="sfyc-hero-video-toggle"
+              aria-controls="sfyc-hero-video"
+              aria-pressed="true"
+              aria-label="Pause hero video"
+            >
+              <span class="stories-masthead__video-toggle-icon stories-masthead__video-toggle-icon--pause" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="24" height="24" xmlns="http://www.w3.org/2000/svg" focusable="false">
+                  <rect x="6" y="4" width="4" height="16" rx="0.5" fill="currentColor" />
+                  <rect x="14" y="4" width="4" height="16" rx="0.5" fill="currentColor" />
+                </svg>
+              </span>
+              <span class="stories-masthead__video-toggle-icon stories-masthead__video-toggle-icon--play" aria-hidden="true" hidden>
+                <svg viewBox="0 0 24 24" width="24" height="24" xmlns="http://www.w3.org/2000/svg" focusable="false">
+                  <path d="M8 5v14l11-7z" fill="currentColor" />
+                </svg>
+              </span>
+            </button>
+          </div>
         </header>
         <div class="story-article__inner">
-        <div class="story-article__body">
-          <p>
-            Marine documentation is a different problem from a typical interior scan. You work around water, limited windows for access, and safety rules that dictate how and when crews can be under a structure. The goal is the same as on land: a trustworthy 3D record—but the logistics are rarely generic.
-          </p>
-          <p>
-            For piling and under-deck work, teams need clear deliverables: registered point clouds, measurable linework, and context that engineers can use for assessment and maintenance planning. The scan isn’t “for its own sake”—it’s input to decisions about load paths, deterioration, and future repairs.
-          </p>
-          <h2>What we optimize for</h2>
-          <ul>
-            <li><strong>Access and sequencing</strong> — capturing coverage without putting people in unnecessary exposure.</li>
-            <li><strong>Registration quality</strong> — tying scans together so distances and alignments hold when the model moves into CAD or BIM.</li>
-            <li><strong>Deliverable fit</strong> — matching level of detail to how the owner and engineer will use the data.</li>
-          </ul>
-          <p>
-            Below is a short flythrough from the project environment—useful for orienting stakeholders who won’t walk the site in person.
-          </p>
-        </div>
-        <div class="story-article__cta">
-          <a class="btn btn-primary" href="../../Get_in_Touch/index.html">Discuss marine or waterfront scope</a>
-        </div>
+          <div class="story-article__body" itemprop="articleBody">
+            <p class="story-article__lede">
+              Salt Water, Rising Tides and Planning for Sea Level Change
+            </p>
+            <p>
+              Founded in 1869, the San Francisco Yacht Club is the oldest club on the West Coast. Like all coastal facilities the club
+              and especially its docks and piers are subject to challenging conditions and like all older facilities, has evolved
+              through constant repairs, renovations and expansion. As a result few of the 100s of pilings sunk deep into the San
+              Francisco Bay floor are plumb and level, some are wooden poles, some concrete and all are different.
+            </p>
+            <figure class="story-article__figure">
+              <img
+                src="../../Get_in_Touch/get_in_touch_hero_image.png"
+                alt="Pilings under the docks with scanning equipment mounted on a custom platform"
+                width="1600"
+                height="900"
+                loading="lazy"
+              />
+            </figure>
+            <p>
+              To capture the current state of the pilings we created a custom platform that strapped to the columns using web straps
+              and clamps with a mechanism that allowed us to level the scanning surface.
+            </p>
+            <figure class="story-article__figure">
+              <img
+                src="images/sfyc-02-kayak.png"
+                alt="Kayaker paddling under the pier between barnacle-covered pilings, wooden beams overhead"
+                width="1600"
+                height="900"
+                loading="lazy"
+              />
+            </figure>
+            <p>
+              At very low tides we could access some of the pilings by walking along the muddy, exposed “beach” but reaching most of
+              them required paddling a kayak and carefully attaching, scanning and detaching the custom platforms, all while trying to
+              make sure that no salt water or mud touched the (very expensive) scanner.
+            </p>
+            <p>
+              Fortunately we had a stretch of sunny weather in December and January. Rain and wind would have made an already
+              challenging project much more difficult.
+            </p>
+            <figure class="story-article__figure">
+              <img
+                src="images/sfyc-03-sailboats.png"
+                alt="Marina at dusk with sailboats and holiday lights reflected on calm water"
+                width="1600"
+                height="900"
+                loading="lazy"
+              />
+            </figure>
+            <p>
+              The resulting scans captured the pilings, the dock surfaces and the facades of the club buildings and provided an
+              accurate model of the surface of the parking lot and surrounding site. We used the scans to generate a grid for the
+              columns allowing easy identification and labeling for repair planning and execution.
+            </p>
+            <figure class="story-article__figure">
+              <img
+                src="images/sfyc-04-section-docks.png"
+                alt="Column detail drawings N/S and E/W from scan: numbered pilings with plumb reference and tilt measurements for wood and concrete piles"
+                width="1600"
+                height="900"
+                loading="lazy"
+              />
+            </figure>
+            <p>
+              By cropping the scan and the model we built from the scan we were able to zoom in to individual pilings to measure and
+              communicate the degree of tilt.
+            </p>
+            <figure class="story-article__figure">
+              <img
+                src="images/sfyc-05-sea-level.png"
+                alt="3D model of the yacht club waterfront: buildings, pier, water, and site context for sea-level and encroachment visualization"
+                width="1600"
+                height="900"
+                loading="lazy"
+              />
+            </figure>
+            <p class="story-article__end-links-text">
+              <a href="../../Rec_Facility/index.html">Recreational facilities documentation</a>
+            </p>
+            <p>
+              Once the project was completed we were able to adjust the sea level in the model to simulate water encroachment
+              potential. Since the model was georeferenced and the site topography is modeled to accurately map to the scan data, it
+              is easy to visualize how the site would be affected by rising sea levels and storm surges.
+            </p>
+            <div class="story-article__end-links">
+              <p class="story-article__end-links-text">
+                <a href="../../Disaster_Planning_Existing_Conditions/index.html">Disaster planning &amp; existing conditions</a>
+              </p>
+              <p class="story-article__white-paper-cta">
+                <a
+                  class="btn btn-outline"
+                  href="../../PDFs/White%20Paper%20-%20Existing%20Conditions%20Documentation%20for%20Disaster%20Preparedness.pdf"
+                  download
+                  >Download White Paper</a
+                >
+              </p>
+            </div>
+          </div>
+          <div class="story-article__cta">
+            <a class="btn btn-primary" href="../../Get_in_Touch/index.html">Discuss marine or waterfront scope</a>
+          </div>
         </div>
       </article>
     </main>
@@ -120,6 +235,33 @@
             setOpen(false);
           });
         });
+      })();
+      (function () {
+        var video = document.getElementById("sfyc-hero-video");
+        var btn = document.getElementById("sfyc-hero-video-toggle");
+        if (!video || !btn) return;
+        var iconPause = btn.querySelector(".stories-masthead__video-toggle-icon--pause");
+        var iconPlay = btn.querySelector(".stories-masthead__video-toggle-icon--play");
+        function sync() {
+          var playing = !video.paused;
+          btn.setAttribute("aria-pressed", playing ? "true" : "false");
+          btn.setAttribute("aria-label", playing ? "Pause hero video" : "Play hero video");
+          if (iconPause && iconPlay) {
+            iconPause.hidden = !playing;
+            iconPlay.hidden = playing;
+          }
+        }
+        btn.addEventListener("click", function () {
+          if (video.paused) {
+            video.play();
+          } else {
+            video.pause();
+          }
+        });
+        video.addEventListener("play", sync);
+        video.addEventListener("pause", sync);
+        video.addEventListener("ended", sync);
+        sync();
       })();
     </script>
   </body>
