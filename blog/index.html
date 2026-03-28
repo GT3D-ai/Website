@@ -51,17 +51,53 @@
 
     <main id="main">
       <header class="stories-masthead">
-        <div class="stories-masthead__inner">
-          <p class="stories-masthead__eyebrow">Ground Truth 3D</p>
-          <h1 class="stories-masthead__title">Stories</h1>
-          <p class="stories-masthead__tagline">
-            The projects we document, the tools we use, and the people we meet along the way. Field notes on existing
-            conditions documentation, LiDAR, BIM, and building the digital record your team can trust.
-          </p>
-          <p class="stories-masthead__cta">
-            <a class="btn btn-primary" href="../index.html">Explore services</a>
-            <a class="btn btn-outline stories-masthead__btn-outline" href="../Get_in_Touch/index.html">Get in Touch</a>
-          </p>
+        <div class="stories-masthead__hero">
+          <div class="stories-masthead__video-hero" aria-hidden="true">
+            <video
+              id="stories-hero-video"
+              class="stories-masthead__video"
+              src="san-francisco-yacht-club-piling-mapping/SFYC_Flythrough.mp4"
+              autoplay
+              muted
+              playsinline
+              preload="metadata"
+            ></video>
+          </div>
+          <div class="stories-masthead__scrim" aria-hidden="true"></div>
+          <div class="stories-masthead__inner">
+            <p class="stories-masthead__eyebrow">Ground Truth 3D</p>
+            <h1 class="stories-masthead__title">Stories</h1>
+            <p class="stories-masthead__tagline">
+              The projects we document, the tools we use, and the people we meet along the way. Field notes on existing
+              conditions documentation, LiDAR, BIM, and building the digital record your team can trust.
+            </p>
+            <p class="stories-masthead__cta">
+              <a class="btn btn-primary" href="../index.html">Explore services</a>
+              <a class="btn btn-outline stories-masthead__btn-outline" href="../Get_in_Touch/index.html">Get in Touch</a>
+            </p>
+            <p class="stories-masthead__video-control">
+              <button
+                type="button"
+                class="stories-masthead__video-toggle"
+                id="stories-hero-video-toggle"
+                aria-controls="stories-hero-video"
+                aria-pressed="true"
+                aria-label="Pause hero video"
+              >
+                <span class="stories-masthead__video-toggle-icon stories-masthead__video-toggle-icon--pause" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="24" height="24" xmlns="http://www.w3.org/2000/svg" focusable="false">
+                    <rect x="6" y="4" width="4" height="16" rx="0.5" fill="currentColor" />
+                    <rect x="14" y="4" width="4" height="16" rx="0.5" fill="currentColor" />
+                  </svg>
+                </span>
+                <span class="stories-masthead__video-toggle-icon stories-masthead__video-toggle-icon--play" aria-hidden="true" hidden>
+                  <svg viewBox="0 0 24 24" width="24" height="24" xmlns="http://www.w3.org/2000/svg" focusable="false">
+                    <path d="M8 5v14l11-7z" fill="currentColor" />
+                  </svg>
+                </span>
+              </button>
+            </p>
+          </div>
         </div>
       </header>
 
@@ -70,7 +106,7 @@
           <article class="stories-card stories-card--featured">
             <a class="stories-card__media" href="existing-conditions-documentation-historic-buildings/index.html">
               <img
-                src="../Civic/civic_category_page_hero_image.png"
+                src="existing-conditions-documentation-historic-buildings/images/st-andrews-cathedral-model.png"
                 alt=""
                 width="960"
                 height="540"
@@ -81,17 +117,16 @@
               <span class="stories-card__label">Newest</span>
               <h2 class="stories-card__headline">
                 <a href="existing-conditions-documentation-historic-buildings/index.html"
-                  >Existing Conditions Documentation for Historic Buildings</a
+                  >Recording the Past for the Future</a
                 >
               </h2>
               <h3 class="stories-card__deck">
-                Why high-fidelity as-builts matter when every opening and detail carries preservation weight
+                Generating and Sharing Important Buildings to Create a Shareable Archive
               </h3>
-              <time class="stories-card__date" datetime="2026-03-01">March 1, 2026</time>
+              <time class="stories-card__date" datetime="2026-03-28">March 28, 2026</time>
               <p class="stories-card__excerpt">
-                Historic structures rarely match old drawings. We explore how LiDAR-backed documentation gives architects
-                and preservation teams a defensible baseline for renovation, code upgrades, and grant work—without
-                endless site revisits.
+                From St. Andrew’s Cathedral with Singapore and SUTD to San Jose’s Bank of California with Gensler—digital
+                documentation that preserves important buildings for remote access, future study, and catastrophe recovery.
               </p>
               <a class="stories-card__read" href="existing-conditions-documentation-historic-buildings/index.html"
                 >Read full story</a
@@ -235,6 +270,33 @@
         document.addEventListener("keydown", function (e) {
           if (e.key === "Escape") setOpen(false);
         });
+      })();
+      (function () {
+        var video = document.getElementById("stories-hero-video");
+        var btn = document.getElementById("stories-hero-video-toggle");
+        if (!video || !btn) return;
+        var iconPause = btn.querySelector(".stories-masthead__video-toggle-icon--pause");
+        var iconPlay = btn.querySelector(".stories-masthead__video-toggle-icon--play");
+        function sync() {
+          var playing = !video.paused;
+          btn.setAttribute("aria-pressed", playing ? "true" : "false");
+          btn.setAttribute("aria-label", playing ? "Pause hero video" : "Play hero video");
+          if (iconPause && iconPlay) {
+            iconPause.hidden = !playing;
+            iconPlay.hidden = playing;
+          }
+        }
+        btn.addEventListener("click", function () {
+          if (video.paused) {
+            video.play();
+          } else {
+            video.pause();
+          }
+        });
+        video.addEventListener("play", sync);
+        video.addEventListener("pause", sync);
+        video.addEventListener("ended", sync);
+        sync();
       })();
     </script>
   </body>

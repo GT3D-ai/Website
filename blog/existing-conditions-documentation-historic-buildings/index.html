@@ -3,8 +3,11 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Existing Conditions Documentation for Historic Buildings — Ground Truth 3D</title>
-    <meta name="description" content="Why accurate as-built documentation matters for preservation, code upgrades, and renovation of historic buildings." />
+    <title>Recording the Past for the Future — Ground Truth 3D</title>
+    <meta
+      name="description"
+      content="Digital archives of significant architecture: St. Andrew’s Cathedral with Singapore &amp; SUTD, San Jose’s Bank of California with Gensler, and Bay Area heritage homes."
+    />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -33,33 +36,165 @@
     </div>
     <main>
       <article class="story-article" itemscope itemtype="https://schema.org/Article">
-        <a class="story-article__back" href="../index.html">← All stories</a>
-        <p class="story-article__label">Newest</p>
-        <h1 class="story-article__title" itemprop="headline">Existing Conditions Documentation for Historic Buildings</h1>
-        <p class="story-article__deck">Why high-fidelity as-builts matter when every opening and detail carries preservation weight</p>
-        <p class="story-article__meta"><time datetime="2026-03-01" itemprop="datePublished">March 1, 2026</time></p>
-        <figure class="story-article__hero">
-          <img src="../../Civic/civic_category_page_hero_image.png" alt="Civic and historic context for documentation projects" width="1200" height="675" />
-        </figure>
-        <div class="story-article__body" itemprop="articleBody">
-          <p>
-            Historic buildings are rarely “as drawn.” Decades of alterations, undocumented repairs, and material changes mean that relying on old plans alone is a risk for structural engineers, preservation architects, and code consultants alike.
-          </p>
-          <p>
-            Existing conditions documentation grounded in LiDAR and 360° photography establishes a single, verifiable baseline: wall thicknesses, floor-to-floor heights, window and door openings, and the relationships between structural and ornamental elements. That baseline becomes the common reference for schematic design, life-safety upgrades, accessibility improvements, and grant-backed preservation work.
-          </p>
-          <h2>What teams do with the deliverables</h2>
-          <ul>
-            <li>Compare proposed interventions against measured geometry before construction starts.</li>
-            <li>Share a consistent digital record with reviewers, contractors, and stakeholders who may never visit the site together.</li>
-            <li>Reduce change orders driven by surprises in the field.</li>
-          </ul>
-          <p>
-            When the goal is to protect character while meeting modern performance requirements, the first step is knowing—precisely—what exists today. That’s the work we’re built to support.
-          </p>
-        </div>
-        <div class="story-article__cta">
-          <a class="btn btn-primary" href="../../Get_in_Touch/index.html">Discuss your project</a>
+        <header class="story-article__masthead">
+          <figure class="story-article__hero story-article__hero--slideshow">
+            <div
+              class="story-article__slideshow-viewport"
+              id="historic-hero-slideshow"
+              role="region"
+              aria-roledescription="carousel"
+              aria-label="Project photography"
+            >
+              <div class="story-article__slide is-active">
+                <img
+                  src="images/st-andrews-cathedral-model.png"
+                  alt="3D clay model of St. Andrew’s Cathedral, Singapore: Gothic Revival spires and lancet windows in a digital survey model"
+                  width="2500"
+                  height="1300"
+                  loading="eager"
+                />
+              </div>
+              <div class="story-article__slide" aria-hidden="true">
+                <img
+                  src="images/slide-01.png"
+                  alt="3D architectural model of Cityview Plaza and the Bank of California building (Cesar Pelli), San Jose"
+                  width="2500"
+                  height="1300"
+                  loading="lazy"
+                />
+              </div>
+              <div class="story-article__slide" aria-hidden="true">
+                <img
+                  src="images/slide-02.png"
+                  alt="3D model of a historic hillside residence with Craftsman-style detailing, San Francisco Bay Area"
+                  width="2500"
+                  height="1300"
+                  loading="lazy"
+                />
+              </div>
+              <div class="story-article__slide" aria-hidden="true">
+                <img
+                  src="images/slide-03.png"
+                  alt="Existing conditions documentation sheet: 3D rendering with North elevation and Level 1 and 2 floor plans"
+                  width="2500"
+                  height="1300"
+                  loading="lazy"
+                />
+              </div>
+            </div>
+          </figure>
+          <button
+            type="button"
+            class="story-article__slideshow-nav story-article__slideshow-nav--prev"
+            aria-controls="historic-hero-slideshow"
+            aria-label="Previous image"
+          >
+            <svg viewBox="0 0 24 24" width="24" height="24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+              <path fill="currentColor" d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
+            </svg>
+          </button>
+          <button
+            type="button"
+            class="story-article__slideshow-nav story-article__slideshow-nav--next"
+            aria-controls="historic-hero-slideshow"
+            aria-label="Next image"
+          >
+            <svg viewBox="0 0 24 24" width="24" height="24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+              <path fill="currentColor" d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" />
+            </svg>
+          </button>
+          <div class="story-article__hero-scrim" aria-hidden="true"></div>
+          <a class="story-article__back" href="../index.html">← All stories</a>
+          <div class="story-article__hero-overlay">
+            <p class="story-article__label">Historic documentation</p>
+            <h1 class="story-article__title" itemprop="headline">Recording the Past for the Future</h1>
+            <p class="story-article__deck">Generating and Sharing Important Buildings to Create a Shareable Archive</p>
+            <p class="story-article__meta"><time datetime="2026-03-28" itemprop="datePublished">March 28, 2026</time></p>
+            <div class="story-article__scroll-hint" aria-hidden="true">
+              <svg
+                class="story-article__scroll-hint-icon"
+                viewBox="0 0 24 24"
+                width="36"
+                height="36"
+                xmlns="http://www.w3.org/2000/svg"
+                focusable="false"
+              >
+                <path fill="currentColor" d="M12 15.41l-4.59-4.5L6 12.82l6 6 6-6-1.41-1.41L12 15.41z" />
+              </svg>
+            </div>
+          </div>
+        </header>
+        <div class="story-article__inner">
+          <div class="story-article__body" itemprop="articleBody">
+            <p class="story-article__lede">
+              Scanning, photographing and modeling provides remote access, records “doomed” buildings and can guide reproduction in
+              the event of a catastrophic event.
+            </p>
+            <p>
+              The devastating fire at Notre Dame de Paris highlighted the critical importance of creating detailed digital archives
+              of significant architectural sites to aid in their restoration after a catastrophe. In response, individuals at
+              Ground Truth 3D collaborated with the Government of Singapore and the Singapore University of Technology and Design
+              (SUTD) to digitally document St. Andrew’s Cathedral.
+            </p>
+            <figure class="story-article__figure">
+              <img
+                src="images/st-andrews-cathedral-model.png"
+                alt="3D clay model of St. Andrew’s Cathedral, Singapore: Gothic Revival spires, lancet windows, and buttresses in a digital survey model"
+                width="1600"
+                height="900"
+                loading="lazy"
+              />
+            </figure>
+            <p>
+              Working alongside a team of design students, we executed a comprehensive capture, scanning, modeling, and photographing
+              the cathedral, its surrounding grounds, and nearby structures. This effort successfully generated a highly detailed
+              digital asset, establishing a historical record that is accessible for online viewing and future preservation.
+            </p>
+            <figure class="story-article__figure">
+              <img
+                src="images/cityview-plaza-sphinx-model.png"
+                alt="3D model of Cityview Plaza and the Bank of California building (“The Sphinx”), San Jose — Cesar Pelli brutalist architecture with plaza, landscaping, and entrance stairs"
+                width="1600"
+                height="900"
+                loading="lazy"
+              />
+            </figure>
+            <p>
+              Working with Gensler, we scanned an entire city block in San Jose, CA, focusing on a full, detailed model of the Bank
+              of California building, also known as “The Sphinx,” a Cesar Pelli building and early example of Pelli’s brutalist
+              architecture and considered an important heritage structure. The building could not be saved but a thorough digital
+              record now exists for future architects and historians.
+            </p>
+            <figure class="story-article__figure">
+              <img
+                src="images/arts-crafts-hillside-residence.png"
+                alt="3D model of a hillside Arts and Crafts residence: shingle siding, red trim, tiered decks, retaining walls, and garage — Bay Area historic documentation"
+                width="1600"
+                height="900"
+                loading="lazy"
+              />
+            </figure>
+            <p>
+              Architects Julia Morgan and Bernard Maybeck are renowned for their work in the California Arts and Crafts and
+              Beaux-Arts styles, having designed numerous exquisite residences across the San Francisco Bay area. These homes
+              frequently showcase intricate detailing in old-growth redwood, a rare and beautiful material that demands diligent
+              upkeep. Unfortunately, many of these architectural treasures have been lost to demolition, fire, or careless
+              renovations. To preserve a record regardless of future events, we completed accurate geometric and photographic
+              documentation of two such buildings.
+            </p>
+            <figure class="story-article__figure">
+              <img
+                src="images/existing-conditions-documentation-sheet.png"
+                alt="Existing conditions documentation: 3D rendering of a shingle-style historic house with North elevation, Level 1 floor plan, and Level 2 floor plan at 1/8 inch scale"
+                width="1600"
+                height="900"
+                loading="lazy"
+              />
+            </figure>
+          </div>
+          <div class="story-article__cta">
+            <a class="btn btn-primary" href="../../Get_in_Touch/index.html">Discuss your project</a>
+          </div>
         </div>
       </article>
     </main>
@@ -98,6 +233,25 @@
             setOpen(false);
           });
         });
+      })();
+      (function () {
+        var root = document.getElementById("historic-hero-slideshow");
+        if (!root) return;
+        var slides = root.querySelectorAll(".story-article__slide");
+        var masthead = root.closest(".story-article__masthead");
+        var prev = masthead ? masthead.querySelector(".story-article__slideshow-nav--prev") : null;
+        var next = masthead ? masthead.querySelector(".story-article__slideshow-nav--next") : null;
+        var i = 0;
+        var n = slides.length;
+        function go(delta) {
+          slides[i].classList.remove("is-active");
+          slides[i].setAttribute("aria-hidden", "true");
+          i = (i + delta + n) % n;
+          slides[i].classList.add("is-active");
+          slides[i].setAttribute("aria-hidden", "false");
+        }
+        if (prev) prev.addEventListener("click", function () { go(-1); });
+        if (next) next.addEventListener("click", function () { go(1); });
       })();
     </script>
   </body>

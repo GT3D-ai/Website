@@ -33,17 +33,35 @@
     </div>
     <main>
       <article class="story-article">
-        <a class="story-article__back" href="../index.html">← All stories</a>
-        <p class="story-article__label">Case study</p>
-        <h1 class="story-article__title">San Francisco Yacht Club — piling mapping</h1>
-        <p class="story-article__deck">Under-pier reality capture where tides, access, and geometry all matter</p>
-        <p class="story-article__meta"><time datetime="2026-02-18">February 18, 2026</time></p>
-        <figure class="story-article__hero">
-          <video controls playsinline preload="metadata" poster="../../Get_in_Touch/get_in_touch_hero_image.png">
-            <source src="SFYC_Flythrough.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
-        </figure>
+        <header class="story-article__masthead">
+          <figure class="story-article__hero">
+            <video controls playsinline preload="metadata" poster="../../Get_in_Touch/get_in_touch_hero_image.png">
+              <source src="SFYC_Flythrough.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </figure>
+          <div class="story-article__hero-scrim" aria-hidden="true"></div>
+          <a class="story-article__back" href="../index.html">← All stories</a>
+          <div class="story-article__hero-overlay">
+            <p class="story-article__label">Case study</p>
+            <h1 class="story-article__title">San Francisco Yacht Club — piling mapping</h1>
+            <p class="story-article__deck">Under-pier reality capture where tides, access, and geometry all matter</p>
+            <p class="story-article__meta"><time datetime="2026-02-18">February 18, 2026</time></p>
+            <div class="story-article__scroll-hint" aria-hidden="true">
+              <svg
+                class="story-article__scroll-hint-icon"
+                viewBox="0 0 24 24"
+                width="36"
+                height="36"
+                xmlns="http://www.w3.org/2000/svg"
+                focusable="false"
+              >
+                <path fill="currentColor" d="M12 15.41l-4.59-4.5L6 12.82l6 6 6-6-1.41-1.41L12 15.41z" />
+              </svg>
+            </div>
+          </div>
+        </header>
+        <div class="story-article__inner">
         <div class="story-article__body">
           <p>
             Marine documentation is a different problem from a typical interior scan. You work around water, limited windows for access, and safety rules that dictate how and when crews can be under a structure. The goal is the same as on land: a trustworthy 3D record—but the logistics are rarely generic.
@@ -63,6 +81,7 @@
         </div>
         <div class="story-article__cta">
           <a class="btn btn-primary" href="../../Get_in_Touch/index.html">Discuss marine or waterfront scope</a>
+        </div>
         </div>
       </article>
     </main>

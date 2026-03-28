@@ -33,14 +33,32 @@
     </div>
     <main>
       <article class="story-article">
-        <a class="story-article__back" href="../index.html">← All stories</a>
-        <p class="story-article__label">Evergreen</p>
-        <h1 class="story-article__title">Existing conditions, as-builts, and field measurement</h1>
-        <p class="story-article__deck">Clear language for three ideas that often get used interchangeably</p>
-        <p class="story-article__meta"><time datetime="2025-09-22">September 22, 2025</time></p>
-        <figure class="story-article__hero">
-          <img src="../../Residential_Existing_Conditions/residential_category_page_hero_image.png" alt="Residential documentation context" width="1200" height="675" />
-        </figure>
+        <header class="story-article__masthead">
+          <figure class="story-article__hero">
+            <img src="../../Residential_Existing_Conditions/residential_category_page_hero_image.png" alt="Residential documentation context" width="1200" height="675" />
+          </figure>
+          <div class="story-article__hero-scrim" aria-hidden="true"></div>
+          <a class="story-article__back" href="../index.html">← All stories</a>
+          <div class="story-article__hero-overlay">
+            <p class="story-article__label">Evergreen</p>
+            <h1 class="story-article__title">Existing conditions, as-builts, and field measurement</h1>
+            <p class="story-article__deck">Clear language for three ideas that often get used interchangeably</p>
+            <p class="story-article__meta"><time datetime="2025-09-22">September 22, 2025</time></p>
+            <div class="story-article__scroll-hint" aria-hidden="true">
+              <svg
+                class="story-article__scroll-hint-icon"
+                viewBox="0 0 24 24"
+                width="36"
+                height="36"
+                xmlns="http://www.w3.org/2000/svg"
+                focusable="false"
+              >
+                <path fill="currentColor" d="M12 15.41l-4.59-4.5L6 12.82l6 6 6-6-1.41-1.41L12 15.41z" />
+              </svg>
+            </div>
+          </div>
+        </header>
+        <div class="story-article__inner">
         <div class="story-article__body">
           <p>
             In conversations with owners and designers, “as-built” can mean a redlined PDF, a survey, a Revit model, or simply “someone went to the site and wrote things down.” That ambiguity is where schedules slip and RFIs multiply—because nobody aligned on what “done” looks like.
@@ -61,6 +79,7 @@
         </div>
         <div class="story-article__cta">
           <a class="btn btn-primary" href="../../Get_in_Touch/index.html">Align scope with our team</a>
+        </div>
         </div>
       </article>
     </main>
