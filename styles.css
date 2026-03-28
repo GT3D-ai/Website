@@ -2353,6 +2353,41 @@ body.page-estimator {
   background: #eaeaea;
 }
 
+.story-article__figure-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-sm);
+  margin: 0 0 var(--space-lg);
+}
+
+@media (min-width: 640px) {
+  .story-article__figure-row {
+    grid-template-columns: repeat(3, 1fr);
+    align-items: start;
+  }
+}
+
+.story-article__figure-row .story-article__figure {
+  margin: 0;
+}
+
+/* Equal-sized tiles in a 3-up row (same aspect box for each image) */
+.story-article__figure-row--uniform .story-article__figure {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1024 / 585;
+  background: #eaeaea;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.story-article__figure-row--uniform .story-article__figure img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
 .story-article__end-links {
   margin-top: var(--space-lg);
   padding-top: var(--space-md);

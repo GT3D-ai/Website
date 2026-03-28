@@ -3,8 +3,11 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Ground Truth Basic Existing Conditions Modeling (BIM200) — Ground Truth 3D</title>
-    <meta name="description" content="What basic BIM200-style existing conditions models include—and how teams use them for planning and coordination." />
+    <title>What (the Heck) is BIM? — Ground Truth 3D</title>
+    <meta
+      name="description"
+      content="CAD vs BIM, LOD200 existing conditions models from LiDAR and 360° photos, and why a simplified model is the right foundation for design and purchase decisions."
+    />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -32,18 +35,24 @@
       </nav>
     </div>
     <main>
-      <article class="story-article">
+      <article class="story-article" itemscope itemtype="https://schema.org/Article">
         <header class="story-article__masthead">
           <figure class="story-article__hero">
-            <img src="../../Commercial_Existing_Conditions/commercial_category_page_hero_image.png" alt="Commercial building documentation context" width="1200" height="675" />
+            <img
+              src="images/bim200-hero.png"
+              alt="Wireframe structural BIM model: roof trusses, framing, walls, and openings in perspective"
+              width="1200"
+              height="675"
+              loading="eager"
+            />
           </figure>
           <div class="story-article__hero-scrim" aria-hidden="true"></div>
           <a class="story-article__back" href="../index.html">← All stories</a>
           <div class="story-article__hero-overlay">
-            <p class="story-article__label">Evergreen</p>
-            <h1 class="story-article__title">Ground Truth Basic Existing Conditions Modeling (BIM200)</h1>
-            <p class="story-article__deck">What “basic” BIM means in scope, LOD, and what you can do with the model</p>
-            <p class="story-article__meta"><time datetime="2025-11-10">November 10, 2025</time></p>
+            <p class="story-article__label">Guide</p>
+            <h1 class="story-article__title" itemprop="headline">What (the Heck) is BIM?</h1>
+            <p class="story-article__deck">CAD, BIM, Plans and 3D</p>
+            <p class="story-article__meta"><time datetime="2026-02-09" itemprop="datePublished">February 9, 2026</time></p>
             <div class="story-article__scroll-hint" aria-hidden="true">
               <svg
                 class="story-article__scroll-hint-icon"
@@ -59,26 +68,96 @@
           </div>
         </header>
         <div class="story-article__inner">
-        <div class="story-article__body">
-          <p>
-            “BIM200” is shorthand many teams use for a schematic-level model: enough geometry to study the building, coordinate disciplines, and support early estimates—without investing in fully detailed fabrication-level content before decisions warrant it.
-          </p>
-          <p>
-            For existing conditions, a BIM200-style deliverable typically emphasizes the shell and primary interiors: grids, floor slabs, major walls, openings, stairs, and primary MEP volumes where visible. The point is a shared spatial framework anchored to field reality, not a mirror of every screw and bracket.
-          </p>
-          <h2>When it’s the right fit</h2>
-          <ul>
-            <li>Early planning and test fits before design fees ramp up.</li>
-            <li>Owner and contractor alignment on scope boundaries.</li>
-            <li>Input to energy, accessibility, or feasibility studies that need volume and area more than joinery.</li>
-          </ul>
-          <p>
-            If your next milestone is LOD 300+ for permit or construction, we’ll align scope up front so the model can evolve without throwing away work—or we’ll quote the detailed pass explicitly. The label matters less than the decision you need to make next.
-          </p>
-        </div>
-        <div class="story-article__cta">
-          <a class="btn btn-primary" href="../../Get_in_Touch/index.html">Ask about BIM scope</a>
-        </div>
+          <div class="story-article__body" itemprop="articleBody">
+            <p class="story-article__lede">3D Models Take a Little More Time But Add A LOT of Value</p>
+            <p>
+              BIM, Building Information Modeling, is CAD,Computer Aided Design, on steroids. CAD models are the digital equivalent
+              of old school blueprints: line drawings of floor plans, exterior elevations, section cuts through the building and
+              details, the drawings delivered in large rolls of paper and reviewed on dining room tables and temporary plywood standup
+              desks on construction sites.
+            </p>
+            <figure class="story-article__figure">
+              <img
+                src="images/bim-01-rolls-drawings.png"
+                alt="Rolled construction drawing sets on a table"
+                width="1600"
+                height="900"
+                loading="lazy"
+              />
+            </figure>
+            <p>
+              BIM models are all of that and more. The core of a CAD model are 2 dimensional digital “drawings”. While a BIM model can
+              easily generate the same 2D plans by cutting thin “slices” through the model, a BIM model is more like the wooden or
+              cardboard models that architects used to make for clients to walk around, show their friends and display under glass in
+              their offices.
+            </p>
+            <figure class="story-article__figure">
+              <img
+                src="images/bim-02-architectural-model.png"
+                alt="Architectural building model displayed under glass"
+                width="1600"
+                height="900"
+                loading="lazy"
+              />
+            </figure>
+            <p>
+              Commercial and industrial architects first embraced BIM for its first “super power”. BIM models are not built of just
+              lines and planes but are assembled from “objects”. A window is not just rectangles and lines but can have information
+              associated with them. This information begins with the basics: sill height, head height, glass divisions… But can go
+              much farther. Some window objects have manufacturer, model number, cost, thermal efficiency and more. Very sophisticated
+              users take all of this information and use the model to do quick estimations, traffic flow analysis and thermal efficiency
+              studies. While the potential power of “fully annotated” BIM is impressive, a new, lower effort use of BIM models is
+              emerging; very rapid design evaluation and creative idea generation using AI tools.
+            </p>
+            <p class="story-article__end-links-text">
+              <a href="../../3D_Visualization/index.html">More about 3D visualization and ideation</a>
+            </p>
+            <div class="story-article__figure-row story-article__figure-row--uniform" role="group" aria-label="Cascade study: model and renderings">
+              <figure class="story-article__figure">
+                <img
+                  src="images/bim-03-cascade-model.png"
+                  alt="Cascade project BIM model"
+                  width="1024"
+                  height="585"
+                  loading="lazy"
+                />
+              </figure>
+              <figure class="story-article__figure">
+                <img
+                  src="images/bim-04-cascade-render-1.png"
+                  alt="Cascade project rendering 1"
+                  width="1024"
+                  height="585"
+                  loading="lazy"
+                />
+              </figure>
+              <figure class="story-article__figure">
+                <img
+                  src="images/bim-05-cascade-render-2.png"
+                  alt="Hillside residential property with main house, gym, and auxiliary buildings among redwoods"
+                  width="1024"
+                  height="585"
+                  loading="lazy"
+                />
+              </figure>
+            </div>
+            <p>
+              Basic BIM modeling, based on LiDAR scans and 360° photographs, now takes just a little longer than CAD modeling. The
+              level of BIM modeling that we typically provide is known as Level of Detail 200 (LOD200). Industry associations have
+              established the LOD standards relating to how fine elements in the model are detailed, and how much information is
+              associated with objects (like windows), in the model.
+            </p>
+            <p>
+              Ground Truth customers are typically at the beginning of the process of changing a building. They need to know: where are
+              the walls, ceilings, doors and windows? How big are the rooms? What are the materials? Where are the structural beams
+              and posts? Since the model is used as the basis for purchase decisions or design planning, spending time and money fully
+              detailing the model is not necessary and will most likely be done by the architect, designer or contractor. LOD 200
+              models are accurate but simplified and work as the perfect foundation for what comes next.
+            </p>
+          </div>
+          <div class="story-article__cta">
+            <a class="btn btn-primary" href="../../Get_in_Touch/index.html">Ask about BIM scope</a>
+          </div>
         </div>
       </article>
     </main>
