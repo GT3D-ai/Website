@@ -1768,6 +1768,10 @@ body.page-estimator {
   overflow: hidden;
 }
 
+.stories-masthead__hero--no-video {
+  min-height: 0;
+}
+
 .stories-masthead__video-hero {
   position: absolute;
   inset: 0;

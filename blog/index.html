@@ -56,7 +56,7 @@
             <video
               id="stories-hero-video"
               class="stories-masthead__video"
-              src="san-francisco-yacht-club-piling-mapping/SFYC_Flythrough.mp4"
+              src="san-francisco-yacht-club-piling-mapping/SFYC_Flythrough_short.mp4"
               poster="san-francisco-yacht-club-piling-mapping/images/sfyc-02-kayak.png"
               autoplay
               muted
@@ -194,7 +194,7 @@
           <article class="stories-card">
             <a class="stories-card__media" href="existing-conditions-as-builts-field-measurement/index.html">
               <img
-                src="../Residential_Existing_Conditions/residential_category_page_hero_image.png"
+                src="existing-conditions-as-builts-field-measurement/images/existing-conditions-as-builts-hero.png"
                 alt=""
                 width="640"
                 height="400"
@@ -280,17 +280,17 @@
         if (/\/index\.html$/i.test(path)) {
           path = path.replace(/index\.html$/i, "");
         } else if (!/\/$/.test(path)) {
-          // Treat extension-less paths like /blog as directory routes.
           path += "/";
         }
         var baseHref = window.location.origin + path;
-        var resolvedSrc = new URL("san-francisco-yacht-club-piling-mapping/SFYC_Flythrough.mp4", baseHref).href;
+        var resolvedSrc = new URL("san-francisco-yacht-club-piling-mapping/SFYC_Flythrough_short.mp4", baseHref).href;
         var resolvedPoster = new URL("san-francisco-yacht-club-piling-mapping/images/sfyc-02-kayak.png", baseHref).href;
         if (video.src !== resolvedSrc) {
           video.src = resolvedSrc;
           video.poster = resolvedPoster;
           video.load();
         }
+        video.removeAttribute("loop");
         var iconPause = btn.querySelector(".stories-masthead__video-toggle-icon--pause");
         var iconPlay = btn.querySelector(".stories-masthead__video-toggle-icon--play");
         function tryPlay() {

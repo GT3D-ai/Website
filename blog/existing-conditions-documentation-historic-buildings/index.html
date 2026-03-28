@@ -37,72 +37,20 @@
     <main>
       <article class="story-article" itemscope itemtype="https://schema.org/Article">
         <header class="story-article__masthead">
-          <figure class="story-article__hero story-article__hero--slideshow">
-            <div
-              class="story-article__slideshow-viewport"
-              id="historic-hero-slideshow"
-              role="region"
-              aria-roledescription="carousel"
-              aria-label="Project photography"
+          <figure class="story-article__hero">
+            <video
+              id="historic-hero-video"
+              class="story-article__hero-video"
+              playsinline
+              preload="metadata"
+              poster="images/st-andrews-cathedral-model.png"
+              autoplay
+              muted
             >
-              <div class="story-article__slide is-active">
-                <img
-                  src="images/st-andrews-cathedral-model.png"
-                  alt="3D clay model of St. Andrew’s Cathedral, Singapore: Gothic Revival spires and lancet windows in a digital survey model"
-                  width="2500"
-                  height="1300"
-                  loading="eager"
-                />
-              </div>
-              <div class="story-article__slide" aria-hidden="true">
-                <img
-                  src="images/slide-01.png"
-                  alt="3D architectural model of Cityview Plaza and the Bank of California building (Cesar Pelli), San Jose"
-                  width="2500"
-                  height="1300"
-                  loading="lazy"
-                />
-              </div>
-              <div class="story-article__slide" aria-hidden="true">
-                <img
-                  src="images/slide-02.png"
-                  alt="3D model of a historic hillside residence with Craftsman-style detailing, San Francisco Bay Area"
-                  width="2500"
-                  height="1300"
-                  loading="lazy"
-                />
-              </div>
-              <div class="story-article__slide" aria-hidden="true">
-                <img
-                  src="images/slide-03.png"
-                  alt="Existing conditions documentation sheet: 3D rendering with North elevation and Level 1 and 2 floor plans"
-                  width="2500"
-                  height="1300"
-                  loading="lazy"
-                />
-              </div>
-            </div>
+              <source src="StAndrews_Short.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
           </figure>
-          <button
-            type="button"
-            class="story-article__slideshow-nav story-article__slideshow-nav--prev"
-            aria-controls="historic-hero-slideshow"
-            aria-label="Previous image"
-          >
-            <svg viewBox="0 0 24 24" width="24" height="24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
-              <path fill="currentColor" d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
-            </svg>
-          </button>
-          <button
-            type="button"
-            class="story-article__slideshow-nav story-article__slideshow-nav--next"
-            aria-controls="historic-hero-slideshow"
-            aria-label="Next image"
-          >
-            <svg viewBox="0 0 24 24" width="24" height="24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
-              <path fill="currentColor" d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" />
-            </svg>
-          </button>
           <div class="story-article__hero-scrim" aria-hidden="true"></div>
           <a class="story-article__back" href="../index.html">← All stories</a>
           <div class="story-article__hero-overlay">
@@ -122,6 +70,28 @@
                 <path fill="currentColor" d="M12 15.41l-4.59-4.5L6 12.82l6 6 6-6-1.41-1.41L12 15.41z" />
               </svg>
             </div>
+          </div>
+          <div class="story-article__hero-video-bar">
+            <button
+              type="button"
+              class="stories-masthead__video-toggle"
+              id="historic-hero-video-toggle"
+              aria-controls="historic-hero-video"
+              aria-pressed="true"
+              aria-label="Pause hero video"
+            >
+              <span class="stories-masthead__video-toggle-icon stories-masthead__video-toggle-icon--pause" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="24" height="24" xmlns="http://www.w3.org/2000/svg" focusable="false">
+                  <rect x="6" y="4" width="4" height="16" rx="0.5" fill="currentColor" />
+                  <rect x="14" y="4" width="4" height="16" rx="0.5" fill="currentColor" />
+                </svg>
+              </span>
+              <span class="stories-masthead__video-toggle-icon stories-masthead__video-toggle-icon--play" aria-hidden="true" hidden>
+                <svg viewBox="0 0 24 24" width="24" height="24" xmlns="http://www.w3.org/2000/svg" focusable="false">
+                  <path d="M8 5v14l11-7z" fill="currentColor" />
+                </svg>
+              </span>
+            </button>
           </div>
         </header>
         <div class="story-article__inner">
@@ -248,23 +218,39 @@
         });
       })();
       (function () {
-        var root = document.getElementById("historic-hero-slideshow");
-        if (!root) return;
-        var slides = root.querySelectorAll(".story-article__slide");
-        var masthead = root.closest(".story-article__masthead");
-        var prev = masthead ? masthead.querySelector(".story-article__slideshow-nav--prev") : null;
-        var next = masthead ? masthead.querySelector(".story-article__slideshow-nav--next") : null;
-        var i = 0;
-        var n = slides.length;
-        function go(delta) {
-          slides[i].classList.remove("is-active");
-          slides[i].setAttribute("aria-hidden", "true");
-          i = (i + delta + n) % n;
-          slides[i].classList.add("is-active");
-          slides[i].setAttribute("aria-hidden", "false");
+        var video = document.getElementById("historic-hero-video");
+        var btn = document.getElementById("historic-hero-video-toggle");
+        if (!video || !btn) return;
+        var source = video.querySelector("source");
+        var iconPause = btn.querySelector(".stories-masthead__video-toggle-icon--pause");
+        var iconPlay = btn.querySelector(".stories-masthead__video-toggle-icon--play");
+        var path = window.location.pathname || "";
+        var noTrailingSlashRoute = /\/blog\/existing-conditions-documentation-historic-buildings$/i.test(path);
+        if (noTrailingSlashRoute && source) {
+          source.src = "existing-conditions-documentation-historic-buildings/StAndrews_Short.mp4";
+          video.poster = "existing-conditions-documentation-historic-buildings/images/st-andrews-cathedral-model.png";
+          video.load();
         }
-        if (prev) prev.addEventListener("click", function () { go(-1); });
-        if (next) next.addEventListener("click", function () { go(1); });
+        function sync() {
+          var playing = !video.paused;
+          btn.setAttribute("aria-pressed", playing ? "true" : "false");
+          btn.setAttribute("aria-label", playing ? "Pause hero video" : "Play hero video");
+          if (iconPause && iconPlay) {
+            iconPause.hidden = !playing;
+            iconPlay.hidden = playing;
+          }
+        }
+        btn.addEventListener("click", function () {
+          if (video.paused) {
+            video.play();
+          } else {
+            video.pause();
+          }
+        });
+        video.addEventListener("play", sync);
+        video.addEventListener("pause", sync);
+        video.addEventListener("ended", sync);
+        sync();
       })();
     </script>
   </body>
