@@ -2,6 +2,17 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
+    <script>
+      /* GCS serves this document for missing paths; the browser URL can be deep under the bucket, which breaks relative CSS/asset URLs unless the base is the bucket root. */
+      (function () {
+        if (location.hostname !== "storage.googleapis.com") return;
+        var parts = location.pathname.split("/").filter(Boolean);
+        if (parts.length < 1) return;
+        var b = document.createElement("base");
+        b.href = location.origin + "/" + parts[0] + "/";
+        document.head.insertBefore(b, document.head.firstChild);
+      })();
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="noindex" />
     <title>Page not found — Ground Truth 3D</title>
@@ -12,6 +23,57 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
+    <style>
+      /* Fallback if styles.css fails to load (wrong relative path or network) */
+      .page-404 .page-404-section {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: min(70vh, 560px);
+        padding: 6rem 1.5rem;
+        box-sizing: border-box;
+      }
+      .page-404-section__inner {
+        width: 100%;
+        max-width: 28rem;
+        margin: 0 auto;
+        text-align: center;
+      }
+      .page-404-section__visual {
+        margin: 0 auto 2.5rem;
+        max-width: 400px;
+      }
+      .page-404-section__visual img {
+        width: 100%;
+        height: auto;
+        display: block;
+        margin: 0 auto;
+        border: 1px solid #e0e0e0;
+        border-radius: 4px;
+        background: #fafafa;
+      }
+      .page-404-section__title {
+        margin: 0 0 1rem;
+        font-size: clamp(1.5rem, 4vw, 1.75rem);
+        font-weight: 600;
+        letter-spacing: -0.02em;
+        color: #0d0d0d;
+      }
+      .page-404-section__lede {
+        margin: 0 0 2.5rem;
+        font-size: 1rem;
+        line-height: 1.6;
+        color: #4a4a4a;
+      }
+      .page-404-section__actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        justify-content: center;
+        align-items: center;
+        margin: 0;
+      }
+    </style>
     <link rel="stylesheet" href="styles.css" />
     <script src="js/analytics.js"></script>
   </head>
