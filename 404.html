@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>Page not found — Ground Truth 3D</title>
+    <meta name="description" content="The requested page could not be found." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="js/analytics.js"></script>
+  </head>
+  <body class="page-category page-404">
+    <header class="site-header site-header--category">
+      <div class="header-inner">
+        <a class="logo" href="index.html">Ground Truth <span>3D</span></a>
+        <button
+          type="button"
+          class="menu-toggle"
+          id="menu-toggle"
+          aria-expanded="false"
+          aria-controls="dropdown-menu"
+          aria-label="Open menu"
+        >
+          <span class="bar" aria-hidden="true"></span>
+        </button>
+      </div>
+    </header>
+
+    <div class="dropdown-panel" id="dropdown-panel" hidden aria-hidden="true">
+      <nav class="dropdown-inner" id="dropdown-menu" aria-label="Site menu">
+        <a href="index.html">Home</a>
+        <a href="Commercial_Existing_Conditions/index.html">Commercial Existing Conditions</a>
+        <a href="Residential/index.html">Residential Existing Conditions</a>
+        <a href="blog/index.html">Stories</a>
+        <a href="Get_in_Touch/index.html">Get in Touch</a>
+      </nav>
+    </div>
+
+    <main>
+      <section class="page-404-section" aria-labelledby="page-404-title">
+        <div class="page-404-section__inner">
+          <div class="page-404-section__visual">
+            <img
+              src="images/404-placeholder.svg"
+              alt=""
+              width="400"
+              height="300"
+              decoding="async"
+            />
+          </div>
+          <h1 id="page-404-title" class="page-404-section__title">Page not found</h1>
+          <p class="page-404-section__lede">The page you’re looking for doesn’t exist or may have moved.</p>
+          <p class="page-404-section__actions">
+            <a class="btn btn-primary" href="index.html">Back to home</a>
+            <a class="btn btn-outline" href="Get_in_Touch/index.html">Get in Touch</a>
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-links">
+          <ul>
+            <li><a href="About_Us/index.html">About Ground Truth 3D</a></li>
+            <li><a href="Get_in_Touch/index.html">Contact us</a></li>
+            <li>
+              <a href="https://www.instagram.com/groundtruth3d/" rel="noopener noreferrer" target="_blank">Instagram</a>
+            </li>
+            <li><a href="index.html">Home</a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      (function () {
+        var toggle = document.getElementById("menu-toggle");
+        var panel = document.getElementById("dropdown-panel");
+        if (!toggle || !panel) return;
+
+        function setOpen(open) {
+          toggle.setAttribute("aria-expanded", open ? "true" : "false");
+          toggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+          panel.hidden = !open;
+          panel.setAttribute("aria-hidden", open ? "false" : "true");
+          panel.classList.toggle("is-open", open);
+          document.body.style.overflow = open ? "hidden" : "";
+        }
+
+        toggle.addEventListener("click", function () {
+          setOpen(toggle.getAttribute("aria-expanded") !== "true");
+        });
+
+        panel.addEventListener("click", function (e) {
+          if (e.target === panel) setOpen(false);
+        });
+
+        panel.querySelectorAll("a").forEach(function (link) {
+          link.addEventListener("click", function () {
+            setOpen(false);
+          });
+        });
+
+        document.addEventListener("keydown", function (e) {
+          if (e.key === "Escape") setOpen(false);
+        });
+      })();
+    </script>
+  </body>
+</html>

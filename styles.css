@@ -685,6 +685,61 @@ a:hover {
   color: var(--ink-muted);
 }
 
+/* ——— 404 page ——— */
+.page-404 .page-404-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: min(70vh, 560px);
+  padding: var(--space-2xl) var(--space-md);
+}
+
+.page-404-section__inner {
+  width: 100%;
+  max-width: 28rem;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.page-404-section__visual {
+  margin: 0 auto var(--space-lg);
+  max-width: 400px;
+}
+
+.page-404-section__visual img {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: var(--bg);
+}
+
+.page-404-section__title {
+  margin: 0 0 var(--space-sm);
+  font-size: clamp(1.5rem, 4vw, 1.75rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+.page-404-section__lede {
+  margin: 0 0 var(--space-lg);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--ink-muted);
+}
+
+.page-404-section__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+}
+
 /* ——— Lists ——— */
 .section-heading {
   font-size: 0.75rem;
