@@ -1,1 +1,2 @@
 blog/san-francisco-yacht-club-piling-mapping/SFYC_Flythrough_short.mp4 filter=lfs diff=lfs merge=lfs -text
+example-deliverables/models/*.obj filter=lfs diff=lfs merge=lfs -text
