@@ -1,0 +1,47 @@
+Google Cloud: HTTP 301 redirects with a static site on Cloud Storage
+=====================================================================
+
+Why this file exists
+---------------------
+Uploading HTML/CSS to a GCS bucket (e.g. gsutil rsync) does not let you attach
+301 Moved Permanently responses to paths. Browsers request objects by path; GCS
+returns 200 or 404, not redirects.
+
+To get real 301 responses you need something in front of the bucket that can
+issue redirects, typically:
+
+  - An external HTTP(S) Load Balancer URL map (path/host rules with urlRedirect), or
+  - Cloudflare / another CDN with redirect rules, or
+  - A small Cloud Run / Cloud Functions service (returns 301).
+
+Recommended: URL map on an existing HTTPS Load Balancer that already points at
+your backend bucket.
+
+Workflow (URL map edit)
+-----------------------
+1. Identify your global URL map name (Console: Network Services > Load balancing,
+   or: gcloud compute url-maps list).
+
+2. Export the current map (backup first):
+   gcloud compute url-maps export YOUR_URL_MAP_NAME --destination=url-map-backup.yaml --global
+
+3. Edit the YAML: under the pathMatcher that should handle your path, add a
+   pathRules entry with urlRedirect and redirectResponseCode MOVED_PERMANENTLY_DEFAULT.
+   See url-map-path-redirect.example.yaml in this folder for a fragment to merge.
+
+4. Import (this replaces the map from the file; test on a staging map first):
+   gcloud compute url-maps import YOUR_URL_MAP_NAME --source=url-map-edited.yaml --global
+
+5. If you use Cloud CDN, allow a few minutes for cache to refresh or invalidate.
+
+Warning: Import replaces the entire URL map from the file. Always export and
+keep a backup before importing.
+
+Placeholders to replace in the example YAML
+--------------------------------------------
+- YOUR_URL_MAP_NAME
+- Project and resource IDs in defaultService / backend service self-links
+- /from-path and /to-path for your redirect
+
+Documentation:
+https://cloud.google.com/load-balancing/docs/url-map#redirect-url-map
