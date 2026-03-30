@@ -105,33 +105,53 @@
       <section class="section section--dense deliverables-cards-section" aria-labelledby="asset-cards-heading">
         <h2 id="asset-cards-heading" class="section-heading deliverables-cards-heading">Example asset types</h2>
         <div class="deliverables-card-grid">
-          <button type="button" class="deliverables-card" data-lightbox="images/pdf-example.svg" data-label="PDF Drawing Set">
+          <button
+            type="button"
+            class="deliverables-card"
+            data-open-pdf-interstitial
+            data-pdf-href="samples/pdf-2d-plans-sample-set.pdf"
+            data-pdf-title="Sample 2D plans PDF drawing set"
+            aria-haspopup="dialog"
+            aria-controls="deliverables-pdf-dialog"
+          >
             <span class="deliverables-card__img-wrap">
-              <img src="images/pdf-example.svg" alt="" width="640" height="400" loading="lazy" />
+              <img
+                src="images/pdf-2d-plans-card.png"
+                alt="Site plan sample: Franklin Avenue property with title block (opens PDF preview)"
+                width="640"
+                height="400"
+                loading="lazy"
+              />
+              <span class="deliverables-card__icon" aria-hidden="true">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
+                    fill="currentColor"
+                  />
+                </svg>
+              </span>
             </span>
             <span class="deliverables-card__label">PDF Drawing Set</span>
-            <span class="deliverables-card__icon" aria-hidden="true">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path
-                  d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
-                  fill="currentColor"
-                />
-              </svg>
-            </span>
           </button>
-          <button type="button" class="deliverables-card" data-lightbox="images/dwg-file-example.svg" data-label="2D DWG/DXF Files">
+          <button type="button" class="deliverables-card" data-lightbox="images/dwg-file-example.png" data-label="2D DWG/DXF Files">
             <span class="deliverables-card__img-wrap">
-              <img src="images/dwg-file-example.svg" alt="" width="640" height="400" loading="lazy" />
+              <img
+                src="images/dwg-file-example.png"
+                alt="CAD drawing set: plans, sections, elevations, and construction details"
+                width="640"
+                height="400"
+                loading="lazy"
+              />
+              <span class="deliverables-card__icon" aria-hidden="true">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
+                    fill="currentColor"
+                  />
+                </svg>
+              </span>
             </span>
             <span class="deliverables-card__label">2D DWG/DXF Files</span>
-            <span class="deliverables-card__icon" aria-hidden="true">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path
-                  d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
-                  fill="currentColor"
-                />
-              </svg>
-            </span>
           </button>
           <button type="button" class="deliverables-card" data-open-marzipano aria-haspopup="dialog" aria-controls="deliverables-marzipano-dialog">
             <span class="deliverables-card__img-wrap">
@@ -142,13 +162,13 @@
                 height="800"
                 loading="lazy"
               />
+              <span class="deliverables-card__icon" aria-hidden="true">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zm0-5C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z" />
+                </svg>
+              </span>
             </span>
             <span class="deliverables-card__label">360° Photos</span>
-            <span class="deliverables-card__icon" aria-hidden="true">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zm0-5C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z" />
-              </svg>
-            </span>
           </button>
           <button
             type="button"
@@ -165,13 +185,13 @@
                 height="400"
                 loading="lazy"
               />
+              <span class="deliverables-card__icon" aria-hidden="true">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 2L2 7v10l10 5 10-5V7L12 2zm0 2.18l6.9 3.45L12 10.09 5.1 7.63 12 4.18zM4 8.82l7 3.5v7.36l-7-3.5V8.82zm9 10.86v-7.36l7-3.5v7.36l-7 3.5z" />
+                </svg>
+              </span>
             </span>
             <span class="deliverables-card__label">3D Model</span>
-            <span class="deliverables-card__icon" aria-hidden="true">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 2L2 7v10l10 5 10-5V7L12 2zm0 2.18l6.9 3.45L12 10.09 5.1 7.63 12 4.18zM4 8.82l7 3.5v7.36l-7-3.5V8.82zm9 10.86v-7.36l7-3.5v7.36l-7 3.5z" />
-              </svg>
-            </span>
           </button>
         </div>
       </section>
@@ -273,6 +293,29 @@
 
     <dialog
       class="deliverables-wide-dialog"
+      id="deliverables-pdf-dialog"
+      aria-labelledby="pdf-dialog-title"
+      aria-modal="true"
+    >
+      <div class="deliverables-wide-dialog__inner">
+        <button type="button" class="deliverables-lightbox__close" id="pdf-dialog-close" aria-label="Close PDF preview">
+          &times;
+        </button>
+        <h2 id="pdf-dialog-title" class="deliverables-wide-dialog__title">PDF drawing set</h2>
+        <p class="deliverables-wide-dialog__hint">
+          Preview below. Download the sample for offline viewing or printing.
+        </p>
+        <p class="deliverables-pdf-dialog__actions">
+          <a class="btn btn-primary" id="pdf-dialog-download" href="#" download>Download PDF</a>
+        </p>
+        <div class="deliverables-pdf-dialog__viewer">
+          <iframe id="pdf-dialog-frame" class="deliverables-pdf-dialog__iframe" title="PDF preview" src=""></iframe>
+        </div>
+      </div>
+    </dialog>
+
+    <dialog
+      class="deliverables-wide-dialog"
       id="deliverables-marzipano-dialog"
       aria-labelledby="marzipano-dialog-title"
       aria-modal="true"
@@ -349,6 +392,10 @@
         var closeBtn = document.getElementById("lightbox-close");
         var d3 = document.getElementById("deliverables-viewer-3d");
         var d360 = document.getElementById("deliverables-marzipano-dialog");
+        var dPdf = document.getElementById("deliverables-pdf-dialog");
+        var pdfFrame = document.getElementById("pdf-dialog-frame");
+        var pdfDownload = document.getElementById("pdf-dialog-download");
+        var pdfTitleEl = document.getElementById("pdf-dialog-title");
         var marzipanoViewer = null;
         var panoUrl = new URL("images/photo-example.png", window.location.href).href;
         var equirectWidth = 1600;
@@ -411,6 +458,43 @@
           });
         }
 
+        function closePdfDialog() {
+          if (dPdf) dPdf.close();
+        }
+
+        function openPdfDialog(card) {
+          if (!dPdf || !pdfFrame || !pdfDownload) return;
+          var rel = card.getAttribute("data-pdf-href");
+          var title = card.getAttribute("data-pdf-title") || "PDF sample";
+          if (!rel) return;
+          var url = new URL(rel, window.location.href).href;
+          if (pdfTitleEl) pdfTitleEl.textContent = title;
+          pdfDownload.href = url;
+          pdfDownload.setAttribute("download", rel.split("/").pop() || "sample.pdf");
+          pdfFrame.src = url;
+          dPdf.showModal();
+        }
+
+        function resetPdfDialog() {
+          if (pdfFrame) pdfFrame.removeAttribute("src");
+        }
+
+        document.querySelectorAll("[data-open-pdf-interstitial]").forEach(function (card) {
+          card.addEventListener("click", function () {
+            openPdfDialog(card);
+          });
+        });
+        var pdfClose = document.getElementById("pdf-dialog-close");
+        if (pdfClose) {
+          pdfClose.addEventListener("click", closePdfDialog);
+        }
+        if (dPdf) {
+          dPdf.addEventListener("click", function (e) {
+            if (e.target === dPdf) closePdfDialog();
+          });
+          dPdf.addEventListener("close", resetPdfDialog);
+        }
+
         document.querySelectorAll(".deliverables-card[data-lightbox]").forEach(function (card) {
           card.addEventListener("click", function () {
             var src = card.getAttribute("data-lightbox");
@@ -447,6 +531,7 @@
           closeLightbox();
           if (d3 && d3.open) d3.close();
           if (d360 && d360.open) d360.close();
+          if (dPdf && dPdf.open) closePdfDialog();
         });
       })();
     </script>
