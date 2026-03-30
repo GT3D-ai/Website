@@ -1,0 +1,384 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="../favicon.png" type="image/png" />
+    <title>Residential scan scheduler — Ground Truth 3D</title>
+    <meta
+      name="description"
+      content="Request a residential LiDAR scan appointment: address, square footage, areas to document, and optional site details."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../styles.css" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XW3WS16GZT"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-XW3WS16GZT");
+    </script>
+  </head>
+  <body class="page-category page-scan-scheduler">
+    <header class="site-header site-header--category">
+      <div class="header-inner">
+        <a class="logo" href="../index.html">Ground Truth <span>3D</span></a>
+        <button
+          type="button"
+          class="menu-toggle"
+          id="menu-toggle"
+          aria-expanded="false"
+          aria-controls="dropdown-menu"
+          aria-label="Open menu"
+        >
+          <span class="bar" aria-hidden="true"></span>
+        </button>
+      </div>
+    </header>
+
+    <div class="dropdown-panel" id="dropdown-panel" hidden aria-hidden="true">
+      <nav class="dropdown-inner" id="dropdown-menu" aria-label="Site menu">
+        <a href="../index.html">Home</a>
+        <a href="../Residential/index.html">Residential</a>
+        <a href="../residential_estimator/index.html">Residential quote estimator</a>
+        <a href="index.html" aria-current="page">Scan scheduler</a>
+        <a href="../Get_in_Touch/index.html">Get in Touch</a>
+      </nav>
+    </div>
+
+    <main class="scan-scheduler-main">
+      <section class="section section--dense scan-scheduler-intro">
+        <h1 class="scan-scheduler-title">Residential scan scheduler</h1>
+        <p class="scan-scheduler-lede">
+          Tell us where to scan, what areas to include, and when you’d like us there. We’ll follow up to confirm
+          availability. Submissions go to <strong>sales@gt3d.com</strong>.
+        </p>
+      </section>
+
+      <section class="section section--dense scan-scheduler-layout">
+        <form
+          id="scan-scheduler-form"
+          class="estimator-form scan-scheduler-form"
+          action="https://formsubmit.co/sales@gt3d.com"
+          method="POST"
+        >
+          <input type="hidden" name="_subject" value="Residential scan appointment — GT3D" />
+
+          <div class="estimator-form-grid">
+            <div class="form-field">
+              <label for="full_name">Full name <span class="req">*</span></label>
+              <input type="text" id="full_name" name="full_name" required autocomplete="name" />
+            </div>
+            <div class="form-field">
+              <label for="email">Email <span class="req">*</span></label>
+              <input type="email" id="email" name="email" required autocomplete="email" />
+            </div>
+            <div class="form-field form-field--full">
+              <label for="address">Address <span class="req">*</span></label>
+              <input type="text" id="address" name="address" required autocomplete="street-address" />
+            </div>
+            <div class="form-field">
+              <label for="square_feet">Square feet <span class="req">*</span></label>
+              <input
+                type="number"
+                id="square_feet"
+                name="square_feet"
+                min="1"
+                step="1"
+                required
+                inputmode="numeric"
+              />
+            </div>
+          </div>
+
+          <fieldset class="estimator-fieldset schedule-calendar-fieldset">
+            <legend>Preferred appointment <span class="req">*</span></legend>
+            <p class="scan-scheduler-fieldset-hint">Pick a day, then choose morning (AM) and/or afternoon (PM).</p>
+            <div
+              id="scheduler-calendar-root"
+              class="schedule-calendar-root"
+              role="region"
+              aria-label="Calendar: choose a date"
+            ></div>
+            <div class="schedule-slot-row">
+              <span class="schedule-slot-label" id="schedule-slot-label">Time window</span>
+              <div class="schedule-slot-checks" role="group" aria-labelledby="schedule-slot-label">
+                <label class="form-check">
+                  <input type="checkbox" name="slot_am" id="slot_am" value="yes" />
+                  <span>Morning (AM)</span>
+                </label>
+                <label class="form-check">
+                  <input type="checkbox" name="slot_pm" id="slot_pm" value="yes" />
+                  <span>Afternoon (PM)</span>
+                </label>
+              </div>
+            </div>
+            <input type="hidden" id="preferred_date" name="preferred_date" value="" required />
+          </fieldset>
+
+          <fieldset class="estimator-fieldset">
+            <legend>Areas to include</legend>
+            <p class="scan-scheduler-fieldset-hint">Select all that apply.</p>
+            <label class="form-check">
+              <input type="checkbox" id="scope_attic" name="attic" value="yes" />
+              <span>Attic</span>
+            </label>
+            <label class="form-check">
+              <input type="checkbox" id="scope_basement" name="basement" value="yes" />
+              <span>Basement</span>
+            </label>
+            <label class="form-check">
+              <input type="checkbox" id="scope_crawl" name="crawl_space" value="yes" />
+              <span>Crawl space</span>
+            </label>
+            <label class="form-check">
+              <input type="checkbox" id="scope_garage" name="garage" value="yes" />
+              <span>Garage</span>
+            </label>
+            <label class="form-check">
+              <input type="checkbox" id="scope_site" name="site" value="yes" aria-controls="site-conditional" />
+              <span>Site (outdoor / grounds)</span>
+            </label>
+          </fieldset>
+
+          <fieldset class="estimator-fieldset scan-scheduler-site-conditional" id="site-conditional" hidden>
+            <legend>Site details</legend>
+            <div class="form-field">
+              <label for="site_acres">Site size (acres) <span class="req">*</span></label>
+              <input
+                type="number"
+                id="site_acres"
+                name="site_acres"
+                min="0"
+                step="0.01"
+                inputmode="decimal"
+              />
+            </div>
+            <fieldset class="scan-scheduler-terrain">
+              <legend class="scan-scheduler-terrain-legend">Terrain <span class="req">*</span></legend>
+              <label class="form-check">
+                <input type="radio" name="site_terrain" value="flat" id="terrain_flat" />
+                <span>Flat</span>
+              </label>
+              <label class="form-check">
+                <input type="radio" name="site_terrain" value="hill" id="terrain_hill" />
+                <span>Hill</span>
+              </label>
+            </fieldset>
+          </fieldset>
+
+          <div class="form-field form-field--full">
+            <label for="notes">Notes (optional)</label>
+            <textarea id="notes" name="notes" rows="4" placeholder="Access instructions, time window, or other details"></textarea>
+          </div>
+
+          <textarea id="scan_message" name="message" class="estimator-message-field" rows="1" cols="1" tabindex="-1"></textarea>
+          <p id="form-error" class="form-error" role="alert" hidden></p>
+
+          <div class="estimator-actions">
+            <button type="submit" class="btn btn-primary">Submit scheduling request</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="section section--dense estimator-cta-bottom">
+        <p class="estimator-cta-text">Need a ballpark price first?</p>
+        <a class="btn btn-outline" href="../residential_estimator/index.html">Residential quote estimator</a>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-cta">
+          <a class="btn btn-primary" href="../Get_in_Touch/index.html">Get in Touch</a>
+        </div>
+        <div class="footer-links">
+          <ul>
+            <li><a href="../About_Us/index.html">About Ground Truth 3D</a></li>
+            <li><a href="../Get_in_Touch/index.html">Contact us</a></li>
+            <li>
+              <a href="https://www.instagram.com/groundtruth3d/" rel="noopener noreferrer" target="_blank">Instagram</a>
+            </li>
+            <li><a href="../index.html">Home</a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+
+    <script src="scheduler-calendar.js"></script>
+    <script>
+      (function () {
+        var siteCb = document.getElementById("scope_site");
+        var siteBlock = document.getElementById("site-conditional");
+        var siteAcres = document.getElementById("site_acres");
+        var terrainFlat = document.getElementById("terrain_flat");
+        var terrainHill = document.getElementById("terrain_hill");
+        var form = document.getElementById("scan-scheduler-form");
+        var formError = document.getElementById("form-error");
+        var messageField = document.getElementById("scan_message");
+
+        function setSiteFieldsRequired(on) {
+          siteAcres.required = on;
+          if (!on) {
+            siteAcres.value = "";
+            terrainFlat.checked = false;
+            terrainHill.checked = false;
+            siteAcres.setCustomValidity("");
+          }
+        }
+
+        function syncSiteSection() {
+          var on = siteCb.checked;
+          siteBlock.hidden = !on;
+          siteBlock.setAttribute("aria-hidden", on ? "false" : "true");
+          setSiteFieldsRequired(on);
+        }
+
+        siteCb.addEventListener("change", syncSiteSection);
+        syncSiteSection();
+
+        var preferredDate = document.getElementById("preferred_date");
+        var slotAm = document.getElementById("slot_am");
+        var slotPm = document.getElementById("slot_pm");
+        var calendarRoot = document.getElementById("scheduler-calendar-root");
+        var viewDate = new Date();
+        viewDate.setDate(1);
+        var blockedSet = new Set();
+        var selectedISO = "";
+
+        function navigateScheduler(delta) {
+          viewDate.setMonth(viewDate.getMonth() + delta);
+          drawScheduler();
+        }
+
+        function drawScheduler() {
+          if (!calendarRoot || !window.GT3DScanCalendar) return;
+          window.GT3DScanCalendar.renderMonthGrid(calendarRoot, {
+            year: viewDate.getFullYear(),
+            month: viewDate.getMonth(),
+            blockedSet: blockedSet,
+            mode: "scheduler",
+            selectedISO: selectedISO,
+            titleId: "scheduler-cal-title",
+            onNavigate: navigateScheduler,
+            onDayClick: function (iso) {
+              selectedISO = iso;
+              preferredDate.value = iso;
+              drawScheduler();
+            },
+          });
+        }
+
+        window.GT3DScanCalendar.fetchBlocked("blocked-dates.json").then(function (set) {
+          blockedSet = set;
+          drawScheduler();
+        });
+
+        function buildMessage() {
+          var lines = [];
+          lines.push("Residential scan scheduling request");
+          lines.push("");
+          lines.push("CONTACT");
+          lines.push("Name: " + document.getElementById("full_name").value.trim());
+          lines.push("Email: " + document.getElementById("email").value.trim());
+          lines.push("");
+          lines.push("PROPERTY");
+          lines.push("Address: " + document.getElementById("address").value.trim());
+          lines.push("Square feet: " + document.getElementById("square_feet").value);
+          lines.push("Preferred date: " + preferredDate.value);
+          var slots = [];
+          if (slotAm.checked) slots.push("AM");
+          if (slotPm.checked) slots.push("PM");
+          lines.push("Time window: " + (slots.length ? slots.join(", ") : "(none)"));
+          lines.push("");
+          lines.push("AREAS");
+          lines.push("Attic: " + (document.getElementById("scope_attic").checked ? "yes" : "no"));
+          lines.push("Basement: " + (document.getElementById("scope_basement").checked ? "yes" : "no"));
+          lines.push("Crawl space: " + (document.getElementById("scope_crawl").checked ? "yes" : "no"));
+          lines.push("Garage: " + (document.getElementById("scope_garage").checked ? "yes" : "no"));
+          lines.push("Site: " + (siteCb.checked ? "yes" : "no"));
+          if (siteCb.checked) {
+            lines.push("Site size (acres): " + siteAcres.value);
+            var t = terrainFlat.checked ? "flat" : terrainHill.checked ? "hill" : "(not set)";
+            lines.push("Site terrain: " + t);
+          }
+          lines.push("");
+          lines.push("NOTES");
+          lines.push(document.getElementById("notes").value.trim() || "(none)");
+          return lines.join("\n");
+        }
+
+        form.addEventListener("submit", function (e) {
+          formError.hidden = true;
+          formError.textContent = "";
+          if (!preferredDate.value || !preferredDate.value.trim()) {
+            e.preventDefault();
+            formError.textContent = "Please select a preferred appointment date on the calendar.";
+            formError.hidden = false;
+            return;
+          }
+          if (!slotAm.checked && !slotPm.checked) {
+            e.preventDefault();
+            formError.textContent = "Please select Morning (AM) and/or Afternoon (PM).";
+            formError.hidden = false;
+            return;
+          }
+          if (siteCb.checked) {
+            var acres = parseFloat(siteAcres.value, 10);
+            if (isNaN(acres) || acres < 0) {
+              e.preventDefault();
+              siteAcres.setCustomValidity("Enter site size in acres.");
+              siteAcres.reportValidity();
+              siteAcres.setCustomValidity("");
+              formError.textContent = "Please enter a valid site size in acres.";
+              formError.hidden = false;
+              return;
+            }
+            if (!terrainFlat.checked && !terrainHill.checked) {
+              e.preventDefault();
+              formError.textContent = "Please select Flat or Hill for site terrain.";
+              formError.hidden = false;
+              return;
+            }
+          }
+          messageField.value = buildMessage();
+        });
+
+        var toggle = document.getElementById("menu-toggle");
+        var panel = document.getElementById("dropdown-panel");
+        if (toggle && panel) {
+          function setOpen(open) {
+            toggle.setAttribute("aria-expanded", open ? "true" : "false");
+            toggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+            panel.hidden = !open;
+            panel.setAttribute("aria-hidden", open ? "false" : "true");
+            panel.classList.toggle("is-open", open);
+            document.body.style.overflow = open ? "hidden" : "";
+          }
+          toggle.addEventListener("click", function () {
+            setOpen(toggle.getAttribute("aria-expanded") !== "true");
+          });
+          panel.addEventListener("click", function (e) {
+            if (e.target === panel) setOpen(false);
+          });
+          panel.querySelectorAll("a").forEach(function (link) {
+            link.addEventListener("click", function () {
+              setOpen(false);
+            });
+          });
+          document.addEventListener("keydown", function (e) {
+            if (e.key === "Escape") setOpen(false);
+          });
+        }
+      })();
+    </script>
+  </body>
+</html>

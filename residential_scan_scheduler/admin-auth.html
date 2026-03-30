@@ -1,0 +1,164 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="../favicon.png" type="image/png" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Admin authorization — Ground Truth 3D</title>
+    <meta
+      name="description"
+      content="Sign in to access scan scheduler administration for this browser session."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body class="page-category page-scan-scheduler page-scheduler-admin page-admin-auth">
+    <header class="site-header site-header--category">
+      <div class="header-inner">
+        <a class="logo" href="../index.html">Ground Truth <span>3D</span></a>
+        <button
+          type="button"
+          class="menu-toggle"
+          id="menu-toggle"
+          aria-expanded="false"
+          aria-controls="dropdown-menu"
+          aria-label="Open menu"
+        >
+          <span class="bar" aria-hidden="true"></span>
+        </button>
+      </div>
+    </header>
+
+    <div class="dropdown-panel" id="dropdown-panel" hidden aria-hidden="true">
+      <nav class="dropdown-inner" id="dropdown-menu" aria-label="Site menu">
+        <a href="../index.html">Home</a>
+        <a href="index.html">Scan scheduler</a>
+        <a href="../Get_in_Touch/index.html">Get in Touch</a>
+      </nav>
+    </div>
+
+    <main class="scan-scheduler-main">
+      <section class="section section--dense scan-scheduler-intro">
+        <h1 class="scan-scheduler-title">Admin authorization</h1>
+        <p class="scan-scheduler-lede">
+          Sign in with the admin password to grant <strong>administrative privileges</strong> in this browser tab. Privileges last until you close the tab or sign out from the admin tools. This page is not indexed by search engines.
+        </p>
+      </section>
+
+      <section class="section section--dense scan-scheduler-layout schedule-admin-layout">
+        <div class="schedule-admin-auth-card">
+          <form id="admin-auth-form" class="schedule-admin-auth-form" novalidate>
+            <div class="form-field schedule-admin-password-field">
+              <label for="admin-auth-password">Admin password</label>
+              <input
+                type="password"
+                id="admin-auth-password"
+                name="password"
+                autocomplete="current-password"
+                required
+                aria-describedby="admin-auth-error"
+              />
+            </div>
+            <p id="admin-auth-error" class="form-error" role="alert" hidden></p>
+            <div class="schedule-admin-auth-actions">
+              <button type="submit" class="btn btn-primary">Sign in and continue</button>
+            </div>
+          </form>
+          <p class="schedule-admin-auth-footnote">
+            Password is configured in <code class="schedule-admin-code">admin-config.js</code> before deploy. There is no server account system; this only controls access to the static admin pages in your browser.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-links">
+          <ul>
+            <li><a href="index.html">Public scan scheduler</a></li>
+            <li><a href="../index.html">Home</a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+
+    <script src="admin-config.js"></script>
+    <script>
+      (function () {
+        var form = document.getElementById("admin-auth-form");
+        var pw = document.getElementById("admin-auth-password");
+        var err = document.getElementById("admin-auth-error");
+
+        function safeNext() {
+          var params = new URLSearchParams(window.location.search);
+          var next = params.get("next") || "admin.html";
+          if (typeof next !== "string" || next.indexOf("://") !== -1 || next.indexOf("//") === 0) {
+            return "admin.html";
+          }
+          if (next.charAt(0) === "/") {
+            return "admin.html";
+          }
+          return next;
+        }
+
+        if (window.GT3DScanSchedulerAdmin && window.GT3DScanSchedulerAdmin.hasSession()) {
+          window.location.replace(safeNext());
+          return;
+        }
+
+        form.addEventListener("submit", function (e) {
+          e.preventDefault();
+          err.hidden = true;
+          err.textContent = "";
+          var api = window.GT3DScanSchedulerAdmin;
+          if (!api) {
+            err.textContent = "Configuration failed to load. Check that admin-config.js is deployed.";
+            err.hidden = false;
+            return;
+          }
+          if (api.authenticate(pw.value)) {
+            api.grantSession();
+            window.location.href = safeNext();
+          } else {
+            err.textContent = "Incorrect password.";
+            err.hidden = false;
+            pw.focus();
+          }
+        });
+
+        var toggle = document.getElementById("menu-toggle");
+        var panel = document.getElementById("dropdown-panel");
+        if (toggle && panel) {
+          function setOpen(open) {
+            toggle.setAttribute("aria-expanded", open ? "true" : "false");
+            toggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+            panel.hidden = !open;
+            panel.setAttribute("aria-hidden", open ? "false" : "true");
+            panel.classList.toggle("is-open", open);
+            document.body.style.overflow = open ? "hidden" : "";
+          }
+          toggle.addEventListener("click", function () {
+            setOpen(toggle.getAttribute("aria-expanded") !== "true");
+          });
+          panel.addEventListener("click", function (e) {
+            if (e.target === panel) setOpen(false);
+          });
+          panel.querySelectorAll("a").forEach(function (link) {
+            link.addEventListener("click", function () {
+              setOpen(false);
+            });
+          });
+          document.addEventListener("keydown", function (e) {
+            if (e.key === "Escape") setOpen(false);
+          });
+        }
+      })();
+    </script>
+  </body>
+</html>

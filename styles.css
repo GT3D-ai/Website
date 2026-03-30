@@ -1671,6 +1671,363 @@ body.page-estimator {
   border: 0;
 }
 
+/* ——— Residential scan scheduler ——— */
+body.page-scan-scheduler {
+  background-color: #e8e4dd;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.78), rgba(245, 242, 237, 0.9)),
+    url("residential_estimator/residential_estimator_bg.png");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+}
+
+.scan-scheduler-main {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding-bottom: var(--space-xl);
+}
+
+.scan-scheduler-intro {
+  padding-bottom: calc(var(--space-xl) / 2);
+}
+
+.scan-scheduler-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  letter-spacing: -0.02em;
+  margin: 0 0 var(--space-sm);
+}
+
+.scan-scheduler-lede {
+  max-width: 72ch;
+  margin: 0;
+  color: var(--ink-muted);
+}
+
+.scan-scheduler-lede strong {
+  color: var(--ink);
+}
+
+.scan-scheduler-layout {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.scan-scheduler-fieldset-hint {
+  margin: 0 0 var(--space-sm);
+  font-size: 0.875rem;
+  color: var(--ink-subtle);
+}
+
+.scan-scheduler-site-conditional {
+  margin-top: var(--space-md);
+}
+
+.scan-scheduler-terrain {
+  margin: var(--space-md) 0 0;
+  padding: var(--space-md);
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  background: var(--bg);
+}
+
+.scan-scheduler-terrain-legend {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  padding: 0 var(--space-xs);
+}
+
+.scan-scheduler-form .form-field textarea {
+  width: 100%;
+  margin-top: var(--space-xs);
+  padding: var(--space-sm);
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  border: 1px solid var(--line-strong);
+  border-radius: 2px;
+  background: var(--bg-elevated);
+  resize: vertical;
+  min-height: 6rem;
+}
+
+.scan-scheduler-form .form-field textarea:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+.schedule-calendar-fieldset {
+  margin-top: var(--space-md);
+}
+
+.schedule-calendar-root {
+  margin: var(--space-md) 0;
+}
+
+.schedule-calendar__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-md);
+}
+
+.schedule-calendar__title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.125rem, 2.5vw, 1.375rem);
+  font-weight: 600;
+  text-align: center;
+  flex: 1;
+}
+
+.schedule-calendar__nav:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.schedule-calendar__grid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 4px;
+  max-width: 420px;
+}
+
+.schedule-calendar__dow {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--ink-muted);
+  text-align: center;
+  padding: var(--space-xs) 0;
+}
+
+.schedule-calendar__cell--empty {
+  min-height: 2.5rem;
+}
+
+.schedule-calendar__day {
+  min-height: 2.75rem;
+  padding: 0;
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  background: var(--bg-elevated);
+  color: var(--ink);
+  cursor: pointer;
+  transition: background 0.12s ease, border-color 0.12s ease;
+}
+
+.schedule-calendar__day:hover:not(:disabled) {
+  border-color: var(--accent);
+  background: var(--bg);
+}
+
+.schedule-calendar__day--selected {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+  border-color: var(--accent);
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.schedule-calendar__day--disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+  background: var(--bg);
+}
+
+.schedule-calendar__day--blocked {
+  text-decoration: line-through;
+}
+
+.schedule-calendar__day--blocked-admin {
+  background: rgba(180, 60, 60, 0.12);
+  border-color: rgba(140, 40, 40, 0.35);
+  color: var(--ink);
+}
+
+.schedule-slot-row {
+  margin-top: var(--space-md);
+  padding-top: var(--space-md);
+  border-top: 1px solid var(--line);
+}
+
+.schedule-slot-label {
+  display: block;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  margin-bottom: var(--space-sm);
+  color: var(--ink);
+}
+
+.schedule-slot-checks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+}
+
+/* ——— Scan scheduler admin ——— */
+.page-scheduler-admin .schedule-admin-code {
+  font-size: 0.875em;
+  padding: 0.1em 0.35em;
+  border-radius: 2px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--line);
+}
+
+.schedule-admin-layout {
+  max-width: 720px;
+}
+
+.schedule-admin-gate {
+  padding: var(--space-lg);
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  background: var(--bg-elevated);
+}
+
+.schedule-admin-gate-hint {
+  margin: 0 0 var(--space-md);
+  color: var(--ink-muted);
+}
+
+.schedule-admin-gate-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: var(--space-md);
+}
+
+.schedule-admin-password-field {
+  flex: 1;
+  min-width: 200px;
+  margin: 0;
+}
+
+.schedule-admin-password-label {
+  display: block;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  margin-bottom: var(--space-xs);
+}
+
+.schedule-admin-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-md);
+}
+
+.schedule-admin-import-label {
+  cursor: pointer;
+  margin: 0;
+}
+
+.schedule-admin-blocked-panel {
+  margin-top: var(--space-lg);
+  padding-top: var(--space-md);
+  border-top: 1px solid var(--line);
+}
+
+.schedule-admin-blocked-heading {
+  margin: 0 0 var(--space-sm);
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.schedule-admin-blocked-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.schedule-admin-blocked-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  padding: var(--space-xs) 0;
+  border-bottom: 1px solid var(--line);
+  font-variant-numeric: tabular-nums;
+}
+
+.schedule-admin-remove {
+  flex-shrink: 0;
+  padding: 0.25rem 0.6rem;
+  font-size: 0.8125rem;
+}
+
+.schedule-admin-session-note {
+  margin: var(--space-md) 0 0;
+  font-size: 0.875rem;
+  color: var(--ink-muted);
+}
+
+.schedule-admin-auth-link {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.schedule-admin-sign-out {
+  display: inline;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  cursor: pointer;
+}
+
+.schedule-admin-sign-out:hover {
+  color: var(--ink);
+}
+
+.page-admin-auth .schedule-admin-auth-card {
+  padding: var(--space-lg);
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  background: var(--bg-elevated);
+  max-width: 28rem;
+}
+
+.schedule-admin-auth-form .form-field label {
+  display: block;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  margin-bottom: var(--space-xs);
+}
+
+.schedule-admin-auth-form input[type="password"] {
+  width: 100%;
+  margin-top: var(--space-xs);
+  padding: var(--space-sm);
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  border: 1px solid var(--line-strong);
+  border-radius: 2px;
+  background: var(--bg);
+}
+
+.schedule-admin-auth-actions {
+  margin-top: var(--space-md);
+}
+
+.schedule-admin-auth-footnote {
+  margin: var(--space-lg) 0 0;
+  font-size: 0.8125rem;
+  color: var(--ink-muted);
+  line-height: 1.5;
+}
+
 /* ——— Get in Touch (full-bleed background + form panel) ——— */
 .page-get-in-touch {
   min-height: 100vh;
