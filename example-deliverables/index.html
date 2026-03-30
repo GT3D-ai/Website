@@ -16,7 +16,6 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="../styles.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css" />
     <script type="importmap">
       {
         "imports": {
@@ -134,7 +133,7 @@
               </svg>
             </span>
           </button>
-          <button type="button" class="deliverables-card" data-open-pannellum aria-haspopup="dialog" aria-controls="deliverables-pannellum-dialog">
+          <button type="button" class="deliverables-card" data-open-marzipano aria-haspopup="dialog" aria-controls="deliverables-marzipano-dialog">
             <span class="deliverables-card__img-wrap">
               <img
                 src="images/photo-example.png"
@@ -273,38 +272,38 @@
     </dialog>
 
     <dialog
-      class="deliverables-pannellum-dialog"
-      id="deliverables-pannellum-dialog"
-      aria-labelledby="pannellum-dialog-title"
+      class="deliverables-wide-dialog"
+      id="deliverables-marzipano-dialog"
+      aria-labelledby="marzipano-dialog-title"
       aria-modal="true"
     >
-      <div class="deliverables-pannellum-dialog__inner">
-        <button type="button" class="deliverables-lightbox__close" id="pannellum-dialog-close" aria-label="Close 360 viewer">
+      <div class="deliverables-wide-dialog__inner">
+        <button type="button" class="deliverables-lightbox__close" id="marzipano-dialog-close" aria-label="Close 360 viewer">
           &times;
         </button>
-        <h2 id="pannellum-dialog-title" class="deliverables-pannellum-dialog__title">360° photo</h2>
-        <p class="deliverables-pannellum-dialog__hint">
+        <h2 id="marzipano-dialog-title" class="deliverables-wide-dialog__title">360° photo</h2>
+        <p class="deliverables-wide-dialog__hint">
           Drag to look around. Sample equirectangular capture; project deliverables include full-resolution interactive tours.
         </p>
         <div
-          id="pannellum-viewer"
-          class="deliverables-pannellum-viewer"
+          id="marzipano-viewer"
+          class="deliverables-marzipano-viewer"
           role="application"
-          aria-label="Pannellum 360 degree viewer"
+          aria-label="Marzipano 360 degree viewer"
         ></div>
       </div>
     </dialog>
 
     <dialog
-      class="deliverables-pannellum-dialog"
+      class="deliverables-wide-dialog"
       id="deliverables-viewer-3d"
       aria-labelledby="obj-viewer-dialog-title"
       aria-modal="true"
     >
-      <div class="deliverables-pannellum-dialog__inner">
+      <div class="deliverables-wide-dialog__inner">
         <button type="button" class="deliverables-lightbox__close" data-close-viewer aria-label="Close 3D viewer">&times;</button>
-        <h2 id="obj-viewer-dialog-title" class="deliverables-pannellum-dialog__title">3D model sample</h2>
-        <p class="deliverables-pannellum-dialog__hint">
+        <h2 id="obj-viewer-dialog-title" class="deliverables-wide-dialog__title">3D model sample</h2>
+        <p class="deliverables-wide-dialog__hint">
           Drag to rotate. Scroll to zoom. Sample mesh — we deliver Revit and other formats per scope.
         </p>
         <div id="obj-viewer-root" class="deliverables-obj-viewer" aria-live="polite"></div>
@@ -314,7 +313,7 @@
       </div>
     </dialog>
 
-    <script src="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marzipano@0.10.2/dist/marzipano.js"></script>
     <script type="module" src="obj-viewer.js"></script>
     <script>
       (function () {
@@ -349,56 +348,66 @@
         var img = document.getElementById("lightbox-img");
         var closeBtn = document.getElementById("lightbox-close");
         var d3 = document.getElementById("deliverables-viewer-3d");
-        var d360 = document.getElementById("deliverables-pannellum-dialog");
-        var pannellumViewer = null;
+        var d360 = document.getElementById("deliverables-marzipano-dialog");
+        var marzipanoViewer = null;
         var panoUrl = new URL("images/photo-example.png", window.location.href).href;
+        var equirectWidth = 1600;
 
-        function destroyPannellum() {
-          if (pannellumViewer && typeof pannellumViewer.destroy === "function") {
+        function destroyMarzipano() {
+          if (marzipanoViewer && typeof marzipanoViewer.destroy === "function") {
             try {
-              pannellumViewer.destroy();
+              marzipanoViewer.destroy();
             } catch (err) {}
           }
-          pannellumViewer = null;
+          marzipanoViewer = null;
         }
 
-        function openPannellumDialog() {
-          if (!d360 || typeof pannellum === "undefined") return;
+        function openMarzipanoDialog() {
+          if (!d360 || typeof Marzipano === "undefined") return;
           d360.showModal();
           requestAnimationFrame(function () {
             requestAnimationFrame(function () {
-              destroyPannellum();
-              pannellumViewer = pannellum.viewer("pannellum-viewer", {
-                type: "equirectangular",
-                panorama: panoUrl,
-                autoLoad: true,
-                compass: true,
-                showZoomCtrl: true,
-                showFullscreenCtrl: true,
+              destroyMarzipano();
+              var el = document.getElementById("marzipano-viewer");
+              if (!el) return;
+              marzipanoViewer = new Marzipano.Viewer(el, {
+                controls: { mouseViewMode: "drag" },
               });
+              var source = Marzipano.ImageUrlSource.fromString(panoUrl);
+              var geometry = new Marzipano.EquirectGeometry([{ width: equirectWidth }]);
+              var limiter = Marzipano.RectilinearView.limit.traditional(1024, (100 * Math.PI) / 180);
+              var view = new Marzipano.RectilinearView({ yaw: Math.PI }, limiter);
+              var scene = marzipanoViewer.createScene({
+                source: source,
+                geometry: geometry,
+                view: view,
+                pinFirstLevel: true,
+              });
+              scene.switchTo();
+              marzipanoViewer.updateSize();
             });
           });
         }
 
-        function closePannellumDialog() {
+        function closeMarzipanoDialog() {
           if (d360) d360.close();
         }
 
-        document.querySelectorAll("[data-open-pannellum]").forEach(function (btn) {
+        document.querySelectorAll("[data-open-marzipano]").forEach(function (btn) {
           btn.addEventListener("click", function () {
-            openPannellumDialog();
+            openMarzipanoDialog();
           });
         });
-        var pannellumClose = document.getElementById("pannellum-dialog-close");
-        if (pannellumClose) {
-          pannellumClose.addEventListener("click", closePannellumDialog);
+        var marzipanoClose = document.getElementById("marzipano-dialog-close");
+        if (marzipanoClose) {
+          marzipanoClose.addEventListener("click", closeMarzipanoDialog);
         }
         if (d360) {
           d360.addEventListener("click", function (e) {
-            if (e.target === d360) closePannellumDialog();
+            if (e.target === d360) closeMarzipanoDialog();
           });
           d360.addEventListener("close", function () {
-            destroyPannellum();
+            destroyMarzipano();
           });
         }
 
@@ -437,6 +446,7 @@
           if (e.key !== "Escape") return;
           closeLightbox();
           if (d3 && d3.open) d3.close();
+          if (d360 && d360.open) d360.close();
         });
       })();
     </script>

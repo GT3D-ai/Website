@@ -1090,7 +1090,7 @@ a:hover {
   max-width: 28rem;
 }
 
-.deliverables-pannellum-dialog {
+.deliverables-wide-dialog {
   max-width: min(96vw, 920px);
   width: 100%;
   padding: 0;
@@ -1098,11 +1098,11 @@ a:hover {
   background: transparent;
 }
 
-.deliverables-pannellum-dialog::backdrop {
+.deliverables-wide-dialog::backdrop {
   background: rgba(13, 13, 13, 0.78);
 }
 
-.deliverables-pannellum-dialog__inner {
+.deliverables-wide-dialog__inner {
   position: relative;
   background: var(--bg-elevated);
   border: 1px solid var(--line);
@@ -1111,7 +1111,7 @@ a:hover {
   box-shadow: 0 12px 48px rgba(0, 0, 0, 0.2);
 }
 
-.deliverables-pannellum-dialog__title {
+.deliverables-wide-dialog__title {
   margin: 0 0 var(--space-xs);
   font-size: 1.25rem;
   font-weight: 600;
@@ -1119,7 +1119,7 @@ a:hover {
   padding-right: 2.5rem;
 }
 
-.deliverables-pannellum-dialog__hint {
+.deliverables-wide-dialog__hint {
   margin: 0 0 var(--space-md);
   font-size: 0.875rem;
   color: var(--ink-muted);
@@ -1127,7 +1127,7 @@ a:hover {
   max-width: 65ch;
 }
 
-.deliverables-pannellum-viewer {
+.deliverables-marzipano-viewer {
   width: 100%;
   margin: 0 auto;
   height: min(62vh, 560px);
@@ -1138,7 +1138,10 @@ a:hover {
   background: #1a1a1a;
 }
 
-.deliverables-pannellum-viewer canvas {
+.deliverables-marzipano-viewer canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
   outline: none;
 }
 
