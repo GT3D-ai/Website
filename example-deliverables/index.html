@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="../favicon.png" type="image/png" />
+    <title>Residential Existing Conditions Deliverables — Ground Truth 3D</title>
+    <meta
+      name="description"
+      content="See sample residential existing conditions deliverables: 2D plans, interior architecture sets, 3D Revit models, and site documentation from Ground Truth 3D."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../styles.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css" />
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+          "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+        }
+      }
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XW3WS16GZT"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-XW3WS16GZT");
+    </script>
+  </head>
+  <body class="page-category page-example-deliverables">
+    <header class="site-header site-header--category">
+      <div class="header-inner">
+        <a class="logo" href="../index.html">Ground Truth <span>3D</span></a>
+        <button
+          type="button"
+          class="menu-toggle"
+          id="menu-toggle"
+          aria-expanded="false"
+          aria-controls="dropdown-menu"
+          aria-label="Open menu"
+        >
+          <span class="bar" aria-hidden="true"></span>
+        </button>
+      </div>
+    </header>
+
+    <div class="dropdown-panel" id="dropdown-panel" hidden aria-hidden="true">
+      <nav class="dropdown-inner" id="dropdown-menu" aria-label="Site menu">
+        <a href="../index.html">Home</a>
+        <a href="../Commercial_Building_Existing_Conditions/index.html">Office building deliverables</a>
+        <a href="../Hospitality/index.html">Hotels and hospitality deliverables</a>
+        <a href="../Rec_Facility/index.html">Recreational facilities deliverables</a>
+        <a href="../Commercial_Existing_Conditions/index.html">Manufacturing facilities deliverables</a>
+        <a href="../Campus/index.html">Campuses and parks deliverables</a>
+        <a href="../Restaurant/index.html">Restaurant deliverables</a>
+        <a href="../Retail/index.html">Retail deliverables</a>
+        <a href="index.html" aria-current="page">Example deliverables</a>
+        <a href="../Get_in_Touch/index.html">Get in Touch</a>
+      </nav>
+    </div>
+
+    <main>
+      <section class="page-hero page-hero--deliverables" aria-labelledby="page-hero-title">
+        <div class="page-hero__strip">
+          <div class="page-hero__img-wrap">
+            <img
+              src="images/Residential_2D_Plan_Image.png"
+              alt="Floor plan drawing: Level 1 existing conditions, architectural linework and dimensions"
+              width="1600"
+              height="150"
+            />
+          </div>
+          <div class="page-hero__overlay">
+            <div class="page-hero__overlay-inner">
+              <h1 id="page-hero-title" class="page-hero__title">Residential Existing Conditions Deliverables</h1>
+              <a class="btn btn-primary" href="../Get_in_Touch/index.html">Get an Existing Conditions Documentation Quote</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--dense">
+        <div class="prose-commercial deliverables-intro">
+          <p>
+            With a week or so of engagement, residential existing conditions documentation clients receive a link to download
+            digital assets based on their project scope. A list of assets and links to download or view samples can be found
+            below:
+          </p>
+          <ol class="deliverables-toc">
+            <li><a href="#basic-2d-drawing-set">Basic 2D Existing Conditions</a></li>
+            <li><a href="#interior-architecture-2d-drawing-set">2D Interior Architecture Existing Conditions</a></li>
+            <li><a href="#3d-base-model-drawing-set">3D Base Model Existing Conditions</a></li>
+            <li><a href="#3d-base-model-and-site-drawing-set">3D House and Site Existing Conditions</a></li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="section section--dense deliverables-cards-section" aria-labelledby="asset-cards-heading">
+        <h2 id="asset-cards-heading" class="section-heading deliverables-cards-heading">Example asset types</h2>
+        <div class="deliverables-card-grid">
+          <button type="button" class="deliverables-card" data-lightbox="images/pdf-example.svg" data-label="PDF Drawing Set">
+            <span class="deliverables-card__img-wrap">
+              <img src="images/pdf-example.svg" alt="" width="640" height="400" loading="lazy" />
+            </span>
+            <span class="deliverables-card__label">PDF Drawing Set</span>
+            <span class="deliverables-card__icon" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
+                  fill="currentColor"
+                />
+              </svg>
+            </span>
+          </button>
+          <button type="button" class="deliverables-card" data-lightbox="images/dwg-file-example.svg" data-label="2D DWG/DXF Files">
+            <span class="deliverables-card__img-wrap">
+              <img src="images/dwg-file-example.svg" alt="" width="640" height="400" loading="lazy" />
+            </span>
+            <span class="deliverables-card__label">2D DWG/DXF Files</span>
+            <span class="deliverables-card__icon" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
+                  fill="currentColor"
+                />
+              </svg>
+            </span>
+          </button>
+          <button type="button" class="deliverables-card" data-open-pannellum aria-haspopup="dialog" aria-controls="deliverables-pannellum-dialog">
+            <span class="deliverables-card__img-wrap">
+              <img
+                src="images/photo-example.png"
+                alt="Equirectangular 360° photo: garden path, trees, and shingle house with red window trim"
+                width="1600"
+                height="800"
+                loading="lazy"
+              />
+            </span>
+            <span class="deliverables-card__label">360° Photos</span>
+            <span class="deliverables-card__icon" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zm0-5C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z" />
+              </svg>
+            </span>
+          </button>
+          <button
+            type="button"
+            class="deliverables-card"
+            data-viewer="3d"
+            aria-haspopup="dialog"
+            aria-controls="deliverables-viewer-3d"
+          >
+            <span class="deliverables-card__img-wrap">
+              <img
+                src="images/model-obj-card.svg"
+                alt="Sample 3D building mesh — open to rotate"
+                width="640"
+                height="400"
+                loading="lazy"
+              />
+            </span>
+            <span class="deliverables-card__label">3D Model</span>
+            <span class="deliverables-card__icon" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2L2 7v10l10 5 10-5V7L12 2zm0 2.18l6.9 3.45L12 10.09 5.1 7.63 12 4.18zM4 8.82l7 3.5v7.36l-7-3.5V8.82zm9 10.86v-7.36l7-3.5v7.36l-7 3.5z" />
+              </svg>
+            </span>
+          </button>
+        </div>
+      </section>
+
+      <section class="section section--dense" id="basic-2d-drawing-set" aria-labelledby="basic-2d-heading">
+        <h2 id="basic-2d-heading" class="section-heading">Basic 2D Drawing Set</h2>
+        <p>
+          <a class="btn btn-outline deliverables-sample-btn" href="../Get_in_Touch/index.html">Download sample</a>
+          <span class="deliverables-sample-note">Request PDF samples through Get in Touch.</span>
+        </p>
+        <ul class="deliverables-list">
+          <li>Site Plan</li>
+          <li>Floor Plans</li>
+          <li>Reflected Ceiling Plans</li>
+          <li>Exterior Elevations</li>
+          <li>Sections</li>
+          <li>360° Photos</li>
+        </ul>
+      </section>
+
+      <section class="section section--dense" id="interior-architecture-2d-drawing-set" aria-labelledby="interior-2d-heading">
+        <h2 id="interior-2d-heading" class="section-heading">Interior Architecture 2D Drawing Set</h2>
+        <p>
+          <a class="btn btn-outline deliverables-sample-btn" href="../Get_in_Touch/index.html">Download sample</a>
+          <span class="deliverables-sample-note">Request PDF samples through Get in Touch.</span>
+        </p>
+        <p>Basic 2D Drawing Set plus:</p>
+        <ul class="deliverables-list">
+          <li>¼″ scale interior elevations</li>
+        </ul>
+      </section>
+
+      <section class="section section--dense" id="3d-base-model-drawing-set" aria-labelledby="3d-base-heading">
+        <h2 id="3d-base-heading" class="section-heading">3D Base Model Drawing Set</h2>
+        <p>
+          <a class="btn btn-outline deliverables-sample-btn" href="../Get_in_Touch/index.html">Download sample</a>
+          <span class="deliverables-sample-note">Request PDF samples through Get in Touch.</span>
+        </p>
+        <p>Basic 2D Drawing Set plus:</p>
+        <ul class="deliverables-list">
+          <li>3D Revit Model LOD200</li>
+          <li>Hardscape adjacent to the building</li>
+          <li>Basic 3D site topography</li>
+        </ul>
+      </section>
+
+      <section class="section section--dense" id="3d-base-model-and-site-drawing-set" aria-labelledby="3d-site-heading">
+        <h2 id="3d-site-heading" class="section-heading">3D Base Model and Site Set</h2>
+        <p>
+          <a class="btn btn-outline deliverables-sample-btn" href="../Get_in_Touch/index.html">Download sample</a>
+          <span class="deliverables-sample-note">Request PDF samples through Get in Touch.</span>
+        </p>
+        <p>Basic 2D Drawing Set plus:</p>
+        <ul class="deliverables-list">
+          <li>Locations of retaining walls</li>
+          <li>Locations of trees &gt; 4″ diameter</li>
+          <li>Models of pools, trellises, fences, and other significant site features</li>
+        </ul>
+      </section>
+
+      <section class="section section--dense">
+        <h2 class="section-heading">Additional deliverables</h2>
+        <div class="prose-commercial">
+          <p>
+            The examples above represent the most commonly requested Ground Truth existing conditions documentation projects. We
+            are excited to provide a wide range of additional modeling, rendering, and documentation deliverables as needed.
+          </p>
+        </div>
+      </section>
+
+      <section class="section section--dense estimator-cta-bottom">
+        <p class="estimator-cta-text">Ready to scope your project?</p>
+        <a class="btn btn-primary" href="../Get_in_Touch/index.html">Get in Touch</a>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-cta">
+          <a class="btn btn-primary" href="../Get_in_Touch/index.html">Get in Touch</a>
+        </div>
+        <div class="footer-links">
+          <ul>
+            <li><a href="../About_Us/index.html">About Ground Truth 3D</a></li>
+            <li><a href="../index.html">Site map (home)</a></li>
+            <li><a href="../Get_in_Touch/index.html">Contact us</a></li>
+            <li><a href="../index.html">Home</a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+
+    <dialog class="deliverables-lightbox" id="deliverables-lightbox" aria-label="Enlarged image">
+      <div class="deliverables-lightbox__inner">
+        <button type="button" class="deliverables-lightbox__close" id="lightbox-close" aria-label="Close">&times;</button>
+        <img class="deliverables-lightbox__img" id="lightbox-img" src="" alt="" />
+      </div>
+    </dialog>
+
+    <dialog
+      class="deliverables-pannellum-dialog"
+      id="deliverables-pannellum-dialog"
+      aria-labelledby="pannellum-dialog-title"
+      aria-modal="true"
+    >
+      <div class="deliverables-pannellum-dialog__inner">
+        <button type="button" class="deliverables-lightbox__close" id="pannellum-dialog-close" aria-label="Close 360 viewer">
+          &times;
+        </button>
+        <h2 id="pannellum-dialog-title" class="deliverables-pannellum-dialog__title">360° photo</h2>
+        <p class="deliverables-pannellum-dialog__hint">
+          Drag to look around. Sample equirectangular capture; project deliverables include full-resolution interactive tours.
+        </p>
+        <div
+          id="pannellum-viewer"
+          class="deliverables-pannellum-viewer"
+          role="application"
+          aria-label="Pannellum 360 degree viewer"
+        ></div>
+      </div>
+    </dialog>
+
+    <dialog
+      class="deliverables-pannellum-dialog"
+      id="deliverables-viewer-3d"
+      aria-labelledby="obj-viewer-dialog-title"
+      aria-modal="true"
+    >
+      <div class="deliverables-pannellum-dialog__inner">
+        <button type="button" class="deliverables-lightbox__close" data-close-viewer aria-label="Close 3D viewer">&times;</button>
+        <h2 id="obj-viewer-dialog-title" class="deliverables-pannellum-dialog__title">3D model sample</h2>
+        <p class="deliverables-pannellum-dialog__hint">
+          Drag to rotate. Scroll to zoom. Sample mesh — we deliver Revit and other formats per scope.
+        </p>
+        <div id="obj-viewer-root" class="deliverables-obj-viewer" aria-live="polite"></div>
+        <p class="deliverables-obj-viewer__cta">
+          <a class="btn btn-primary" href="../Get_in_Touch/index.html">Get in Touch</a>
+        </p>
+      </div>
+    </dialog>
+
+    <script src="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js"></script>
+    <script type="module" src="obj-viewer.js"></script>
+    <script>
+      (function () {
+        var toggle = document.getElementById("menu-toggle");
+        var panel = document.getElementById("dropdown-panel");
+        if (!toggle || !panel) return;
+        function setOpen(open) {
+          toggle.setAttribute("aria-expanded", open ? "true" : "false");
+          toggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+          panel.hidden = !open;
+          panel.setAttribute("aria-hidden", open ? "false" : "true");
+          panel.classList.toggle("is-open", open);
+          document.body.style.overflow = open ? "hidden" : "";
+        }
+        toggle.addEventListener("click", function () {
+          setOpen(toggle.getAttribute("aria-expanded") !== "true");
+        });
+        panel.addEventListener("click", function (e) {
+          if (e.target === panel) setOpen(false);
+        });
+        panel.querySelectorAll("a").forEach(function (link) {
+          link.addEventListener("click", function () {
+            setOpen(false);
+          });
+        });
+        document.addEventListener("keydown", function (e) {
+          if (e.key === "Escape") setOpen(false);
+        });
+      })();
+      (function () {
+        var dialog = document.getElementById("deliverables-lightbox");
+        var img = document.getElementById("lightbox-img");
+        var closeBtn = document.getElementById("lightbox-close");
+        var d3 = document.getElementById("deliverables-viewer-3d");
+        var d360 = document.getElementById("deliverables-pannellum-dialog");
+        var pannellumViewer = null;
+        var panoUrl = new URL("images/photo-example.png", window.location.href).href;
+
+        function destroyPannellum() {
+          if (pannellumViewer && typeof pannellumViewer.destroy === "function") {
+            try {
+              pannellumViewer.destroy();
+            } catch (err) {}
+          }
+          pannellumViewer = null;
+        }
+
+        function openPannellumDialog() {
+          if (!d360 || typeof pannellum === "undefined") return;
+          d360.showModal();
+          requestAnimationFrame(function () {
+            requestAnimationFrame(function () {
+              destroyPannellum();
+              pannellumViewer = pannellum.viewer("pannellum-viewer", {
+                type: "equirectangular",
+                panorama: panoUrl,
+                autoLoad: true,
+                compass: true,
+                showZoomCtrl: true,
+                showFullscreenCtrl: true,
+              });
+            });
+          });
+        }
+
+        function closePannellumDialog() {
+          if (d360) d360.close();
+        }
+
+        document.querySelectorAll("[data-open-pannellum]").forEach(function (btn) {
+          btn.addEventListener("click", function () {
+            openPannellumDialog();
+          });
+        });
+        var pannellumClose = document.getElementById("pannellum-dialog-close");
+        if (pannellumClose) {
+          pannellumClose.addEventListener("click", closePannellumDialog);
+        }
+        if (d360) {
+          d360.addEventListener("click", function (e) {
+            if (e.target === d360) closePannellumDialog();
+          });
+          d360.addEventListener("close", function () {
+            destroyPannellum();
+          });
+        }
+
+        document.querySelectorAll(".deliverables-card[data-lightbox]").forEach(function (card) {
+          card.addEventListener("click", function () {
+            var src = card.getAttribute("data-lightbox");
+            var label = card.getAttribute("data-label") || "Sample";
+            if (!src || !dialog || !img) return;
+            img.src = src;
+            img.alt = label;
+            dialog.showModal();
+          });
+        });
+        function closeLightbox() {
+          if (dialog && dialog.open) dialog.close();
+          if (img) img.removeAttribute("src");
+        }
+        if (closeBtn) closeBtn.addEventListener("click", closeLightbox);
+        if (dialog) {
+          dialog.addEventListener("click", function (e) {
+            if (e.target === dialog) closeLightbox();
+          });
+        }
+        document.querySelectorAll("[data-close-viewer]").forEach(function (b) {
+          b.addEventListener("click", function () {
+            var d = b.closest("dialog");
+            if (d) d.close();
+          });
+        });
+        if (d3) {
+          d3.addEventListener("click", function (e) {
+            if (e.target === d3) d3.close();
+          });
+        }
+        document.addEventListener("keydown", function (e) {
+          if (e.key !== "Escape") return;
+          closeLightbox();
+          if (d3 && d3.open) d3.close();
+        });
+      })();
+    </script>
+  </body>
+</html>
