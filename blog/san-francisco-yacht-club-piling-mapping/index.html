@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -46,22 +46,7 @@
     </div>
     <main>
       <article class="story-article" itemscope itemtype="https://schema.org/Article">
-        <header class="story-article__masthead">
-          <figure class="story-article__hero">
-            <video
-              id="sfyc-hero-video"
-              class="story-article__hero-video"
-              playsinline
-              preload="metadata"
-              poster="images/sfyc-02-kayak.png"
-              autoplay
-              muted
-            >
-              <source src="SFYC_Flythrough.mp4" type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
-          </figure>
-          <div class="story-article__hero-scrim" aria-hidden="true"></div>
+        <header class="story-article__masthead story-article__masthead--no-hero">
           <a class="story-article__back" href="../index.html">← All stories</a>
           <div class="story-article__hero-overlay">
             <p class="story-article__label">Case study</p>
@@ -80,28 +65,6 @@
                 <path fill="currentColor" d="M12 15.41l-4.59-4.5L6 12.82l6 6 6-6-1.41-1.41L12 15.41z" />
               </svg>
             </div>
-          </div>
-          <div class="story-article__hero-video-bar">
-            <button
-              type="button"
-              class="stories-masthead__video-toggle"
-              id="sfyc-hero-video-toggle"
-              aria-controls="sfyc-hero-video"
-              aria-pressed="true"
-              aria-label="Pause hero video"
-            >
-              <span class="stories-masthead__video-toggle-icon stories-masthead__video-toggle-icon--pause" aria-hidden="true">
-                <svg viewBox="0 0 24 24" width="24" height="24" xmlns="http://www.w3.org/2000/svg" focusable="false">
-                  <rect x="6" y="4" width="4" height="16" rx="0.5" fill="currentColor" />
-                  <rect x="14" y="4" width="4" height="16" rx="0.5" fill="currentColor" />
-                </svg>
-              </span>
-              <span class="stories-masthead__video-toggle-icon stories-masthead__video-toggle-icon--play" aria-hidden="true" hidden>
-                <svg viewBox="0 0 24 24" width="24" height="24" xmlns="http://www.w3.org/2000/svg" focusable="false">
-                  <path d="M8 5v14l11-7z" fill="currentColor" />
-                </svg>
-              </span>
-            </button>
           </div>
         </header>
         <div class="story-article__inner">
@@ -245,45 +208,6 @@
             setOpen(false);
           });
         });
-      })();
-      (function () {
-        var video = document.getElementById("sfyc-hero-video");
-        var btn = document.getElementById("sfyc-hero-video-toggle");
-        if (!video || !btn) return;
-        var source = video.querySelector("source");
-        var iconPause = btn.querySelector(".stories-masthead__video-toggle-icon--pause");
-        var iconPlay = btn.querySelector(".stories-masthead__video-toggle-icon--play");
-
-        // Support both URL styles:
-        // /blog/san-francisco-yacht-club-piling-mapping and /blog/san-francisco-yacht-club-piling-mapping/
-        var path = window.location.pathname || "";
-        var noTrailingSlashRoute = /\/blog\/san-francisco-yacht-club-piling-mapping$/i.test(path);
-        if (noTrailingSlashRoute && source) {
-          source.src = "san-francisco-yacht-club-piling-mapping/SFYC_Flythrough.mp4";
-          video.poster = "san-francisco-yacht-club-piling-mapping/images/sfyc-02-kayak.png";
-          video.load();
-        }
-
-        function sync() {
-          var playing = !video.paused;
-          btn.setAttribute("aria-pressed", playing ? "true" : "false");
-          btn.setAttribute("aria-label", playing ? "Pause hero video" : "Play hero video");
-          if (iconPause && iconPlay) {
-            iconPause.hidden = !playing;
-            iconPlay.hidden = playing;
-          }
-        }
-        btn.addEventListener("click", function () {
-          if (video.paused) {
-            video.play();
-          } else {
-            video.pause();
-          }
-        });
-        video.addEventListener("play", sync);
-        video.addEventListener("pause", sync);
-        video.addEventListener("ended", sync);
-        sync();
       })();
     </script>
   </body>
