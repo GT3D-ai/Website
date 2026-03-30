@@ -53,11 +53,11 @@
               class="story-article__hero-video"
               playsinline
               preload="metadata"
-              poster="images/sfyc-02-kayak.png"
+              poster="/blog/san-francisco-yacht-club-piling-mapping/images/sfyc-02-kayak.png"
               autoplay
               muted
             >
-              <source src="SFYC_Flythrough_short.mp4" type="video/mp4" />
+              <source src="/blog/san-francisco-yacht-club-piling-mapping/SFYC_Flythrough_short.mp4" type="video/mp4" />
               Your browser does not support the video tag.
             </video>
           </figure>
@@ -250,19 +250,10 @@
         var video = document.getElementById("sfyc-hero-video");
         var btn = document.getElementById("sfyc-hero-video-toggle");
         if (!video || !btn) return;
-        var source = video.querySelector("source");
         var iconPause = btn.querySelector(".stories-masthead__video-toggle-icon--pause");
         var iconPlay = btn.querySelector(".stories-masthead__video-toggle-icon--play");
 
         video.removeAttribute("loop");
-
-        var path = window.location.pathname || "";
-        var noTrailingSlashRoute = /\/blog\/san-francisco-yacht-club-piling-mapping$/i.test(path);
-        if (noTrailingSlashRoute && source) {
-          source.src = "san-francisco-yacht-club-piling-mapping/SFYC_Flythrough_short.mp4";
-          video.poster = "san-francisco-yacht-club-piling-mapping/images/sfyc-02-kayak.png";
-          video.load();
-        }
 
         function sync() {
           var playing = !video.paused;
