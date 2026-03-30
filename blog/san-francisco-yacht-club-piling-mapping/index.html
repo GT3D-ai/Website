@@ -53,13 +53,31 @@
               class="story-article__hero-video"
               playsinline
               preload="metadata"
-              poster="/blog/san-francisco-yacht-club-piling-mapping/images/sfyc-02-kayak.png"
+              poster="images/sfyc-02-kayak.png"
               autoplay
               muted
             >
-              <source src="/blog/san-francisco-yacht-club-piling-mapping/SFYC_Flythrough_short.mp4" type="video/mp4" />
+              <source src="SFYC_Flythrough_short.mp4" type="video/mp4" />
               Your browser does not support the video tag.
             </video>
+            <script>
+              (function () {
+                var video = document.getElementById("sfyc-hero-video");
+                if (!video) return;
+                var u = new URL(window.location.href);
+                var p = u.pathname;
+                if (!p.endsWith("/") && !/\/index\.html$/i.test(p)) {
+                  u.pathname = p + "/";
+                }
+                var base = u.href;
+                var src = video.querySelector("source");
+                if (src) {
+                  src.src = new URL("SFYC_Flythrough_short.mp4", base).href;
+                }
+                video.poster = new URL("images/sfyc-02-kayak.png", base).href;
+                video.load();
+              })();
+            </script>
           </figure>
           <div class="story-article__hero-scrim" aria-hidden="true"></div>
           <a class="story-article__back" href="../index.html">← All stories</a>
