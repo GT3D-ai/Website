@@ -156,8 +156,8 @@
           <button type="button" class="deliverables-card" data-open-marzipano aria-haspopup="dialog" aria-controls="deliverables-marzipano-dialog">
             <span class="deliverables-card__img-wrap">
               <img
-                src="images/photo-example.png"
-                alt="Equirectangular 360° photo: garden path, trees, and shingle house with red window trim"
+                src="https://storage.cloud.google.com/gt-platform-360-photos-bucket/R0015779.JPG"
+                alt="Equirectangular 360° photo sample"
                 width="1600"
                 height="800"
                 loading="lazy"
@@ -179,8 +179,8 @@
           >
             <span class="deliverables-card__img-wrap">
               <img
-                src="images/model-obj-card.svg"
-                alt="Sample 3D building mesh — open to rotate"
+                src="images/model-3d-card.png"
+                alt="3D exterior rendering: three-story house, white model style (opens Sketchfab viewer)"
                 width="640"
                 height="400"
                 loading="lazy"
@@ -397,8 +397,8 @@
         var pdfDownload = document.getElementById("pdf-dialog-download");
         var pdfTitleEl = document.getElementById("pdf-dialog-title");
         var marzipanoViewer = null;
-        var panoUrl = new URL("images/photo-example.png", window.location.href).href;
-        var equirectWidth = 1600;
+        var panoUrl = "https://storage.cloud.google.com/gt-platform-360-photos-bucket/R0015779.JPG";
+        var equirectWidth = 8192;
 
         function destroyMarzipano() {
           if (marzipanoViewer && typeof marzipanoViewer.destroy === "function") {

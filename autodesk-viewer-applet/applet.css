@@ -1,0 +1,130 @@
+.autodesk-viewer-applet-page .autodesk-applet-main {
+  max-width: var(--max, 960px);
+  margin: 0 auto;
+  padding: var(--space-lg) var(--space-md) var(--space-xl);
+}
+
+.autodesk-applet-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0 0 var(--space-sm);
+  color: var(--ink);
+}
+
+.autodesk-applet-lead {
+  margin: 0 0 var(--space-lg);
+  max-width: 72ch;
+  color: var(--ink-muted);
+  line-height: 1.6;
+  font-size: 0.9375rem;
+}
+
+.autodesk-applet-lead code {
+  font-size: 0.875rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  color: var(--ink);
+}
+
+.autodesk-applet-form {
+  margin-bottom: var(--space-lg);
+}
+
+.autodesk-applet-label {
+  display: block;
+  margin: var(--space-sm) 0 var(--space-xs);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.autodesk-applet-input,
+.autodesk-applet-textarea {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  padding: var(--space-sm) var(--space-md);
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  font: inherit;
+  background: var(--bg);
+  color: var(--ink);
+}
+
+.autodesk-applet-textarea {
+  resize: vertical;
+  min-height: 3rem;
+}
+
+.autodesk-applet-fieldset {
+  margin: var(--space-md) 0;
+  padding: var(--space-md);
+  border: 1px solid var(--line);
+  border-radius: 2px;
+}
+
+.autodesk-applet-legend {
+  padding: 0 var(--space-xs);
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.autodesk-applet-actions {
+  margin-top: var(--space-md);
+}
+
+.autodesk-applet-status {
+  min-height: 1.5rem;
+  font-size: 0.875rem;
+  color: var(--accent);
+  margin: var(--space-sm) 0 var(--space-md);
+}
+
+.autodesk-applet-subtitle {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin: var(--space-md) 0 var(--space-sm);
+  color: var(--ink);
+}
+
+.autodesk-applet-note {
+  font-size: 0.8125rem;
+  color: var(--ink-muted);
+  margin: 0 0 var(--space-sm);
+  max-width: 72ch;
+}
+
+.autodesk-applet-raster-wrap {
+  margin-bottom: var(--space-xl);
+}
+
+.autodesk-applet-raster-frame {
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  overflow: auto;
+  background: var(--bg-elevated);
+  max-height: min(70vh, 720px);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.autodesk-applet-raster-img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.autodesk-applet-viewer-wrap {
+  margin-top: var(--space-lg);
+}
+
+.autodesk-applet-viewer-host {
+  position: relative;
+  width: 100%;
+  height: min(70vh, 720px);
+  min-height: 400px;
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  overflow: hidden;
+  background: #2a2a2a;
+}

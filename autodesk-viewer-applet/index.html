@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Autodesk Viewer applet — Ground Truth 3D</title>
+    <meta
+      name="description"
+      content="Load a translated APS model by URN, or preview a raster image from a URL. Requires an Autodesk Platform Services access token."
+    />
+    <link rel="icon" href="../favicon.png" type="image/png" />
+    <link rel="stylesheet" href="../styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://developer.api.autodesk.com/modelderivative/v2/viewers/7.101.0/style.min.css"
+    />
+    <link rel="stylesheet" href="applet.css" />
+  </head>
+  <body class="page-category autodesk-viewer-applet-page">
+    <header class="site-header site-header--category">
+      <div class="header-inner">
+        <a class="logo" href="../index.html">Ground Truth <span>3D</span></a>
+      </div>
+    </header>
+
+    <main class="autodesk-applet-main">
+      <h1 class="autodesk-applet-title">Autodesk Viewer applet</h1>
+      <p class="autodesk-applet-lead">
+        Paste a <strong>web address</strong> below. Raster images (JPG, PNG, GIF, WebP, SVG) open in a simple preview.
+        <strong>Autodesk Viewer</strong> is used for <strong>translated model URNs</strong> from Autodesk Platform Services (APS) — not for raw image URLs.
+        You need a short-lived <strong>access token</strong> with <code>viewables:read</code> scope (from your APS app or token endpoint).
+      </p>
+
+      <form class="autodesk-applet-form" id="applet-form" onsubmit="return false;">
+        <label class="autodesk-applet-label" for="address">Address (image URL or model URN)</label>
+        <input
+          class="autodesk-applet-input"
+          type="text"
+          id="address"
+          name="address"
+          placeholder="https://example.com/plan.png or paste model URN (base64)"
+          autocomplete="off"
+          spellcheck="false"
+        />
+
+        <fieldset class="autodesk-applet-fieldset">
+          <legend class="autodesk-applet-legend">Authentication (for Viewer only)</legend>
+          <label class="autodesk-applet-label" for="tokenEndpoint">Token endpoint URL (optional)</label>
+          <input
+            class="autodesk-applet-input"
+            type="url"
+            id="tokenEndpoint"
+            name="tokenEndpoint"
+            placeholder="https://your-server.example/api/aps/token — must return JSON { access_token, expires_in }"
+            autocomplete="off"
+          />
+          <label class="autodesk-applet-label" for="accessToken">Or paste access token</label>
+          <textarea
+            class="autodesk-applet-textarea"
+            id="accessToken"
+            name="accessToken"
+            rows="2"
+            placeholder="Bearer token from APS (2-legged or 3-legged OAuth)"
+            spellcheck="false"
+          ></textarea>
+        </fieldset>
+
+        <div class="autodesk-applet-actions">
+          <button type="button" class="btn btn-primary" id="loadBtn">Load</button>
+        </div>
+      </form>
+
+      <p class="autodesk-applet-status" id="status" role="status" aria-live="polite"></p>
+
+      <div class="autodesk-applet-raster-wrap" id="rasterWrap" hidden>
+        <h2 class="autodesk-applet-subtitle">Raster preview</h2>
+        <p class="autodesk-applet-note">
+          This is a plain image preview. The Autodesk Viewer is for SVF/SVF2 viewables from Model Derivative, not direct HTTP images.
+        </p>
+        <div class="autodesk-applet-raster-frame">
+          <img id="rasterPreview" class="autodesk-applet-raster-img" alt="" />
+        </div>
+      </div>
+
+      <div class="autodesk-applet-viewer-wrap" id="viewerWrapper">
+        <h2 class="autodesk-applet-subtitle">Autodesk Viewer</h2>
+        <div id="viewerContainer" class="autodesk-applet-viewer-host"></div>
+      </div>
+    </main>
+
+    <script src="https://developer.api.autodesk.com/modelderivative/v2/viewers/7.101.0/viewer3D.min.js"></script>
+    <script src="applet.js"></script>
+  </body>
+</html>
