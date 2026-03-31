@@ -148,10 +148,10 @@
           <button type="button" class="deliverables-card" data-open-marzipano aria-haspopup="dialog" aria-controls="deliverables-marzipano-dialog">
             <span class="deliverables-card__img-wrap">
               <img
-                src="https://storage.googleapis.com/gt-platform-360-photos-bucket/R0015779.JPG"
+                src="images/R0015784.png"
                 alt="Equirectangular 360° photo sample"
-                width="1600"
-                height="800"
+                width="1024"
+                height="512"
                 loading="lazy"
               />
               <span class="deliverables-card__icon" aria-hidden="true">
@@ -318,7 +318,7 @@
         </button>
         <h2 id="marzipano-dialog-title" class="deliverables-wide-dialog__title">360° photo</h2>
         <p class="deliverables-wide-dialog__hint">
-          Drag to look around. The file must load from <code>storage.googleapis.com</code> with bucket CORS enabled (see <code>infra/cors.json</code>).
+          Drag to look around. This sample loads from this site; for panoramas hosted on <code>storage.googleapis.com</code>, enable bucket CORS (see <code>infra/cors.json</code>).
         </p>
         <p class="deliverables-marzipano-error" id="marzipano-load-error" hidden></p>
         <div
@@ -401,9 +401,8 @@
         var pdfTitleEl = document.getElementById("pdf-dialog-title");
         var marzipanoViewer = null;
         var marzipanoResizeObserver = null;
-        var panoUrl =
-          "https://storage.googleapis.com/gt-platform-360-photos-bucket/R0015779.JPG";
-        var equirectWidth = 8192;
+        var panoUrl = "images/R0015784.png";
+        var equirectWidth = 1024;
         var marzipanoErrorEl = document.getElementById("marzipano-load-error");
 
         function setMarzipanoError(msg) {
