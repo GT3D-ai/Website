@@ -16,14 +16,6 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="../styles.css" />
-    <script type="importmap">
-      {
-        "imports": {
-          "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
-          "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
-        }
-      }
-    </script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XW3WS16GZT"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -156,7 +148,7 @@
           <button type="button" class="deliverables-card" data-open-marzipano aria-haspopup="dialog" aria-controls="deliverables-marzipano-dialog">
             <span class="deliverables-card__img-wrap">
               <img
-                src="https://storage.cloud.google.com/gt-platform-360-photos-bucket/R0015779.JPG"
+                src="https://storage.googleapis.com/gt-platform-360-photos-bucket/R0015779.JPG"
                 alt="Equirectangular 360° photo sample"
                 width="1600"
                 height="800"
@@ -326,8 +318,9 @@
         </button>
         <h2 id="marzipano-dialog-title" class="deliverables-wide-dialog__title">360° photo</h2>
         <p class="deliverables-wide-dialog__hint">
-          Drag to look around. Sample equirectangular capture; project deliverables include full-resolution interactive tours.
+          Drag to look around. The file must load from <code>storage.googleapis.com</code> with bucket CORS enabled (see <code>infra/cors.json</code>).
         </p>
+        <p class="deliverables-marzipano-error" id="marzipano-load-error" hidden></p>
         <div
           id="marzipano-viewer"
           class="deliverables-marzipano-viewer"
@@ -340,24 +333,34 @@
     <dialog
       class="deliverables-wide-dialog"
       id="deliverables-viewer-3d"
-      aria-labelledby="obj-viewer-dialog-title"
+      aria-labelledby="sketchfab-dialog-title"
       aria-modal="true"
     >
       <div class="deliverables-wide-dialog__inner">
         <button type="button" class="deliverables-lightbox__close" data-close-viewer aria-label="Close 3D viewer">&times;</button>
-        <h2 id="obj-viewer-dialog-title" class="deliverables-wide-dialog__title">3D model sample</h2>
+        <h2 id="sketchfab-dialog-title" class="deliverables-wide-dialog__title">3D model sample</h2>
         <p class="deliverables-wide-dialog__hint">
-          Drag to rotate. Scroll to zoom. Sample mesh — we deliver Revit and other formats per scope.
+          Interactive model via Sketchfab — set your embed URL in <code>sketchfab-config.js</code>. We deliver Revit and other formats per scope.
         </p>
-        <div id="obj-viewer-root" class="deliverables-obj-viewer" aria-live="polite"></div>
-        <p class="deliverables-obj-viewer__cta">
+        <div class="deliverables-sketchfab-viewer">
+          <iframe
+            id="sketchfab-viewer-frame"
+            class="deliverables-sketchfab-viewer__iframe"
+            title="Sketchfab 3D model"
+            allow="autoplay; fullscreen; xr-spatial-tracking"
+            allowfullscreen
+            loading="lazy"
+          ></iframe>
+        </div>
+        <p class="deliverables-sketchfab-viewer__cta">
           <a class="btn btn-primary" href="../Get_in_Touch/index.html">Get in Touch</a>
         </p>
       </div>
     </dialog>
 
     <script src="https://cdn.jsdelivr.net/npm/marzipano@0.10.2/dist/marzipano.js"></script>
-    <script type="module" src="obj-viewer.js"></script>
+    <script src="sketchfab-config.js"></script>
+    <script src="sketchfab-dialog.js"></script>
     <script>
       (function () {
         var toggle = document.getElementById("menu-toggle");
@@ -397,20 +400,62 @@
         var pdfDownload = document.getElementById("pdf-dialog-download");
         var pdfTitleEl = document.getElementById("pdf-dialog-title");
         var marzipanoViewer = null;
-        var panoUrl = "https://storage.cloud.google.com/gt-platform-360-photos-bucket/R0015779.JPG";
+        var marzipanoResizeObserver = null;
+        var panoUrl =
+          "https://storage.googleapis.com/gt-platform-360-photos-bucket/R0015779.JPG";
         var equirectWidth = 8192;
+        var marzipanoErrorEl = document.getElementById("marzipano-load-error");
+
+        function setMarzipanoError(msg) {
+          if (!marzipanoErrorEl) return;
+          if (msg) {
+            marzipanoErrorEl.textContent = msg;
+            marzipanoErrorEl.hidden = false;
+          } else {
+            marzipanoErrorEl.textContent = "";
+            marzipanoErrorEl.hidden = true;
+          }
+        }
 
         function destroyMarzipano() {
+          if (marzipanoResizeObserver) {
+            try {
+              marzipanoResizeObserver.disconnect();
+            } catch (e) {}
+            marzipanoResizeObserver = null;
+          }
           if (marzipanoViewer && typeof marzipanoViewer.destroy === "function") {
             try {
               marzipanoViewer.destroy();
             } catch (err) {}
           }
           marzipanoViewer = null;
+          var el = document.getElementById("marzipano-viewer");
+          if (el) el.innerHTML = "";
+          setMarzipanoError("");
+        }
+
+        function scheduleMarzipanoResize(viewer, el) {
+          function tick() {
+            if (viewer && typeof viewer.updateSize === "function") {
+              viewer.updateSize();
+            }
+          }
+          tick();
+          requestAnimationFrame(tick);
+          setTimeout(tick, 0);
+          setTimeout(tick, 80);
+          setTimeout(tick, 250);
+          setTimeout(tick, 500);
+          if (typeof ResizeObserver !== "undefined") {
+            marzipanoResizeObserver = new ResizeObserver(tick);
+            marzipanoResizeObserver.observe(el);
+          }
         }
 
         function openMarzipanoDialog() {
           if (!d360 || typeof Marzipano === "undefined") return;
+          setMarzipanoError("");
           d360.showModal();
           requestAnimationFrame(function () {
             requestAnimationFrame(function () {
@@ -419,6 +464,7 @@
               if (!el) return;
               marzipanoViewer = new Marzipano.Viewer(el, {
                 controls: { mouseViewMode: "drag" },
+                stage: { crossOrigin: "anonymous" },
               });
               var source = Marzipano.ImageUrlSource.fromString(panoUrl);
               var geometry = new Marzipano.EquirectGeometry([{ width: equirectWidth }]);
@@ -431,7 +477,7 @@
                 pinFirstLevel: true,
               });
               scene.switchTo();
-              marzipanoViewer.updateSize();
+              scheduleMarzipanoResize(marzipanoViewer, el);
             });
           });
         }
