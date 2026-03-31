@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="240" height="240" viewBox="0 0 240 240" role="img" aria-hidden="true">
+  <rect width="240" height="240" fill="#e8e8ea" />
+  <rect x="40" y="40" width="160" height="160" fill="#fff" stroke="#c5c5c9" stroke-width="2" />
+  <text x="120" y="122" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" fill="#4a4a52">Drawing set</text>
+</svg>
