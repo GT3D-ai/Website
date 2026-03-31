@@ -1,16 +1,18 @@
 /**
- * In-browser 3D: Wavefront OBJ relative to this page. Keep the matching .mtl in the same folder
- * (e.g. models/111-MODEL-SAMPLE.mtl) — the viewer loads it automatically via MTLLoader + OBJLoader.
- * Very large OBJs (100MB+) may be slow or fail in the browser — use a decimated mesh for web.
+ * In-browser 3D: glTF / GLB (preferred) or Wavefront OBJ + MTL relative to this page.
+ * For OBJ, keep the matching .mtl in the same folder. GLB can use Draco mesh compression (decoder loads from Google CDN).
  */
-window.DELIVERABLES_OBJ_URL = "models/111-MODEL-SAMPLE.obj";
+window.DELIVERABLES_MODEL_URL = "models/111-MODEL-SAMPLE-compressed.glb";
+
+/** @deprecated Use DELIVERABLES_MODEL_URL. If MODEL_URL is empty, this is used as fallback. */
+window.DELIVERABLES_OBJ_URL = "";
 
 /**
- * Optional Sketchfab embed (used only if DELIVERABLES_OBJ_URL is "").
+ * Optional Sketchfab embed (used only if DELIVERABLES_MODEL_URL and DELIVERABLES_OBJ_URL are both "").
  */
 window.SKETCHFAB_DELIVERABLES_EMBED_SRC = "";
 
 /**
- * Optional .rvt download link (used only if OBJ and Sketchfab are both unset).
+ * Optional .rvt download link (used only if no local/WebGL model and no Sketchfab).
  */
 window.DELIVERABLES_RVT_URL = "";

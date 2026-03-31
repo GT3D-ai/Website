@@ -1,10 +1,19 @@
 import * as THREE from "three";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
+import { DRACOLoader } from "three/addons/loaders/DRACOLoader.js";
 import { OBJLoader } from "three/addons/loaders/OBJLoader.js";
 import { MTLLoader } from "three/addons/loaders/MTLLoader.js";
 
 var renderer, scene, camera, controls, animationId, resizeObserver, hostEl;
 var loopRunning = false;
+
+function getModelUrl() {
+  var primary =
+    typeof window.DELIVERABLES_MODEL_URL === "string" ? window.DELIVERABLES_MODEL_URL.trim() : "";
+  if (primary) return primary;
+  return typeof window.DELIVERABLES_OBJ_URL === "string" ? window.DELIVERABLES_OBJ_URL.trim() : "";
+}
 
 function dispose() {
   loopRunning = false;
@@ -60,6 +69,32 @@ function startLoop() {
   tick();
 }
 
+function loadGltf(resolvedUrl, loadingEl) {
+  var dracoLoader = new DRACOLoader();
+  dracoLoader.setDecoderPath("https://www.gstatic.com/draco/versioned/decoders/1.5.6/");
+  var loader = new GLTFLoader();
+  loader.setDRACOLoader(dracoLoader);
+  loader.load(
+    resolvedUrl,
+    function (gltf) {
+      scene.add(gltf.scene);
+      fitCameraToObject(gltf.scene, camera, controls);
+      if (loadingEl) loadingEl.hidden = true;
+      dracoLoader.dispose();
+      startLoop();
+    },
+    undefined,
+    function (err) {
+      console.error(err);
+      dracoLoader.dispose();
+      if (loadingEl) {
+        loadingEl.textContent = "Could not load 3D model.";
+        loadingEl.hidden = false;
+      }
+    }
+  );
+}
+
 function loadObjWithoutMtl(dirBase, objFileName, loadingEl) {
   var objLoader = new OBJLoader();
   objLoader.setPath(dirBase);
@@ -91,47 +126,10 @@ function loadObjWithoutMtl(dirBase, objFileName, loadingEl) {
   );
 }
 
-function initDeliverablesObjViewer() {
-  dispose();
-
-  var objUrl =
-    typeof window.DELIVERABLES_OBJ_URL === "string" ? window.DELIVERABLES_OBJ_URL.trim() : "";
-  if (!objUrl) return;
-
-  hostEl = document.getElementById("deliverables-obj-canvas-host");
-  var loadingEl = document.getElementById("deliverables-obj-loading");
-  if (!hostEl) return;
-
-  if (loadingEl) {
-    loadingEl.hidden = false;
-    loadingEl.textContent = "Loading 3D model…";
-  }
-
-  var resolvedObj = new URL(objUrl, window.location.href).href;
-  var dirBase = resolvedObj.substring(0, resolvedObj.lastIndexOf("/") + 1);
-  var objFileName = resolvedObj.substring(resolvedObj.lastIndexOf("/") + 1);
+function loadObjWithMtl(resolvedUrl, loadingEl) {
+  var dirBase = resolvedUrl.substring(0, resolvedUrl.lastIndexOf("/") + 1);
+  var objFileName = resolvedUrl.substring(resolvedUrl.lastIndexOf("/") + 1);
   var mtlFileName = objFileName.replace(/\.obj$/i, ".mtl");
-
-  var width = Math.max(hostEl.clientWidth, 320);
-  var height = Math.max(hostEl.clientHeight, 240);
-
-  scene = new THREE.Scene();
-  scene.background = new THREE.Color(0x1a1a1a);
-
-  camera = new THREE.PerspectiveCamera(45, width / height, 0.001, 1e7);
-  renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false, powerPreference: "high-performance" });
-  renderer.setSize(width, height);
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-  hostEl.appendChild(renderer.domElement);
-
-  scene.add(new THREE.AmbientLight(0xffffff, 0.55));
-  var dirLight = new THREE.DirectionalLight(0xffffff, 0.9);
-  dirLight.position.set(30, 80, 40);
-  scene.add(dirLight);
-
-  controls = new OrbitControls(camera, renderer.domElement);
-  controls.enableDamping = true;
-  controls.dampingFactor = 0.06;
 
   var mtlLoader = new MTLLoader();
   mtlLoader.setPath(dirBase);
@@ -161,6 +159,55 @@ function initDeliverablesObjViewer() {
       loadObjWithoutMtl(dirBase, objFileName, loadingEl);
     }
   );
+}
+
+function initDeliverablesObjViewer() {
+  dispose();
+
+  var modelUrl = getModelUrl();
+  if (!modelUrl) return;
+
+  hostEl = document.getElementById("deliverables-obj-canvas-host");
+  var loadingEl = document.getElementById("deliverables-obj-loading");
+  if (!hostEl) return;
+
+  if (loadingEl) {
+    loadingEl.hidden = false;
+    loadingEl.textContent = "Loading 3D model…";
+  }
+
+  var resolved = new URL(modelUrl, window.location.href).href;
+  var isGltf = /\.glb$/i.test(resolved) || /\.gltf$/i.test(resolved);
+
+  var width = Math.max(hostEl.clientWidth, 320);
+  var height = Math.max(hostEl.clientHeight, 240);
+
+  scene = new THREE.Scene();
+  scene.background = new THREE.Color(0x1a1a1a);
+
+  camera = new THREE.PerspectiveCamera(45, width / height, 0.001, 1e7);
+  renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false, powerPreference: "high-performance" });
+  renderer.setSize(width, height);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.outputColorSpace = THREE.SRGBColorSpace;
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure = 1;
+  hostEl.appendChild(renderer.domElement);
+
+  scene.add(new THREE.AmbientLight(0xffffff, 0.55));
+  var dirLight = new THREE.DirectionalLight(0xffffff, 0.9);
+  dirLight.position.set(30, 80, 40);
+  scene.add(dirLight);
+
+  controls = new OrbitControls(camera, renderer.domElement);
+  controls.enableDamping = true;
+  controls.dampingFactor = 0.06;
+
+  if (isGltf) {
+    loadGltf(resolved, loadingEl);
+  } else {
+    loadObjWithMtl(resolved, loadingEl);
+  }
 
   resizeObserver = new ResizeObserver(function () {
     if (!renderer || !hostEl || !camera) return;

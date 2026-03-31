@@ -12,11 +12,12 @@
       : "";
   var rvtUrl =
     typeof window.DELIVERABLES_RVT_URL === "string" ? window.DELIVERABLES_RVT_URL.trim() : "";
-  var objUrl =
-    typeof window.DELIVERABLES_OBJ_URL === "string" ? window.DELIVERABLES_OBJ_URL.trim() : "";
+  var modelUrl =
+    (typeof window.DELIVERABLES_MODEL_URL === "string" && window.DELIVERABLES_MODEL_URL.trim()) ||
+    (typeof window.DELIVERABLES_OBJ_URL === "string" ? window.DELIVERABLES_OBJ_URL.trim() : "");
 
   function setMode() {
-    var useObj = !!objUrl;
+    var useObj = !!modelUrl;
     var useSketchfab = !!embedSrc && !useObj;
     var useRvt = !!rvtUrl && !useObj && !useSketchfab;
     iframe.hidden = !useSketchfab;
@@ -41,17 +42,17 @@
       dialog.showModal();
       requestAnimationFrame(function () {
         requestAnimationFrame(function () {
-          if (embedSrc && !objUrl) {
+          if (embedSrc && !modelUrl) {
             iframe.setAttribute("src", embedSrc);
           } else {
             iframe.removeAttribute("src");
           }
-          if (objUrl && typeof window.__deliverablesInitObjViewer === "function") {
+          if (modelUrl && typeof window.__deliverablesInitObjViewer === "function") {
             window.__deliverablesInitObjViewer();
           }
-          if (!embedSrc && !rvtUrl && !objUrl) {
+          if (!embedSrc && !rvtUrl && !modelUrl) {
             console.warn(
-              "example-deliverables/sketchfab-config.js: set DELIVERABLES_OBJ_URL, SKETCHFAB_DELIVERABLES_EMBED_SRC, and/or DELIVERABLES_RVT_URL."
+              "example-deliverables/sketchfab-config.js: set DELIVERABLES_MODEL_URL (or DELIVERABLES_OBJ_URL), SKETCHFAB_DELIVERABLES_EMBED_SRC, and/or DELIVERABLES_RVT_URL."
             );
           }
         });
