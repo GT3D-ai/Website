@@ -408,7 +408,23 @@
             allow="autoplay; fullscreen; xr-spatial-tracking"
             allowfullscreen
             loading="lazy"
+            hidden
           ></iframe>
+          <div id="deliverables-obj-viewer" class="deliverables-obj-viewer" hidden>
+            <p id="deliverables-obj-loading" class="deliverables-obj-loading" role="status">Loading 3D model…</p>
+            <div id="deliverables-obj-canvas-host" class="deliverables-obj-canvas-host"></div>
+          </div>
+          <div id="deliverables-rvt-panel" class="deliverables-rvt-panel" hidden>
+            <p class="deliverables-rvt-panel__note">
+              Sample Revit model — open in Autodesk Revit. Web browsers cannot display .rvt files inline.
+            </p>
+            <a
+              id="deliverables-rvt-download"
+              class="btn btn-primary"
+              href="https://storage.googleapis.com/gt_platform_model_storage/260110%20111%20Base%20Model.rvt"
+              download="260110 111 Base Model.rvt"
+              >Download .rvt sample</a>
+          </div>
         </div>
         <p class="deliverables-sketchfab-viewer__cta">
           <a class="btn btn-primary" href="../Get_in_Touch/index.html">Get in Touch</a>
@@ -417,8 +433,17 @@
     </dialog>
 
     <script src="https://cdn.jsdelivr.net/npm/marzipano@0.10.2/dist/marzipano.js"></script>
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+          "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+        }
+      }
+    </script>
     <script src="sketchfab-config.js"></script>
-    <script src="sketchfab-dialog.js"></script>
+    <script type="module" src="obj-viewer-modal.js"></script>
+    <script defer src="sketchfab-dialog.js"></script>
     <script>
       (function () {
         var toggle = document.getElementById("menu-toggle");

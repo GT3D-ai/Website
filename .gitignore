@@ -1,0 +1,2 @@
+# Large sample mesh — keep locally / deploy with rsync; use Git LFS if you must version it.
+example-deliverables/models/111-MODEL-SAMPLE.obj
