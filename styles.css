@@ -1076,7 +1076,8 @@ a:hover {
   width: 400px;
   height: 400px;
   flex-shrink: 0;
-  object-fit: cover;
+  object-fit: contain;
+  object-position: center;
   border: 1px solid var(--line);
   border-radius: 2px;
   background: var(--bg-elevated);
@@ -1120,6 +1121,8 @@ a:hover {
     height: auto;
     max-width: none;
     aspect-ratio: 1 / 1;
+    object-fit: contain;
+    object-position: center;
   }
 
   .deliverables-drawing-set__body {
@@ -1752,6 +1755,10 @@ a:hover {
 }
 
 .white-paper-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  align-items: center;
   margin-top: var(--space-lg);
 }
 
