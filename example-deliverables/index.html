@@ -16,6 +16,14 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="../styles.css" />
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+          "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+        }
+      }
+    </script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XW3WS16GZT"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -148,7 +156,7 @@
           <button type="button" class="deliverables-card" data-open-marzipano aria-haspopup="dialog" aria-controls="deliverables-marzipano-dialog">
             <span class="deliverables-card__img-wrap">
               <img
-                src="https://storage.googleapis.com/gt-platform-360-photos-bucket/R0015779.JPG"
+                src="https://storage.cloud.google.com/gt-platform-360-photos-bucket/R0015779.JPG"
                 alt="Equirectangular 360° photo sample"
                 width="1600"
                 height="800"
@@ -318,7 +326,7 @@
         </button>
         <h2 id="marzipano-dialog-title" class="deliverables-wide-dialog__title">360° photo</h2>
         <p class="deliverables-wide-dialog__hint">
-          Drag to look around. The panorama loads from Google Cloud Storage — the bucket must allow CORS for this domain or the viewer may stay blank. Project deliverables include full-resolution interactive tours.
+          Drag to look around. Sample equirectangular capture; project deliverables include full-resolution interactive tours.
         </p>
         <div
           id="marzipano-viewer"
@@ -389,46 +397,16 @@
         var pdfDownload = document.getElementById("pdf-dialog-download");
         var pdfTitleEl = document.getElementById("pdf-dialog-title");
         var marzipanoViewer = null;
-        var marzipanoResizeObserver = null;
-        /* Public object URL (storage.googleapis.com); bucket must allow CORS for your site for WebGL texture load. */
-        var panoUrl = "https://storage.googleapis.com/gt-platform-360-photos-bucket/R0015779.JPG";
+        var panoUrl = "https://storage.cloud.google.com/gt-platform-360-photos-bucket/R0015779.JPG";
         var equirectWidth = 8192;
 
         function destroyMarzipano() {
-          if (marzipanoResizeObserver) {
-            try {
-              marzipanoResizeObserver.disconnect();
-            } catch (err) {}
-            marzipanoResizeObserver = null;
-          }
           if (marzipanoViewer && typeof marzipanoViewer.destroy === "function") {
             try {
               marzipanoViewer.destroy();
             } catch (err) {}
           }
           marzipanoViewer = null;
-          var el = document.getElementById("marzipano-viewer");
-          if (el) el.innerHTML = "";
-        }
-
-        function scheduleMarzipanoResize(viewer, el) {
-          function tick() {
-            if (viewer && typeof viewer.updateSize === "function") {
-              viewer.updateSize();
-            }
-          }
-          tick();
-          requestAnimationFrame(tick);
-          setTimeout(tick, 0);
-          setTimeout(tick, 80);
-          setTimeout(tick, 250);
-          setTimeout(tick, 500);
-          if (typeof ResizeObserver !== "undefined") {
-            marzipanoResizeObserver = new ResizeObserver(function () {
-              tick();
-            });
-            marzipanoResizeObserver.observe(el);
-          }
         }
 
         function openMarzipanoDialog() {
@@ -453,7 +431,7 @@
                 pinFirstLevel: true,
               });
               scene.switchTo();
-              scheduleMarzipanoResize(marzipanoViewer, el);
+              marzipanoViewer.updateSize();
             });
           });
         }
