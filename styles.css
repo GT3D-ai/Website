@@ -97,6 +97,8 @@ a:hover {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
+  min-height: 2.25rem;
+  line-height: 1;
   font-family: var(--font-display);
   font-weight: 600;
   font-size: 1.05rem;
@@ -109,8 +111,10 @@ a:hover {
 .logo__mark {
   width: 2.25rem;
   height: 2.25rem;
-  flex-shrink: 0;
+  flex: 0 0 auto;
   display: block;
+  object-fit: contain;
+  margin: 0;
 }
 
 .logo:hover {
@@ -121,6 +125,7 @@ a:hover {
 .logo span {
   font-weight: 400;
   color: var(--ink-subtle);
+  line-height: inherit;
 }
 
 .nav-primary {
