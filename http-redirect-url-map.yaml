@@ -1,0 +1,8 @@
+defaultService: projects/gt3d-website-2026/global/backendBuckets/gt3d-backend-bucket # This can be any valid backend, but it's largely ignored as defaultUrlRedirect takes precedence.
+name: gt3d-http-redirect-url-map
+pathMatchers:
+  - defaultUrlRedirect:
+      httpsRedirect: true
+      redirectResponseCode: MOVED_PERMANENTLY_DEFAULT # Use 301 Moved Permanently
+      stripQuery: false # Set to true if you want to remove query parameters during redirect
+    name: all-traffic-to-https
