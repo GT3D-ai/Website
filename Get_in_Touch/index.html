@@ -68,8 +68,18 @@
               class="get-in-touch-form"
               action="https://formsubmit.co/info@gt3d.com"
               method="POST"
+              accept-charset="UTF-8"
             >
               <input type="hidden" name="_subject" value="Get in Touch — Ground Truth 3D" />
+              <!-- FormSubmit uses name="email" for reply-to; keep type="text" so phone-only contact still works -->
+              <input
+                type="text"
+                name="_gotcha"
+                tabindex="-1"
+                autocomplete="off"
+                aria-hidden="true"
+                class="visually-hidden"
+              />
 
               <div class="form-field">
                 <label for="contact_name">Name <span class="req">*</span></label>
@@ -84,13 +94,13 @@
                 <input type="text" id="contact_state" name="state" required autocomplete="address-level1" />
               </div>
               <div class="form-field">
-                <label for="contact_email_or_phone">Email or phone number <span class="req">*</span></label>
+                <label for="contact_email">Email or phone number <span class="req">*</span></label>
                 <input
                   type="text"
-                  id="contact_email_or_phone"
-                  name="email_or_phone"
+                  id="contact_email"
+                  name="email"
                   required
-                  autocomplete="off"
+                  autocomplete="email"
                   inputmode="text"
                   placeholder="you@example.com or (555) 555-5555"
                 />
