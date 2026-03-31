@@ -63,24 +63,17 @@
               Send us a message and we’ll respond as soon as we can. Submissions go to
               <strong>info@gt3d.com</strong>.
             </p>
+            <p class="get-in-touch-panel__success" id="contact-form-success" hidden role="status">
+              Thanks — your message was sent. We’ll get back to you soon.
+            </p>
+            <p class="get-in-touch-panel__error" id="contact-form-error" hidden role="alert"></p>
             <form
               id="contact-form"
               class="get-in-touch-form"
-              action="https://formsubmit.co/info@gt3d.com"
-              method="POST"
+              action="#"
+              method="post"
               accept-charset="UTF-8"
             >
-              <input type="hidden" name="_subject" value="Get in Touch — Ground Truth 3D" />
-              <!-- FormSubmit uses name="email" for reply-to; keep type="text" so phone-only contact still works -->
-              <input
-                type="text"
-                name="_gotcha"
-                tabindex="-1"
-                autocomplete="off"
-                aria-hidden="true"
-                class="visually-hidden"
-              />
-
               <div class="form-field">
                 <label for="contact_name">Name <span class="req">*</span></label>
                 <input type="text" id="contact_name" name="name" required autocomplete="name" />
@@ -107,7 +100,7 @@
               </div>
 
               <div class="get-in-touch-form__actions">
-                <button type="submit" class="btn btn-primary btn-block">Send message</button>
+                <button type="submit" class="btn btn-primary btn-block" id="contact-form-submit">Send message</button>
               </div>
             </form>
           </div>
@@ -161,6 +154,82 @@
             if (e.key === "Escape") setOpen(false);
           });
         }
+      })();
+    </script>
+    <script>
+      (function () {
+        /* Create a free access key at https://web3forms.com (use info@gt3d.com) and paste it here. */
+        var WEB3FORMS_ACCESS_KEY = "b8f1b7c6-6eff-47c8-a1a3-d0f978533dba";
+        var form = document.getElementById("contact-form");
+        var successEl = document.getElementById("contact-form-success");
+        var errorEl = document.getElementById("contact-form-error");
+        var submitBtn = document.getElementById("contact-form-submit");
+        if (!form || !submitBtn) return;
+
+        form.addEventListener("submit", function (e) {
+          e.preventDefault();
+          if (successEl) successEl.hidden = true;
+          if (errorEl) {
+            errorEl.hidden = true;
+            errorEl.textContent = "";
+          }
+          if (
+            !WEB3FORMS_ACCESS_KEY ||
+            WEB3FORMS_ACCESS_KEY === "REPLACE_WITH_WEB3FORMS_ACCESS_KEY"
+          ) {
+            if (errorEl) {
+              errorEl.textContent =
+                "Contact form is not configured yet. Add your Web3Forms access key in Get_in_Touch/index.html (see https://web3forms.com).";
+              errorEl.hidden = false;
+            }
+            return;
+          }
+          var fd = new FormData(form);
+          var payload = {
+            access_key: WEB3FORMS_ACCESS_KEY,
+            subject: "Get in Touch — Ground Truth 3D",
+            name: fd.get("name"),
+            email: fd.get("email"),
+            company: fd.get("company"),
+            state: fd.get("state"),
+          };
+          submitBtn.disabled = true;
+          fetch("https://api.web3forms.com/submit", {
+            method: "POST",
+            headers: { "Content-Type": "application/json", Accept: "application/json" },
+            body: JSON.stringify(payload),
+          })
+            .then(function (res) {
+              return res.json().then(function (data) {
+                return { ok: res.ok, data: data };
+              });
+            })
+            .then(function (result) {
+              if (result.ok && result.data && result.data.success) {
+                form.reset();
+                if (successEl) successEl.hidden = false;
+                form.scrollIntoView({ behavior: "smooth", block: "start" });
+              } else {
+                var msg =
+                  (result.data && result.data.message) ||
+                  "Something went wrong. Please try again or email info@gt3d.com.";
+                if (errorEl) {
+                  errorEl.textContent = msg;
+                  errorEl.hidden = false;
+                }
+              }
+            })
+            .catch(function () {
+              if (errorEl) {
+                errorEl.textContent =
+                  "Network error. Please try again or email info@gt3d.com directly.";
+                errorEl.hidden = false;
+              }
+            })
+            .finally(function () {
+              submitBtn.disabled = false;
+            });
+        });
       })();
     </script>
   </body>

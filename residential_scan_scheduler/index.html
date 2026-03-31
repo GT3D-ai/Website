@@ -64,14 +64,7 @@
       </section>
 
       <section class="section section--dense scan-scheduler-layout">
-        <form
-          id="scan-scheduler-form"
-          class="estimator-form scan-scheduler-form"
-          action="https://formsubmit.co/sales@gt3d.com"
-          method="POST"
-        >
-          <input type="hidden" name="_subject" value="Residential scan appointment — GT3D" />
-
+        <form id="scan-scheduler-form" class="estimator-form scan-scheduler-form" action="#" method="post">
           <div class="estimator-form-grid">
             <div class="form-field">
               <label for="full_name">Full name <span class="req">*</span></label>
@@ -181,10 +174,13 @@
           </div>
 
           <textarea id="scan_message" name="message" class="estimator-message-field" rows="1" cols="1" tabindex="-1"></textarea>
+          <p id="form-success" class="form-success" role="status" hidden>
+            Thanks — your scheduling request was sent. We’ll follow up at the email you provided.
+          </p>
           <p id="form-error" class="form-error" role="alert" hidden></p>
 
           <div class="estimator-actions">
-            <button type="submit" class="btn btn-primary">Submit scheduling request</button>
+            <button type="submit" class="btn btn-primary" id="scan-form-submit">Submit scheduling request</button>
           </div>
         </form>
       </section>
@@ -216,14 +212,17 @@
     <script src="scheduler-calendar.js"></script>
     <script>
       (function () {
+        var WEB3FORMS_ACCESS_KEY = "b8f1b7c6-6eff-47c8-a1a3-d0f978533dba";
         var siteCb = document.getElementById("scope_site");
         var siteBlock = document.getElementById("site-conditional");
         var siteAcres = document.getElementById("site_acres");
         var terrainFlat = document.getElementById("terrain_flat");
         var terrainHill = document.getElementById("terrain_hill");
         var form = document.getElementById("scan-scheduler-form");
+        var formSuccess = document.getElementById("form-success");
         var formError = document.getElementById("form-error");
         var messageField = document.getElementById("scan_message");
+        var submitBtn = document.getElementById("scan-form-submit");
 
         function setSiteFieldsRequired(on) {
           siteAcres.required = on;
@@ -317,16 +316,16 @@
         }
 
         form.addEventListener("submit", function (e) {
+          e.preventDefault();
+          if (formSuccess) formSuccess.hidden = true;
           formError.hidden = true;
           formError.textContent = "";
           if (!preferredDate.value || !preferredDate.value.trim()) {
-            e.preventDefault();
             formError.textContent = "Please select a preferred appointment date on the calendar.";
             formError.hidden = false;
             return;
           }
           if (!slotAm.checked && !slotPm.checked) {
-            e.preventDefault();
             formError.textContent = "Please select Morning (AM) and/or Afternoon (PM).";
             formError.hidden = false;
             return;
@@ -334,7 +333,6 @@
           if (siteCb.checked) {
             var acres = parseFloat(siteAcres.value, 10);
             if (isNaN(acres) || acres < 0) {
-              e.preventDefault();
               siteAcres.setCustomValidity("Enter site size in acres.");
               siteAcres.reportValidity();
               siteAcres.setCustomValidity("");
@@ -343,13 +341,62 @@
               return;
             }
             if (!terrainFlat.checked && !terrainHill.checked) {
-              e.preventDefault();
               formError.textContent = "Please select Flat or Hill for site terrain.";
               formError.hidden = false;
               return;
             }
           }
+          if (!form.checkValidity()) {
+            formError.textContent = "Please fill in all required fields.";
+            formError.hidden = false;
+            return;
+          }
           messageField.value = buildMessage();
+          var nameVal = document.getElementById("full_name").value.trim();
+          var emailVal = document.getElementById("email").value.trim();
+          submitBtn.disabled = true;
+          fetch("https://api.web3forms.com/submit", {
+            method: "POST",
+            headers: { "Content-Type": "application/json", Accept: "application/json" },
+            body: JSON.stringify({
+              access_key: WEB3FORMS_ACCESS_KEY,
+              subject: "Residential scan appointment — GT3D",
+              name: nameVal,
+              email: emailVal,
+              message: messageField.value,
+            }),
+          })
+            .then(function (res) {
+              return res.json().then(function (data) {
+                return { ok: res.ok, data: data };
+              });
+            })
+            .then(function (result) {
+              if (result.ok && result.data && result.data.success) {
+                form.reset();
+                selectedISO = "";
+                preferredDate.value = "";
+                syncSiteSection();
+                if (window.GT3DScanCalendar && calendarRoot) {
+                  drawScheduler();
+                }
+                if (formSuccess) formSuccess.hidden = false;
+                form.scrollIntoView({ behavior: "smooth", block: "start" });
+              } else {
+                formError.textContent =
+                  (result.data && result.data.message) ||
+                  "Something went wrong. Please try again or email sales@gt3d.com.";
+                formError.hidden = false;
+              }
+            })
+            .catch(function () {
+              formError.textContent =
+                "Network error. Please try again or email sales@gt3d.com directly.";
+              formError.hidden = false;
+            })
+            .finally(function () {
+              submitBtn.disabled = false;
+            });
         });
 
         var toggle = document.getElementById("menu-toggle");

@@ -2039,6 +2039,16 @@ body.page-estimator {
   margin: var(--space-sm) 0 0;
 }
 
+.form-success {
+  color: #1f5f1f;
+  font-size: 0.9375rem;
+  margin: var(--space-sm) 0 0;
+  padding: var(--space-sm) var(--space-md);
+  border-radius: 2px;
+  background: rgba(34, 139, 34, 0.1);
+  border: 1px solid rgba(34, 139, 34, 0.3);
+}
+
 .estimator-actions {
   margin-top: var(--space-lg);
 }
@@ -2602,6 +2612,26 @@ body.page-scan-scheduler {
 
 .get-in-touch-panel__lede strong {
   color: var(--ink);
+}
+
+.get-in-touch-panel__success {
+  margin: 0 0 var(--space-md);
+  padding: var(--space-sm) var(--space-md);
+  border-radius: 2px;
+  background: rgba(34, 139, 34, 0.12);
+  border: 1px solid rgba(34, 139, 34, 0.35);
+  color: var(--ink);
+  font-size: 0.9375rem;
+}
+
+.get-in-touch-panel__error {
+  margin: 0 0 var(--space-md);
+  padding: var(--space-sm) var(--space-md);
+  border-radius: 2px;
+  background: rgba(180, 40, 40, 0.08);
+  border: 1px solid rgba(180, 40, 40, 0.35);
+  color: var(--ink);
+  font-size: 0.9375rem;
 }
 
 .get-in-touch-form .form-field {

@@ -62,14 +62,7 @@
       </section>
 
       <section class="section section--dense estimator-layout">
-        <form
-          id="quote-form"
-          class="estimator-form"
-          action="https://formsubmit.co/sales@gt3d.com"
-          method="POST"
-        >
-          <input type="hidden" name="_subject" value="Residential Quote — GT3D Estimator" />
-
+        <form id="quote-form" class="estimator-form" action="#" method="post">
           <div class="estimator-form-grid">
             <div class="form-field">
               <label for="full_name">Full name <span class="req">*</span></label>
@@ -120,10 +113,13 @@
           <input type="hidden" id="calculated_total" name="calculated_total" value="" />
           <textarea id="quote_message" name="message" class="estimator-message-field" rows="1" cols="1" tabindex="-1"></textarea>
 
+          <p id="form-success" class="form-success" role="status" hidden>
+            Thanks — your quote request was sent. We’ll follow up at the email you provided.
+          </p>
           <p id="form-error" class="form-error" role="alert" hidden></p>
 
           <div class="estimator-actions">
-            <button type="submit" class="btn btn-primary">Send quote request to sales@gt3d.com</button>
+            <button type="submit" class="btn btn-primary" id="quote-form-submit">Send quote request to sales@gt3d.com</button>
           </div>
         </form>
 
@@ -194,6 +190,7 @@
 
     <script>
       (function () {
+        var WEB3FORMS_ACCESS_KEY = "b8f1b7c6-6eff-47c8-a1a3-d0f978533dba";
         var R_BUILDING = 1;
         var R_SITE = 0.15;
         var ADD_ATTIC = 500;
@@ -214,7 +211,9 @@
         var calculatedTotalInput = document.getElementById("calculated_total");
         var quoteMessage = document.getElementById("quote_message");
         var form = document.getElementById("quote-form");
+        var formSuccess = document.getElementById("form-success");
         var formError = document.getElementById("form-error");
+        var submitBtn = document.getElementById("quote-form-submit");
 
         function money(n) {
           return n.toLocaleString("en-US", { style: "currency", currency: "USD" });
@@ -290,10 +289,11 @@
         recalc();
 
         form.addEventListener("submit", function (e) {
+          e.preventDefault();
+          if (formSuccess) formSuccess.hidden = true;
           formError.hidden = true;
           formError.textContent = "";
           if (!form.checkValidity()) {
-            e.preventDefault();
             formError.textContent = "Please fill in all required fields with valid numbers.";
             formError.hidden = false;
             return;
@@ -301,12 +301,51 @@
           var b = parseSqft(building);
           var s = parseSqft(site);
           if (building.value === "" || site.value === "") {
-            e.preventDefault();
             formError.textContent = "Building and site square feet are required.";
             formError.hidden = false;
             return;
           }
           quoteMessage.value = buildMessage();
+          var nameVal = document.getElementById("full_name").value.trim();
+          var emailVal = document.getElementById("email").value.trim();
+          submitBtn.disabled = true;
+          fetch("https://api.web3forms.com/submit", {
+            method: "POST",
+            headers: { "Content-Type": "application/json", Accept: "application/json" },
+            body: JSON.stringify({
+              access_key: WEB3FORMS_ACCESS_KEY,
+              subject: "Residential Quote — GT3D Estimator",
+              name: nameVal,
+              email: emailVal,
+              message: quoteMessage.value,
+            }),
+          })
+            .then(function (res) {
+              return res.json().then(function (data) {
+                return { ok: res.ok, data: data };
+              });
+            })
+            .then(function (result) {
+              if (result.ok && result.data && result.data.success) {
+                form.reset();
+                recalc();
+                if (formSuccess) formSuccess.hidden = false;
+                form.scrollIntoView({ behavior: "smooth", block: "start" });
+              } else {
+                formError.textContent =
+                  (result.data && result.data.message) ||
+                  "Something went wrong. Please try again or email sales@gt3d.com.";
+                formError.hidden = false;
+              }
+            })
+            .catch(function () {
+              formError.textContent =
+                "Network error. Please try again or email sales@gt3d.com directly.";
+              formError.hidden = false;
+            })
+            .finally(function () {
+              submitBtn.disabled = false;
+            });
         });
 
         var toggle = document.getElementById("menu-toggle");
