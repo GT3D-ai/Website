@@ -1,6 +1,6 @@
 [
   {
-    "origin": ["*"],
+    "origin": ["https://www.gt3d.com", "https://gt3d.com"],
     "method": ["GET", "HEAD", "POST", "PUT", "OPTIONS"],
     "responseHeader": ["Content-Type", "Content-Length", "Range", "Access-Control-Allow-Origin"],
     "maxAgeSeconds": 3600
