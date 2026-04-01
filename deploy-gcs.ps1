@@ -24,3 +24,30 @@ Get-ChildItem -Path $PSScriptRoot -Recurse -Filter *.mp4 -File -ErrorAction Sile
     $rel = $_.FullName.Substring($PSScriptRoot.Length + 1).Replace('\', '/')
     & $gsutil setmeta -h "Content-Type:video/mp4" "$BUCKET/$rel"
   }
+
+# IndexNow: notify participating engines after deploy (key file must be live at keyLocation).
+$IndexNowKey = "fe375ba174c215c1cf53d03d53aed193"
+$IndexNowHost = "gt3d.com"
+$IndexNowKeyLocation = "https://$IndexNowHost/$IndexNowKey.txt"
+$sitemapPath = Join-Path $PSScriptRoot "sitemap.xml"
+if (Test-Path $sitemapPath) {
+  $raw = Get-Content -Raw -LiteralPath $sitemapPath
+  $urlList = [regex]::Matches($raw, '<loc>([^<]+)</loc>') | ForEach-Object { $_.Groups[1].Value }
+  if ($urlList.Count -gt 0) {
+    $body = @{
+      host        = $IndexNowHost
+      key         = $IndexNowKey
+      keyLocation = $IndexNowKeyLocation
+      urlList     = @($urlList)
+    } | ConvertTo-Json -Depth 5 -Compress
+    try {
+      $response = Invoke-WebRequest -Uri "https://api.indexnow.org/IndexNow" -Method Post -Body $body `
+        -ContentType "application/json; charset=utf-8" -UseBasicParsing
+      Write-Host "IndexNow: submitted $($urlList.Count) URLs (HTTP $($response.StatusCode))."
+    } catch {
+      Write-Warning "IndexNow submission failed: $($_.Exception.Message)"
+    }
+  }
+} else {
+  Write-Warning "IndexNow: sitemap.xml not found, skipping."
+}
