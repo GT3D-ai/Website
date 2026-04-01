@@ -1,0 +1,71 @@
+Google Cloud: Fix “Not secure” / certificate error on www.gt3d.com
+===================================================================
+
+Symptom
+-------
+- https://gt3d.com works (padlock OK).
+- https://www.gt3d.com fails TLS verification (e.g. curl error 60, Chrome
+  “NET::ERR_CERT_COMMON_NAME_INVALID” or “Your connection is not private”).
+- Windows/curl may report: SEC_E_WRONG_PRINCIPAL — target principal name is
+  incorrect.
+
+Root cause
+----------
+The HTTPS Load Balancer’s SSL certificate is valid for the apex (gt3d.com) but
+does not include **www.gt3d.com** in the certificate’s Subject Alternative
+Names (SANs). Browsers reject the HTTPS connection to www before any redirect
+can run.
+
+Fix (recommended)
+-----------------
+Add **www.gt3d.com** to the Google-managed certificate used by the site’s
+**Target HTTPS proxy**, or replace the cert with one that lists both names.
+
+Option A — Google Cloud Console
+1. Navigation menu → Network Services → Load balancing → select the HTTPS
+   load balancer for gt3d.com.
+2. Edit the frontend / HTTPS proxy → SSL certificates.
+3. Either:
+   - Edit the existing Google-managed certificate and add domain **www.gt3d.com**
+     (if the UI allows multiple domains on one cert), or
+   - Create a new **Google-managed** SSL certificate with domains:
+       gt3d.com
+       www.gt3d.com
+4. Attach the certificate to the Target HTTPS proxy and wait until the cert
+   status is **ACTIVE** (provisioning can take up to ~60 minutes).
+5. Retest: https://www.gt3d.com should load without certificate errors.
+
+Option B — gcloud (example; names may differ in your project)
+  gcloud compute ssl-certificates create gt3d-www-apex-cert \
+    --domains=gt3d.com,www.gt3d.com \
+    --global
+
+Then associate the new certificate with your Target HTTPS proxy (replace
+PROXY_NAME and old cert names as needed):
+
+  gcloud compute target-https-proxies update PROXY_NAME \
+    --ssl-certificates=gt3d-www-apex-cert \
+    --global
+
+If the proxy uses multiple certs, include all needed cert names in the list.
+
+Docs
+----
+  https://cloud.google.com/load-balancing/docs/ssl-certificates/google-managed-certs
+
+Optional follow-up
+----------------
+- After both hosts are trusted, you may add a URL-map **301 redirect** from
+  https://www.gt3d.com/* to https://gt3d.com/* so a single canonical host is
+  used (certificate must still cover www for the first hop).
+- If you still see a **Safe Browsing / “Deceptive site”** interstitial after TLS
+  is fixed, use Google Search Console → Security & Manual Actions → request a
+  review (that is separate from certificate hostname issues).
+
+Verification
+------------
+  curl -sI https://gt3d.com/
+  curl -sI https://www.gt3d.com/
+
+Both should return HTTP/2 or HTTP/1.1 200 (or your chosen redirect) without TLS
+errors.
