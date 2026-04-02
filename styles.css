@@ -1008,7 +1008,7 @@ a:hover {
   position: relative;
   aspect-ratio: 16 / 10;
   overflow: hidden;
-  background: var(--line);
+  background: #ffffff;
 }
 
 .deliverables-card__img-wrap img {
@@ -1016,6 +1016,11 @@ a:hover {
   height: 100%;
   object-fit: cover;
   display: block;
+}
+
+.deliverables-card__img-wrap--contain img {
+  object-fit: contain;
+  object-position: center;
 }
 
 .deliverables-card__label {
