@@ -125,11 +125,19 @@
             </span>
             <span class="deliverables-card__label">PDF Drawing Set</span>
           </button>
-          <button type="button" class="deliverables-card" data-lightbox="images/dwg-file-example.png" data-label="2D DWG/DXF Files">
-            <span class="deliverables-card__img-wrap">
+          <button
+            type="button"
+            class="deliverables-card"
+            data-open-pdf-interstitial
+            data-pdf-href="samples/example-dwg-export-2d.pdf"
+            data-pdf-title="2D DWG/DXF export sample"
+            aria-haspopup="dialog"
+            aria-controls="deliverables-pdf-dialog"
+          >
+            <span class="deliverables-card__img-wrap deliverables-card__img-wrap--contain">
               <img
-                src="images/dwg-file-example.png"
-                alt="CAD drawing set: plans, sections, elevations, and construction details"
+                src="images/example-dwg-export-thumbnail.png"
+                alt="2D CAD drawing set sample: floor plans, elevations, and site plan (opens PDF preview)"
                 width="640"
                 height="400"
                 loading="lazy"
