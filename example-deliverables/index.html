@@ -156,10 +156,10 @@
           <button type="button" class="deliverables-card" data-open-marzipano aria-haspopup="dialog" aria-controls="deliverables-marzipano-dialog">
             <span class="deliverables-card__img-wrap">
               <img
-                src="images/R0015784.png"
+                src="images/360-photo-card-thumb.jpg"
                 alt="Equirectangular 360° photo sample"
                 width="1024"
-                height="512"
+                height="818"
                 loading="lazy"
               />
               <span class="deliverables-card__icon" aria-hidden="true">
@@ -492,8 +492,8 @@
         var pdfTitleEl = document.getElementById("pdf-dialog-title");
         var marzipanoViewer = null;
         var marzipanoResizeObserver = null;
-        var panoUrl = "images/R0015784.png";
-        var equirectWidth = 1024;
+        var panoUrl = "images/360-photo-example.jpg";
+        var equirectWidth = 6720;
         var marzipanoErrorEl = document.getElementById("marzipano-load-error");
 
         function setMarzipanoError(msg) {
@@ -554,7 +554,6 @@
               if (!el) return;
               marzipanoViewer = new Marzipano.Viewer(el, {
                 controls: { mouseViewMode: "drag" },
-                stage: { crossOrigin: "anonymous" },
               });
               var source = Marzipano.ImageUrlSource.fromString(panoUrl);
               var geometry = new Marzipano.EquirectGeometry([{ width: equirectWidth }]);
