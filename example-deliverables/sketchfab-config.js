@@ -2,10 +2,10 @@
  * In-browser 3D: glTF / GLB (preferred) or Wavefront OBJ + MTL relative to this page.
  * For OBJ, keep the matching .mtl in the same folder. GLB can use Draco mesh compression (decoder loads from Google CDN).
  */
-window.DELIVERABLES_MODEL_URL = "models/111-MODEL-SAMPLE-compressed.glb";
+window.DELIVERABLES_MODEL_URL = "";
 
 /** @deprecated Use DELIVERABLES_MODEL_URL. If MODEL_URL is empty, this is used as fallback. */
-window.DELIVERABLES_OBJ_URL = "";
+window.DELIVERABLES_OBJ_URL = "models/basic-3d-model-example-ortho.obj";
 
 /**
  * Optional Sketchfab embed (used only if DELIVERABLES_MODEL_URL and DELIVERABLES_OBJ_URL are both "").
