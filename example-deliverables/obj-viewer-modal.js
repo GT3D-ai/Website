@@ -71,7 +71,8 @@ function startLoop() {
 
 function loadGltf(resolvedUrl, loadingEl) {
   var dracoLoader = new DRACOLoader();
-  dracoLoader.setDecoderPath("https://www.gstatic.com/draco/versioned/decoders/1.5.6/");
+  // Same-origin Draco decoders (bundled with Three r160) — avoids gstatic/CSP/WASM fetch failures.
+  dracoLoader.setDecoderPath(new URL("vendor/draco/gltf/", import.meta.url).href);
   var loader = new GLTFLoader();
   loader.setDRACOLoader(dracoLoader);
   loader.load(

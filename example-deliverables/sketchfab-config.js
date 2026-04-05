@@ -2,7 +2,7 @@
  * In-browser 3D: glTF / GLB (preferred) or Wavefront OBJ + MTL relative to this page.
  * For OBJ, keep the matching .mtl in the same folder. GLB can use Draco mesh compression (decoder loads from Google CDN).
  */
-window.DELIVERABLES_MODEL_URL = "models/basic-3d-model-example-3d-view.glb";
+window.DELIVERABLES_MODEL_URL = "models/example-3D-model.glb";
 
 /** @deprecated Use DELIVERABLES_MODEL_URL. If MODEL_URL is empty, this is used as fallback. */
 window.DELIVERABLES_OBJ_URL = "";

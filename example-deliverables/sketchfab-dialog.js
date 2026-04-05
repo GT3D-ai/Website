@@ -47,8 +47,11 @@
           } else {
             iframe.removeAttribute("src");
           }
+          // Defer WebGL init past modal layout + paint (avoids 0×0 canvas on some browsers).
           if (modelUrl && typeof window.__deliverablesInitObjViewer === "function") {
-            window.__deliverablesInitObjViewer();
+            setTimeout(function () {
+              window.__deliverablesInitObjViewer();
+            }, 0);
           }
           if (!embedSrc && !rvtUrl && !modelUrl) {
             console.warn(
