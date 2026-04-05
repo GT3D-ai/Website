@@ -1004,6 +1004,22 @@ a:hover {
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
 }
 
+.deliverables-card--noninteractive {
+  cursor: default;
+}
+
+.deliverables-card--noninteractive:hover,
+.deliverables-card--noninteractive:focus-visible {
+  border-color: var(--line);
+  box-shadow: none;
+}
+
+.deliverables-card--noninteractive:hover .deliverables-card__img-wrap .deliverables-card__icon,
+.deliverables-card--noninteractive:focus-visible .deliverables-card__img-wrap .deliverables-card__icon {
+  color: var(--ink-muted);
+  background: rgba(255, 255, 255, 0.92);
+}
+
 .deliverables-card__img-wrap {
   position: relative;
   aspect-ratio: 16 / 10;
