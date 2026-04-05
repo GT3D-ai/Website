@@ -176,7 +176,9 @@ function initDeliverablesObjViewer() {
     loadingEl.textContent = "Loading 3D model…";
   }
 
-  var resolved = new URL(modelUrl, window.location.href).href;
+  // Resolve relative to this module (not location.href): a URL like /example-deliverables
+  // without a trailing slash would otherwise resolve "models/…" to /models/… (404).
+  var resolved = new URL(modelUrl, import.meta.url).href;
   var isGltf = /\.glb$/i.test(resolved) || /\.gltf$/i.test(resolved);
 
   var width = Math.max(hostEl.clientWidth, 320);
