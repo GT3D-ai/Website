@@ -90,6 +90,8 @@ function loadGltf(resolvedUrl, loadingEl, gen) {
         return;
       }
       scene.add(gltf.scene);
+      gltf.scene.rotation.x = Math.PI / 2;
+      gltf.scene.updateMatrixWorld(true);
       fitCameraToObject(gltf.scene, camera, controls);
       if (loadingEl) loadingEl.hidden = true;
       dracoLoader.dispose();
