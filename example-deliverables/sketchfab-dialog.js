@@ -4,7 +4,7 @@
   var rvtPanel = document.getElementById("deliverables-rvt-panel");
   var rvtLink = document.getElementById("deliverables-rvt-download");
   var objPanel = document.getElementById("deliverables-obj-viewer");
-  if (!dialog || !iframe) return;
+  if (!dialog) return;
 
   var embedSrc =
     typeof window.SKETCHFAB_DELIVERABLES_EMBED_SRC === "string"
@@ -20,7 +20,7 @@
     var useObj = !!modelUrl;
     var useSketchfab = !!embedSrc && !useObj;
     var useRvt = !!rvtUrl && !useObj && !useSketchfab;
-    iframe.hidden = !useSketchfab;
+    if (iframe) iframe.hidden = !useSketchfab;
     if (rvtPanel) rvtPanel.hidden = !useRvt;
     if (objPanel) objPanel.hidden = !useObj;
     if (rvtLink && rvtUrl) {
@@ -30,7 +30,7 @@
   }
 
   dialog.addEventListener("close", function () {
-    iframe.removeAttribute("src");
+    if (iframe) iframe.removeAttribute("src");
     if (typeof window.__deliverablesDisposeObjViewer === "function") {
       window.__deliverablesDisposeObjViewer();
     }
@@ -42,10 +42,12 @@
       dialog.showModal();
       requestAnimationFrame(function () {
         requestAnimationFrame(function () {
-          if (embedSrc && !modelUrl) {
-            iframe.setAttribute("src", embedSrc);
-          } else {
-            iframe.removeAttribute("src");
+          if (iframe) {
+            if (embedSrc && !modelUrl) {
+              iframe.setAttribute("src", embedSrc);
+            } else {
+              iframe.removeAttribute("src");
+            }
           }
           // Defer WebGL init past modal layout + paint (avoids 0×0 canvas on some browsers).
           if (modelUrl && typeof window.__deliverablesInitObjViewer === "function") {

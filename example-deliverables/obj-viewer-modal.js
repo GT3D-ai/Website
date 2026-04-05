@@ -7,6 +7,8 @@ import { MTLLoader } from "three/addons/loaders/MTLLoader.js";
 
 var renderer, scene, camera, controls, animationId, resizeObserver, hostEl;
 var loopRunning = false;
+/** Incremented in dispose() so async loaders / rAF ignore stale completions after close or re-open. */
+var loadGeneration = 0;
 
 function getModelUrl() {
   var primary =
@@ -16,6 +18,7 @@ function getModelUrl() {
 }
 
 function dispose() {
+  loadGeneration++;
   loopRunning = false;
   if (animationId) {
     cancelAnimationFrame(animationId);
@@ -58,10 +61,14 @@ function fitCameraToObject(object, cam, ctrl) {
   }
 }
 
-function startLoop() {
+function startLoop(gen) {
   if (loopRunning) return;
   loopRunning = true;
   function tick() {
+    if (gen !== loadGeneration || !controls || !renderer || !scene) {
+      loopRunning = false;
+      return;
+    }
     animationId = requestAnimationFrame(tick);
     controls.update();
     renderer.render(scene, camera);
@@ -69,7 +76,7 @@ function startLoop() {
   tick();
 }
 
-function loadGltf(resolvedUrl, loadingEl) {
+function loadGltf(resolvedUrl, loadingEl, gen) {
   var dracoLoader = new DRACOLoader();
   // Same-origin Draco decoders (bundled with Three r160) — avoids gstatic/CSP/WASM fetch failures.
   dracoLoader.setDecoderPath(new URL("vendor/draco/gltf/", import.meta.url).href);
@@ -78,16 +85,21 @@ function loadGltf(resolvedUrl, loadingEl) {
   loader.load(
     resolvedUrl,
     function (gltf) {
+      if (gen !== loadGeneration || !scene || !renderer) {
+        dracoLoader.dispose();
+        return;
+      }
       scene.add(gltf.scene);
       fitCameraToObject(gltf.scene, camera, controls);
       if (loadingEl) loadingEl.hidden = true;
       dracoLoader.dispose();
-      startLoop();
+      startLoop(gen);
     },
     undefined,
     function (err) {
       console.error(err);
       dracoLoader.dispose();
+      if (gen !== loadGeneration) return;
       if (loadingEl) {
         loadingEl.textContent = "Could not load 3D model.";
         loadingEl.hidden = false;
@@ -96,12 +108,13 @@ function loadGltf(resolvedUrl, loadingEl) {
   );
 }
 
-function loadObjWithoutMtl(dirBase, objFileName, loadingEl) {
+function loadObjWithoutMtl(dirBase, objFileName, loadingEl, gen) {
   var objLoader = new OBJLoader();
   objLoader.setPath(dirBase);
   objLoader.load(
     objFileName,
     function (object) {
+      if (gen !== loadGeneration || !scene || !renderer) return;
       object.traverse(function (child) {
         if (child.isMesh) {
           child.material = new THREE.MeshStandardMaterial({
@@ -114,11 +127,12 @@ function loadObjWithoutMtl(dirBase, objFileName, loadingEl) {
       scene.add(object);
       fitCameraToObject(object, camera, controls);
       if (loadingEl) loadingEl.hidden = true;
-      startLoop();
+      startLoop(gen);
     },
     undefined,
     function (err) {
       console.error(err);
+      if (gen !== loadGeneration) return;
       if (loadingEl) {
         loadingEl.textContent = "Could not load 3D model.";
         loadingEl.hidden = false;
@@ -127,7 +141,7 @@ function loadObjWithoutMtl(dirBase, objFileName, loadingEl) {
   );
 }
 
-function loadObjWithMtl(resolvedUrl, loadingEl) {
+function loadObjWithMtl(resolvedUrl, loadingEl, gen) {
   var dirBase = resolvedUrl.substring(0, resolvedUrl.lastIndexOf("/") + 1);
   var objFileName = resolvedUrl.substring(resolvedUrl.lastIndexOf("/") + 1);
   var mtlFileName = objFileName.replace(/\.obj$/i, ".mtl");
@@ -137,6 +151,7 @@ function loadObjWithMtl(resolvedUrl, loadingEl) {
   mtlLoader.load(
     mtlFileName,
     function (materials) {
+      if (gen !== loadGeneration) return;
       materials.preload();
       var objLoader = new OBJLoader();
       objLoader.setMaterials(materials);
@@ -144,20 +159,21 @@ function loadObjWithMtl(resolvedUrl, loadingEl) {
       objLoader.load(
         objFileName,
         function (object) {
+          if (gen !== loadGeneration || !scene || !renderer) return;
           scene.add(object);
           fitCameraToObject(object, camera, controls);
           if (loadingEl) loadingEl.hidden = true;
-          startLoop();
+          startLoop(gen);
         },
         undefined,
         function () {
-          loadObjWithoutMtl(dirBase, objFileName, loadingEl);
+          loadObjWithoutMtl(dirBase, objFileName, loadingEl, gen);
         }
       );
     },
     undefined,
     function () {
-      loadObjWithoutMtl(dirBase, objFileName, loadingEl);
+      loadObjWithoutMtl(dirBase, objFileName, loadingEl, gen);
     }
   );
 }
@@ -172,14 +188,18 @@ function initDeliverablesObjViewer() {
   var loadingEl = document.getElementById("deliverables-obj-loading");
   if (!hostEl) return;
 
+  var gen = loadGeneration;
+
   if (loadingEl) {
     loadingEl.hidden = false;
     loadingEl.textContent = "Loading 3D model…";
   }
 
-  // Resolve relative to this module (not location.href): a URL like /example-deliverables
-  // without a trailing slash would otherwise resolve "models/…" to /models/… (404).
-  var resolved = new URL(modelUrl, import.meta.url).href;
+  // sketchfab-config may set an absolute URL (document.currentScript). Otherwise resolve
+  // relative to this module so /example-deliverables/… works on GitHub Pages.
+  var resolved = /^https?:\/\//i.test(modelUrl)
+    ? modelUrl
+    : new URL(modelUrl, import.meta.url).href;
   var isGltf = /\.glb$/i.test(resolved) || /\.gltf$/i.test(resolved);
 
   var width = Math.max(hostEl.clientWidth, 320);
@@ -207,9 +227,9 @@ function initDeliverablesObjViewer() {
   controls.dampingFactor = 0.06;
 
   if (isGltf) {
-    loadGltf(resolved, loadingEl);
+    loadGltf(resolved, loadingEl, gen);
   } else {
-    loadObjWithMtl(resolved, loadingEl);
+    loadObjWithMtl(resolved, loadingEl, gen);
   }
 
   resizeObserver = new ResizeObserver(function () {
