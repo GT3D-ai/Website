@@ -1,0 +1,23 @@
+# FRAGMENT — merge into an exported URL map (do not use as a full map).
+# Export first:
+#   gcloud compute url-maps export YOUR_MAP --destination=map.yaml --global
+#
+# Goal: send https://www.gt3d.com/... → https://gt3d.com/... (301).
+#
+# Add a hostRule + pathMatcher (names must not collide with existing rules):
+
+# hostRules:
+#   - hosts:
+#       - www.gt3d.com
+#     pathMatcher: canonical-www-to-apex
+#
+# pathMatchers:
+#   - name: canonical-www-to-apex
+#     defaultUrlRedirect:
+#       hostRedirect: gt3d.com
+#       httpsRedirect: true
+#       stripQuery: false
+#       redirectResponseCode: MOVED_PERMANENTLY_DEFAULT
+#
+# HTTP → HTTPS for the apex host is usually a separate hostRule/frontend or
+# defaultUrlRedirect with httpsRedirect: true on the port-80 URL map.
