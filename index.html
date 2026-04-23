@@ -62,25 +62,24 @@
         <a href="blog/index.html">Stories</a>
         <a href="Disaster_Planning_Existing_Conditions/index.html">Civic Disaster Planning</a>
         <a href="Get_in_Touch/index.html">Get in Touch</a>
+        <a href="https://app.gt3d.com" target="_blank" rel="noopener noreferrer">GTP</a>
       </nav>
     </div>
 
     <main>
-      <section class="hero" aria-labelledby="hero-title">
-        <div class="hero-grid">
+      <section class="hero projects-hub-hero" aria-labelledby="projects-hub-title">
+        <div class="hero-grid projects-hub-hero__grid">
           <div class="hero-copy">
-            <p class="hero-eyebrow">Existing conditions documentation</p>
-            <h1 id="hero-title" class="hero-title">
-              Existing Conditions Documentation focused on the unique needs of Owners, Architects and Builders.
-            </h1>
+            <p class="hero-eyebrow">Ground Truth 3D</p>
+            <h1 id="projects-hub-title" class="hero-title">Projects</h1>
             <p class="hero-subtitle">
-              LiDAR scanning, 360° photography, drone scanning, 2D drafting and 3D modeling
+              Open a project below or create a new one to continue to documentation upload.
             </p>
-            <a class="btn btn-primary" href="Get_in_Touch/index.html"
-              >Get an Existing Conditions Quote</a
-            >
+            <div class="projects-hub-actions">
+              <a class="btn btn-primary" href="new-project/index.html">Create a Project</a>
+            </div>
           </div>
-          <div class="hero-visual">
+          <div class="hero-visual projects-hub-hero__visual">
             <img
               src="Home_page_hero_image.png"
               alt="LiDAR point cloud visualization of a long industrial interior with structural columns and exposed ceiling systems"
@@ -89,6 +88,12 @@
             />
           </div>
         </div>
+      </section>
+
+      <section class="section section-tight projects-hub-section" aria-labelledby="projects-list-heading">
+        <h2 id="projects-list-heading" class="section-heading">Existing projects</h2>
+        <ul class="projects-list" id="projects-list" role="list"></ul>
+        <p class="projects-list-empty" id="projects-empty">No projects yet. Use Create a Project to add one.</p>
       </section>
 
       <section class="section section-tight">
@@ -429,6 +434,41 @@
 
         document.addEventListener("keydown", function (e) {
           if (e.key === "Escape") setOpen(false);
+        });
+      })();
+    </script>
+    <script src="js/projects-flow.js"></script>
+    <script>
+      (function () {
+        var listEl = document.getElementById("projects-list");
+        if (!listEl || !window.GT3DProjects) return;
+
+        function render() {
+          var projects = window.GT3DProjects.getProjects().slice().reverse();
+          listEl.innerHTML = "";
+          if (!projects.length) return;
+          projects.forEach(function (p) {
+            var li = document.createElement("li");
+            li.className = "projects-list__item";
+            var title = document.createElement("span");
+            title.className = "projects-list__name";
+            title.textContent = p.name || "Untitled project";
+            var addr = document.createElement("span");
+            addr.className = "projects-list__address";
+            addr.textContent = p.address || "";
+            li.appendChild(title);
+            if (p.address) li.appendChild(addr);
+            listEl.appendChild(li);
+          });
+        }
+
+        render();
+        window.addEventListener("storage", function (e) {
+          if (e.key === "gt3d_projects") render();
+        });
+        window.addEventListener("focus", render);
+        window.addEventListener("pageshow", function (ev) {
+          if (ev.persisted) render();
         });
       })();
     </script>

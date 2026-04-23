@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="../favicon.png" type="image/png" />
+    <title>Create a project — Ground Truth 3D</title>
+    <meta name="description" content="Create a new documentation project." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body class="page-category page-new-project">
+    <header class="site-header site-header--category">
+      <div class="header-inner">
+        <a class="logo" href="../index.html"
+          ><img
+            class="logo__mark"
+            src="../images/logo-mark.svg"
+            alt=""
+            width="36"
+            height="36"
+            decoding="async"
+          />
+          Ground Truth <span>3D</span></a
+        >
+        <button
+          type="button"
+          class="menu-toggle"
+          id="menu-toggle"
+          aria-expanded="false"
+          aria-controls="dropdown-menu"
+          aria-label="Open menu"
+        >
+          <span class="bar" aria-hidden="true"></span>
+        </button>
+      </div>
+    </header>
+
+    <div class="dropdown-panel" id="dropdown-panel" hidden aria-hidden="true">
+      <nav class="dropdown-inner" id="dropdown-menu" aria-label="Site menu">
+        <a href="../index.html">Home</a>
+        <a href="../Get_in_Touch/index.html">Get in Touch</a>
+      </nav>
+    </div>
+
+    <main class="project-form-main">
+      <div class="project-form-wrap">
+        <h1 class="project-form-title">Create a project</h1>
+        <p class="project-form-lede">
+          Enter project details and level names. If you include exterior work, check <strong>Exterior</strong> to add an
+          exterior level.
+        </p>
+
+        <form id="new-project-form" class="estimator-form project-form" action="#" method="post" novalidate>
+          <div class="estimator-form-grid">
+            <div class="form-field form-field--full">
+              <label for="project_name">Project name <span class="req">*</span></label>
+              <input type="text" id="project_name" name="project_name" required autocomplete="off" />
+            </div>
+            <div class="form-field form-field--full">
+              <label for="project_address">Address <span class="req">*</span></label>
+              <input type="text" id="project_address" name="project_address" required autocomplete="street-address" />
+            </div>
+            <div class="form-field">
+              <label for="building_count">Number of buildings <span class="req">*</span></label>
+              <input type="number" id="building_count" name="building_count" min="1" step="1" value="1" required />
+            </div>
+            <div class="form-field">
+              <label for="level_count">Number of levels <span class="req">*</span></label>
+              <input type="number" id="level_count" name="level_count" min="1" step="1" value="1" required />
+            </div>
+            <div class="form-field form-field--full">
+              <label class="form-check">
+                <input type="checkbox" id="exterior" name="exterior" />
+                <span>Exterior</span>
+              </label>
+            </div>
+          </div>
+
+          <fieldset class="estimator-fieldset project-form-levels-fieldset">
+            <legend>Level names</legend>
+            <p class="project-form-levels-hint" id="levels-hint">
+              Names for each level appear below. Adjust the number of levels to add or remove rows.
+            </p>
+            <div id="levels-fields" class="project-form-levels" aria-live="polite"></div>
+          </fieldset>
+
+          <div class="project-form-actions">
+            <button type="submit" class="btn btn-primary">Continue to upload</button>
+            <a class="btn btn-outline" href="../index.html">Cancel</a>
+          </div>
+        </form>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-links">
+          <ul>
+            <li><a href="../About_Us/index.html">About Ground Truth 3D</a></li>
+            <li><a href="../Get_in_Touch/index.html">Contact us</a></li>
+            <li><a href="../index.html">Home</a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+
+    <script src="../js/projects-flow.js"></script>
+    <script>
+      (function () {
+        var toggle = document.getElementById("menu-toggle");
+        var panel = document.getElementById("dropdown-panel");
+        if (toggle && panel) {
+          function setOpen(open) {
+            toggle.setAttribute("aria-expanded", open ? "true" : "false");
+            toggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+            panel.hidden = !open;
+            panel.setAttribute("aria-hidden", open ? "false" : "true");
+            panel.classList.toggle("is-open", open);
+            document.body.style.overflow = open ? "hidden" : "";
+          }
+          toggle.addEventListener("click", function () {
+            setOpen(toggle.getAttribute("aria-expanded") !== "true");
+          });
+          panel.addEventListener("click", function (e) {
+            if (e.target === panel) setOpen(false);
+          });
+          panel.querySelectorAll("a").forEach(function (link) {
+            link.addEventListener("click", function () {
+              setOpen(false);
+            });
+          });
+          document.addEventListener("keydown", function (e) {
+            if (e.key === "Escape") setOpen(false);
+          });
+        }
+      })();
+    </script>
+    <script>
+      (function () {
+        var levelCountEl = document.getElementById("level_count");
+        var exteriorEl = document.getElementById("exterior");
+        var container = document.getElementById("levels-fields");
+        var form = document.getElementById("new-project-form");
+
+        function clampLevels(n) {
+          var x = typeof n === "number" ? n : parseInt(String(n), 10);
+          if (!Number.isFinite(x) || x < 1) return 1;
+          return Math.min(999, x);
+        }
+
+        function buildLevelFields() {
+          if (!container) return;
+            var n = clampLevels(parseInt(levelCountEl.value, 10));
+          levelCountEl.value = String(n);
+          var exterior = exteriorEl.checked;
+          container.innerHTML = "";
+
+          for (var i = 1; i <= n; i++) {
+            var id = "level_name_" + i;
+            var wrap = document.createElement("div");
+            wrap.className = "form-field form-field--full";
+            var lab = document.createElement("label");
+            lab.setAttribute("for", id);
+            lab.textContent = "Level " + i;
+            var inp = document.createElement("input");
+            inp.type = "text";
+            inp.id = id;
+            inp.name = id;
+            inp.value = "Level " + i;
+            inp.autocomplete = "off";
+            wrap.appendChild(lab);
+            wrap.appendChild(inp);
+            container.appendChild(wrap);
+          }
+
+          if (exterior) {
+            var eid = "level_name_exterior";
+            var ewrap = document.createElement("div");
+            ewrap.className = "form-field form-field--full";
+            var elab = document.createElement("label");
+            elab.setAttribute("for", eid);
+            elab.textContent = "Exterior";
+            var einp = document.createElement("input");
+            einp.type = "text";
+            einp.id = eid;
+            einp.name = eid;
+            einp.value = "Exterior";
+            einp.autocomplete = "off";
+            ewrap.appendChild(elab);
+            ewrap.appendChild(einp);
+            container.appendChild(ewrap);
+          }
+        }
+
+        if (levelCountEl) {
+          levelCountEl.addEventListener("input", buildLevelFields);
+          levelCountEl.addEventListener("change", buildLevelFields);
+        }
+        if (exteriorEl) exteriorEl.addEventListener("change", buildLevelFields);
+
+        buildLevelFields();
+
+        if (form) {
+          form.addEventListener("submit", function (e) {
+            e.preventDefault();
+            var projectName = (document.getElementById("project_name").value || "").trim();
+            var address = (document.getElementById("project_address").value || "").trim();
+            var buildings = clampLevels(parseInt(document.getElementById("building_count").value, 10));
+            document.getElementById("building_count").value = String(buildings);
+            var levels = clampLevels(parseInt(levelCountEl.value, 10));
+            levelCountEl.value = String(levels);
+            var exterior = exteriorEl.checked;
+
+            var levelRows = [];
+            for (var j = 1; j <= levels; j++) {
+              var inp = document.getElementById("level_name_" + j);
+              levelRows.push({
+                kind: "level",
+                index: j,
+                label: "Level " + j,
+                name: inp ? inp.value.trim() || "Level " + j : "Level " + j,
+              });
+            }
+            if (exterior) {
+              var ex = document.getElementById("level_name_exterior");
+              levelRows.push({
+                kind: "exterior",
+                label: "Exterior",
+                name: ex ? ex.value.trim() || "Exterior" : "Exterior",
+              });
+            }
+
+            if (!window.GT3DProjects) return;
+            var pendingId = "p-" + Date.now() + "-" + Math.random().toString(36).slice(2, 9);
+            window.GT3DProjects.setUploadSession({
+              pendingId: pendingId,
+              projectName: projectName,
+              address: address,
+              buildingCount: buildings,
+              levelCount: levels,
+              exterior: exterior,
+              levels: levelRows,
+            });
+            window.location.href = "../upload/index.html";
+          });
+        }
+      })();
+    </script>
+  </body>
+</html>

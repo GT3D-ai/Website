@@ -3591,3 +3591,144 @@ body.page-scan-scheduler {
   padding-top: var(--space-lg);
   border-top: 1px solid var(--line);
 }
+
+/* ——— Projects hub (home) ——— */
+.projects-hub-actions {
+  margin-top: var(--space-md);
+}
+
+.projects-hub-section .section-heading {
+  margin-bottom: var(--space-md);
+}
+
+.projects-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-sm);
+  max-width: 48rem;
+}
+
+.projects-list__item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: var(--space-md);
+  background: var(--bg-elevated);
+  border: 1px solid var(--line);
+  border-radius: 2px;
+}
+
+.projects-list__name {
+  font-weight: 600;
+  font-size: 1.0625rem;
+}
+
+.projects-list__address {
+  font-size: 0.9375rem;
+  color: var(--ink-muted);
+}
+
+.projects-list-empty {
+  margin: 0;
+  color: var(--ink-muted);
+  font-size: 0.9375rem;
+}
+
+.projects-list:not(:empty) + .projects-list-empty {
+  display: none;
+}
+
+/* ——— New project form ——— */
+.project-form-main {
+  padding: var(--space-xl) var(--space-md) var(--space-2xl);
+}
+
+.project-form-wrap {
+  max-width: 40rem;
+  margin: 0 auto;
+}
+
+.project-form-title {
+  font-size: clamp(1.75rem, 4vw, 2.25rem);
+  letter-spacing: -0.02em;
+  margin: 0 0 var(--space-sm);
+}
+
+.project-form-lede {
+  margin: 0 0 var(--space-lg);
+  color: var(--ink-muted);
+  max-width: 52ch;
+}
+
+.project-form .form-field {
+  margin: 0;
+}
+
+.project-form-levels-fieldset {
+  margin-top: var(--space-lg);
+}
+
+.project-form-levels-hint {
+  margin: 0 0 var(--space-md);
+  font-size: 0.9375rem;
+  color: var(--ink-muted);
+}
+
+.project-form-levels {
+  display: grid;
+  gap: var(--space-md);
+}
+
+.project-form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  align-items: center;
+  margin-top: var(--space-lg);
+}
+
+/* ——— Upload step ——— */
+.upload-main {
+  padding: var(--space-xl) var(--space-md) var(--space-2xl);
+  min-height: 50vh;
+}
+
+.upload-inner {
+  max-width: 40rem;
+  margin: 0 auto;
+}
+
+.upload-project-header {
+  margin-bottom: var(--space-xl);
+}
+
+.upload-project-title {
+  font-size: clamp(1.75rem, 4vw, 2.25rem);
+  letter-spacing: -0.02em;
+  margin: 0 0 var(--space-sm);
+}
+
+.upload-project-subtitle {
+  margin: 0;
+  font-size: 1.0625rem;
+  color: var(--ink-muted);
+}
+
+.upload-fallback {
+  color: var(--ink-muted);
+}
+
+.upload-placeholder-section {
+  padding: var(--space-lg);
+  border: 1px dashed var(--line-strong);
+  border-radius: 2px;
+  background: var(--bg-elevated);
+}
+
+.upload-placeholder-note {
+  margin: 0;
+  font-size: 0.9375rem;
+  color: var(--ink-muted);
+}
