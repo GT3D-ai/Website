@@ -12,7 +12,7 @@
     />
     <link
       rel="preload"
-      href="Home_page_hero_image.avif"
+      href="Home_page_hero_image-480.avif"
       as="image"
       type="image/avif"
       fetchpriority="high"
@@ -75,8 +75,16 @@
           </div>
           <div class="hero-visual">
             <picture>
-              <source srcset="Home_page_hero_image.avif" type="image/avif" />
-              <source srcset="Home_page_hero_image.webp" type="image/webp" />
+              <source
+                srcset="Home_page_hero_image-480.avif 480w, Home_page_hero_image-800.avif 800w"
+                sizes="(min-width: 900px) 50vw, 100vw"
+                type="image/avif"
+              />
+              <source
+                srcset="Home_page_hero_image-480.webp 480w, Home_page_hero_image-800.webp 800w"
+                sizes="(min-width: 900px) 50vw, 100vw"
+                type="image/webp"
+              />
               <img
                 src="Home_page_hero_image.png"
                 alt="LiDAR point cloud visualization of a long industrial interior with structural columns and exposed ceiling systems"
@@ -144,8 +152,16 @@
           <article class="client-card">
             <a class="client-card__link" href="Interior_Architects_Designers/index.html">
               <picture class="card-visual">
-                <source srcset="Interior_Architects_Designers/interior_architect_client_type_card.avif" type="image/avif" />
-                <source srcset="Interior_Architects_Designers/interior_architect_client_type_card.webp" type="image/webp" />
+                <source
+                  srcset="Interior_Architects_Designers/interior_architect_client_type_card-320.avif 320w, Interior_Architects_Designers/interior_architect_client_type_card-640.avif 640w"
+                  sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
+                  type="image/avif"
+                />
+                <source
+                  srcset="Interior_Architects_Designers/interior_architect_client_type_card-320.webp 320w, Interior_Architects_Designers/interior_architect_client_type_card-640.webp 640w"
+                  sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
+                  type="image/webp"
+                />
                 <img
                   src="Interior_Architects_Designers/interior_architect_client_type_card.png"
                   alt="Interior design mood board with drawing, material samples, and color swatches"
@@ -207,8 +223,16 @@
           <article class="client-card">
             <a class="client-card__link" href="Event_Planners/index.html">
               <picture class="card-visual">
-                <source srcset="Event_Planners/event_planning_hero_image.avif" type="image/avif" />
-                <source srcset="Event_Planners/event_planning_hero_image.webp" type="image/webp" />
+                <source
+                  srcset="Event_Planners/event_planning_hero_image-320.avif 320w, Event_Planners/event_planning_hero_image-640.avif 640w"
+                  sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
+                  type="image/avif"
+                />
+                <source
+                  srcset="Event_Planners/event_planning_hero_image-320.webp 320w, Event_Planners/event_planning_hero_image-640.webp 640w"
+                  sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
+                  type="image/webp"
+                />
                 <img
                   src="Event_Planners/event_planning_hero_image.png"
                   alt="Event planning existing conditions documentation"
