@@ -10,22 +10,13 @@
       content="Load a translated APS model by URN, or preview a raster image from a URL. Requires an Autodesk Platform Services access token."
     />
     <link rel="icon" href="../favicon.png" type="image/png" />
-    <link rel="stylesheet" href="../styles.css" />
+    <link rel="stylesheet" href="../styles.min.css" />
     <link
       rel="stylesheet"
       href="https://developer.api.autodesk.com/modelderivative/v2/viewers/7.101.0/style.min.css"
     />
     <link rel="stylesheet" href="applet.css" />
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XW3WS16GZT"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-XW3WS16GZT');
-    </script>
-  </head>
+</head>
   <body class="page-category autodesk-viewer-applet-page">
     <header class="site-header site-header--category">
       <div class="header-inner">
@@ -100,5 +91,6 @@
 
     <script src="https://developer.api.autodesk.com/modelderivative/v2/viewers/7.101.0/viewer3D.min.js"></script>
     <script src="applet.js"></script>
+    <script src="../analytics.js" defer></script>
   </body>
 </html>

@@ -17,16 +17,7 @@
       type="image/avif"
       fetchpriority="high"
     />
-    <link rel="stylesheet" href="styles.css" />
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XW3WS16GZT"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-XW3WS16GZT');
-    </script>
+    <link rel="stylesheet" href="styles.min.css" />
   </head>
   <body class="page-home">
     <header class="site-header">
@@ -343,13 +334,18 @@
           <article class="blog-card">
             <a class="blog-card__link" href="blog/lidar-tree-safety-landscape-scanning/index.html">
               <span class="blog-card__thumb">
-                <img
-                  src="blog/lidar-tree-safety-landscape-scanning/images/tree-safety-1.png"
-                  alt=""
-                  width="88"
-                  height="88"
-                  loading="lazy"
-                />
+                <picture>
+                  <source srcset="blog/lidar-tree-safety-landscape-scanning/images/tree-safety-1.avif" type="image/avif" />
+                  <source srcset="blog/lidar-tree-safety-landscape-scanning/images/tree-safety-1.webp" type="image/webp" />
+                  <img
+                    src="blog/lidar-tree-safety-landscape-scanning/images/tree-safety-1.png"
+                    alt=""
+                    width="88"
+                    height="88"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </picture>
               </span>
               <span class="blog-card__inner">
                 <span class="blog-label">Newest</span>
@@ -360,13 +356,18 @@
           <article class="blog-card">
             <a class="blog-card__link" href="blog/existing-conditions-documentation-historic-buildings/index.html">
               <span class="blog-card__thumb">
-                <img
-                  src="blog/existing-conditions-documentation-historic-buildings/images/st-andrews-cathedral-model.png"
-                  alt=""
-                  width="88"
-                  height="88"
-                  loading="lazy"
-                />
+                <picture>
+                  <source srcset="blog/existing-conditions-documentation-historic-buildings/images/st-andrews-cathedral-model.avif" type="image/avif" />
+                  <source srcset="blog/existing-conditions-documentation-historic-buildings/images/st-andrews-cathedral-model.webp" type="image/webp" />
+                  <img
+                    src="blog/existing-conditions-documentation-historic-buildings/images/st-andrews-cathedral-model.png"
+                    alt=""
+                    width="88"
+                    height="88"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </picture>
               </span>
               <span class="blog-card__inner">
                 <span class="blog-label">Historic documentation</span>
@@ -377,13 +378,18 @@
           <article class="blog-card">
             <a class="blog-card__link" href="blog/san-francisco-yacht-club-piling-mapping/index.html">
               <span class="blog-card__thumb">
-                <img
-                  src="Get_in_Touch/get_in_touch_hero_image.png"
-                  alt=""
-                  width="88"
-                  height="88"
-                  loading="lazy"
-                />
+                <picture>
+                  <source srcset="Get_in_Touch/get_in_touch_hero_image.avif" type="image/avif" />
+                  <source srcset="Get_in_Touch/get_in_touch_hero_image.webp" type="image/webp" />
+                  <img
+                    src="Get_in_Touch/get_in_touch_hero_image.png"
+                    alt=""
+                    width="88"
+                    height="88"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </picture>
               </span>
               <span class="blog-card__inner">
                 <span class="blog-label">Case study</span>
@@ -394,13 +400,18 @@
           <article class="blog-card">
             <a class="blog-card__link" href="blog/ground-truth-basic-existing-conditions-modeling-bim200/index.html">
               <span class="blog-card__thumb">
-                <img
-                  src="blog/ground-truth-basic-existing-conditions-modeling-bim200/images/bim200-hero.png"
-                  alt=""
-                  width="88"
-                  height="88"
-                  loading="lazy"
-                />
+                <picture>
+                  <source srcset="blog/ground-truth-basic-existing-conditions-modeling-bim200/images/bim200-hero.avif" type="image/avif" />
+                  <source srcset="blog/ground-truth-basic-existing-conditions-modeling-bim200/images/bim200-hero.webp" type="image/webp" />
+                  <img
+                    src="blog/ground-truth-basic-existing-conditions-modeling-bim200/images/bim200-hero.png"
+                    alt=""
+                    width="88"
+                    height="88"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </picture>
               </span>
               <span class="blog-card__inner">
                 <span class="blog-label">Evergreen</span>
@@ -508,5 +519,6 @@
         });
       })();
     </script>
+    <script src="analytics.js" defer></script>
   </body>
 </html>

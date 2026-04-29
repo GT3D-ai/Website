@@ -19,7 +19,7 @@
     <title>Page not found — Ground Truth 3D</title>
     <meta name="description" content="The requested page could not be found." />
     <style>
-      /* Fallback if styles.css fails to load (wrong relative path or network) */
+      /* Fallback if styles.min.css fails to load (wrong relative path or network) */
       .page-404 .page-404-section {
         display: flex;
         align-items: center;
@@ -69,17 +69,8 @@
         margin: 0;
       }
     </style>
-    <link rel="stylesheet" href="styles.css" />
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XW3WS16GZT"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-XW3WS16GZT');
-    </script>
-  </head>
+    <link rel="stylesheet" href="styles.min.css" />
+</head>
   <body class="page-category page-404">
     <header class="site-header site-header--category">
       <div class="header-inner">
@@ -178,5 +169,6 @@
         });
       })();
     </script>
+    <script src="analytics.js" defer></script>
   </body>
 </html>
