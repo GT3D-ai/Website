@@ -10,11 +10,12 @@
       name="description"
       content="LiDAR based commercial, residential, and civic existing conditions documentation for owners, architects, and builders."
     />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
+      rel="preload"
+      href="Home_page_hero_image.avif"
+      as="image"
+      type="image/avif"
+      fetchpriority="high"
     />
     <link rel="stylesheet" href="styles.css" />
     <!-- Google tag (gtag.js) -->
@@ -62,7 +63,7 @@
         <a href="blog/index.html">Stories</a>
         <a href="Disaster_Planning_Existing_Conditions/index.html">Civic Disaster Planning</a>
         <a href="Get_in_Touch/index.html">Get in Touch</a>
-        <a href="http://app.gt3d.com">GTP</a>
+        <a href="https://app.gt3d.com/">GTP</a>
       </nav>
     </div>
 
@@ -82,12 +83,18 @@
             >
           </div>
           <div class="hero-visual">
-            <img
-              src="Home_page_hero_image.png"
-              alt="LiDAR point cloud visualization of a long industrial interior with structural columns and exposed ceiling systems"
-              width="800"
-              height="600"
-            />
+            <picture>
+              <source srcset="Home_page_hero_image.avif" type="image/avif" />
+              <source srcset="Home_page_hero_image.webp" type="image/webp" />
+              <img
+                src="Home_page_hero_image.png"
+                alt="LiDAR point cloud visualization of a long industrial interior with structural columns and exposed ceiling systems"
+                width="1024"
+                height="597"
+                fetchpriority="high"
+                decoding="async"
+              />
+            </picture>
           </div>
         </div>
       </section>
@@ -103,11 +110,18 @@
         <div class="cards-grid">
           <article class="client-card">
             <a class="client-card__link" href="Owners_Operators/index.html">
-              <div
-                class="card-visual card-visual--property-owner"
-                role="img"
-                aria-label="Property Owners — same hero as the Owners client page"
-              ></div>
+              <picture class="card-visual">
+                <source srcset="Owners_Operators/property_owners_client_page_hero_image.avif" type="image/avif" />
+                <source srcset="Owners_Operators/property_owners_client_page_hero_image.webp" type="image/webp" />
+                <img
+                  src="Owners_Operators/property_owners_client_page_hero_image.png"
+                  alt="Property Owners existing conditions documentation"
+                  width="640"
+                  height="480"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
               <h3>Property Owners</h3>
               <p>Property Documentation: Maximizing Value Across the Ownership Lifecycle</p>
             </a>
@@ -117,11 +131,18 @@
           </article>
           <article class="client-card">
             <a class="client-card__link" href="Architects/index.html">
-              <div
-              class="card-visual card-visual--architect"
-              role="img"
-              aria-label="Panoramic hero art: 3D point cloud building to hand-drawn sketch on tracing paper, with drafting pencil."
-            ></div>
+              <picture class="card-visual">
+                <source srcset="Architects/architect_client_page_hero_image.avif" type="image/avif" />
+                <source srcset="Architects/architect_client_page_hero_image.webp" type="image/webp" />
+                <img
+                  src="Architects/architect_client_page_hero_image.png"
+                  alt="Panoramic 3D point cloud building transitioning to hand-drawn sketch on tracing paper"
+                  width="640"
+                  height="480"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
               <h3>Architects</h3>
               <p>Accurate plans and models fast</p>
             </a>
@@ -131,11 +152,18 @@
           </article>
           <article class="client-card">
             <a class="client-card__link" href="Interior_Architects_Designers/index.html">
-              <div
-                class="card-visual card-visual--interior-architect"
-                role="img"
-                aria-label="Interior design mood board: Miller Residence hearth wall drawing, material samples, and color swatches."
-              ></div>
+              <picture class="card-visual">
+                <source srcset="Interior_Architects_Designers/interior_architect_client_type_card.avif" type="image/avif" />
+                <source srcset="Interior_Architects_Designers/interior_architect_client_type_card.webp" type="image/webp" />
+                <img
+                  src="Interior_Architects_Designers/interior_architect_client_type_card.png"
+                  alt="Interior design mood board with drawing, material samples, and color swatches"
+                  width="640"
+                  height="480"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
               <h3>Interior Architects / Designers</h3>
               <p>2D Plans, 3D models and thorough Photo Documentation</p>
             </a>
@@ -145,11 +173,18 @@
           </article>
           <article class="client-card">
             <a class="client-card__link" href="Civic/index.html">
-              <div
-                class="card-visual card-visual--civic"
-                role="img"
-                aria-label="Civic Planners — same hero as the Civic category page"
-              ></div>
+              <picture class="card-visual">
+                <source srcset="Civic/civic_category_page_hero_image.avif" type="image/avif" />
+                <source srcset="Civic/civic_category_page_hero_image.webp" type="image/webp" />
+                <img
+                  src="Civic/civic_category_page_hero_image.png"
+                  alt="Civic planning existing conditions documentation"
+                  width="640"
+                  height="480"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
               <h3>Civic Planners</h3>
               <p>Planning for transition, growth and safety with ECD</p>
             </a>
@@ -159,11 +194,18 @@
           </article>
           <article class="client-card">
             <a class="client-card__link" href="Operators/index.html">
-              <div
-                class="card-visual card-visual--property-operator"
-                role="img"
-                aria-label="Property Operators — same hero as the Operators client page"
-              ></div>
+              <picture class="card-visual">
+                <source srcset="Operators/property_operator_client_page_hero_image.avif" type="image/avif" />
+                <source srcset="Operators/property_operator_client_page_hero_image.webp" type="image/webp" />
+                <img
+                  src="Operators/property_operator_client_page_hero_image.png"
+                  alt="Property operator documentation and planning"
+                  width="640"
+                  height="480"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
               <h3>Property Operators</h3>
               <p>Efficient, profitable, property operation and management with ECD</p>
             </a>
@@ -173,7 +215,18 @@
           </article>
           <article class="client-card">
             <a class="client-card__link" href="Event_Planners/index.html">
-              <div class="card-visual card-visual--event-planner" role="img" aria-label="Event Planners — same hero as the Event Planners client page"></div>
+              <picture class="card-visual">
+                <source srcset="Event_Planners/event_planning_hero_image.avif" type="image/avif" />
+                <source srcset="Event_Planners/event_planning_hero_image.webp" type="image/webp" />
+                <img
+                  src="Event_Planners/event_planning_hero_image.png"
+                  alt="Event planning existing conditions documentation"
+                  width="640"
+                  height="480"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
               <h3>Event Planners</h3>
               <p>ECD: The Blueprint for Flawless Events</p>
             </a>
@@ -183,7 +236,18 @@
           </article>
           <article class="client-card">
             <a class="client-card__link" href="Builders/index.html">
-              <div class="card-visual card-visual--builder" role="img" aria-label="Builders — laser scanning at a historic courtyard renovation; same card art as the Builders client page"></div>
+              <picture class="card-visual">
+                <source srcset="Builders/builders_client_card_image.avif" type="image/avif" />
+                <source srcset="Builders/builders_client_card_image.webp" type="image/webp" />
+                <img
+                  src="Builders/builders_client_card_image.png"
+                  alt="Laser scanning at a historic courtyard renovation"
+                  width="640"
+                  height="480"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
               <h3>Builders</h3>
               <p>Cost Reduction and Risk Mitigation in Construction</p>
             </a>
@@ -193,7 +257,18 @@
           </article>
           <article class="client-card">
             <a class="client-card__link" href="Landscape_Architects/index.html">
-              <div class="card-visual card-visual--landscape-architect" role="img" aria-label="Landscape Architects — same hero as the Landscape Architects client page"></div>
+              <picture class="card-visual">
+                <source srcset="Landscape_Architects/landscape_architect_client_page_hero_image.avif" type="image/avif" />
+                <source srcset="Landscape_Architects/landscape_architect_client_page_hero_image.webp" type="image/webp" />
+                <img
+                  src="Landscape_Architects/landscape_architect_client_page_hero_image.png"
+                  alt="Landscape architecture existing conditions documentation"
+                  width="640"
+                  height="480"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
               <h3>Landscape Architects</h3>
               <p>An accurate foundation for success in modern landscape architecture</p>
             </a>

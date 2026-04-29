@@ -19,8 +19,8 @@
   --space-xl: 4rem;
   --space-2xl: 6rem;
   --max: 1200px;
-  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
-  --font-display: "Inter", var(--font-sans);
+  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-display: var(--font-sans);
   --transition: 180ms ease;
 }
 
@@ -359,6 +359,7 @@ a:hover {
 .page-home .hero-visual img {
   display: block;
   width: 100%;
+  height: auto;
   max-height: 420px;
   object-fit: cover;
   object-position: center center;
@@ -482,10 +483,18 @@ a:hover {
 }
 
 .card-visual {
+  display: block;
   aspect-ratio: 4 / 3;
   background: linear-gradient(145deg, #e8e8e8 0%, #d4d4d4 100%);
   margin-bottom: var(--space-md);
   border: 1px solid var(--line);
+  overflow: hidden;
+}
+
+.card-visual img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .card-visual--interior-architect {
