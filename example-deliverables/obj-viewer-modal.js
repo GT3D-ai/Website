@@ -90,7 +90,9 @@ function loadGltf(resolvedUrl, loadingEl, gen) {
         return;
       }
       scene.add(gltf.scene);
-      gltf.scene.rotation.x = Math.PI / 2;
+      // The model comes from Revit via obj2gltf and is Z-up; three.js is Y-up.
+      // -90° about X carries +Z to +Y. (+90° stands it on its roof.)
+      gltf.scene.rotation.x = -Math.PI / 2;
       gltf.scene.updateMatrixWorld(true);
       fitCameraToObject(gltf.scene, camera, controls);
       if (loadingEl) loadingEl.hidden = true;
