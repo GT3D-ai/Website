@@ -27,8 +27,8 @@ plan. So every record below is recreated in Cloudflare; only `gt3d.com` and
 | `www` | A | 34.117.48.237 | **DNS only** until cutover | Replaced by the Pages custom domain at cutover |
 | `app` | A | 34.54.37.244 | **DNS only — never proxy** | The platform. Proxying breaks its Google-managed cert renewal and puts Cloudflare in front of IAP |
 | `gt3d.com` | MX | 1 smtp.google.com, 5 alt1.aspmx.l.google.com, 5 alt2.aspmx.l.google.com, 10 alt3.aspmx.l.google.com, 10 alt4.aspmx.l.google.com | n/a | Google Workspace mail |
-| `gt3d.com` | TXT | `v=spf1 include:_spf.google.com ~all` | n/a | SPF |
-| `gt3d.com` | TXT | `google-site-verification=9Eq403qWdI2MZeTwWRkGj5UOl88TxEOOYv-ilNcdHXA` | n/a | Search Console / Workspace |
+| `gt3d.com` | TXT | `v=spf1 include:_spf.google.com ~all` | n/a | SPF — **its own record** (see below) |
+| `gt3d.com` | TXT | `google-site-verification=9Eq403qWdI2MZeTwWRkGj5UOl88TxEOOYv-ilNcdHXA` | n/a | Search Console / Workspace — **its own record** |
 | `_dmarc` | TXT | `v=DMARC1; p=none; rua=mailto:dmarc-reports@gt3d.com` | n/a | Google splits this into 3 strings; Cloudflare takes it as one |
 | `google._domainkey` | TXT | `v=DKIM1; k=rsa; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDAAYUgEcjjhfqB28ye8tpG/Gv+nJhmCWnnjOfFR30NoiMHMuxOYAB87PL1V+lEnXIO8v0MCYWtot9sRnBulaqGmyEvYw6sdqbBqYZcvnS8I63hPE/rRfG4k94fgZzaR5SKPlE/i39OLVLecj2UZWpBevOs1VziqPKMbIQSFbzF8QIDAQAB` | n/a | Workspace DKIM — copy exactly |
 | `s1._domainkey` | CNAME | s1.domainkey.u106309670.wl171.sendgrid.net | **DNS only** | SendGrid DKIM |
@@ -38,6 +38,24 @@ plan. So every record below is recreated in Cloudflare; only `gt3d.com` and
 | `106309670` | CNAME | sendgrid.net | **DNS only** | SendGrid link branding |
 
 NS and SOA are not copied; Cloudflare supplies its own.
+
+## Found during the move: SPF was broken in Cloud DNS
+
+Cloud DNS held SPF and the site-verification token as **one** TXT record
+with two strings. Receivers join the strings, so mail servers saw
+`v=spf1 include:_spf.google.com ~allgoogle-site-verification=…` — an invalid
+mechanism, so SPF returned permerror for gt3d.com mail. Cloudflare has them as
+two separate records; the fix goes live with the nameserver switch.
+
+## Status (2026-11-11)
+
+- Pages project `gt3d-website` live at https://gt3d-website.pages.dev,
+  building from `main`. Every page and file checked; folder URLs in place.
+- Zone `gt3d.com` added on the Free plan, **pending**. 17 records, all DNS
+  only, compared one by one against Cloud DNS (identical except the SPF fix).
+- Cloudflare nameservers: **eleanor.ns.cloudflare.com**, **rodney.ns.cloudflare.com**.
+- Next: replace the four `ns-cloud-b*.googledomains.com` nameservers at
+  NameBright with those two.
 
 ## Order of work
 
