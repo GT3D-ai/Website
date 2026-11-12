@@ -47,15 +47,32 @@ with two strings. Receivers join the strings, so mail servers saw
 mechanism, so SPF returned permerror for gt3d.com mail. Cloudflare has them as
 two separate records; the fix goes live with the nameserver switch.
 
-## Status (2026-11-11)
+## Status — cut over 2026-11-12
 
-- Pages project `gt3d-website` live at https://gt3d-website.pages.dev,
-  building from `main`. Every page and file checked; folder URLs in place.
-- Zone `gt3d.com` added on the Free plan, **pending**. 17 records, all DNS
-  only, compared one by one against Cloud DNS (identical except the SPF fix).
-- Cloudflare nameservers: **eleanor.ns.cloudflare.com**, **rodney.ns.cloudflare.com**.
-- Next: replace the four `ns-cloud-b*.googledomains.com` nameservers at
-  NameBright with those two.
+**gt3d.com is served by Cloudflare Pages** (project `gt3d-website`, builds on
+every push to `main`; nothing to deploy by hand any more).
+
+- Nameservers at NameBright: `eleanor.ns.cloudflare.com`,
+  `rodney.ns.cloudflare.com` only. Zone active on the Free plan.
+- `gt3d.com` and `www.gt3d.com` are Pages custom domains (proxied CNAMEs to
+  `gt3d-website.pages.dev`). Edge certificate covers `gt3d.com` and
+  `*.gt3d.com`, which also fixes the old www certificate error.
+- Redirect rule: `https://www.*` → `https://${1}`, 301, query string kept.
+  Always Use HTTPS on. `/X/index.html` → `/X/` is Pages' own 308.
+- Every other record DNS only; `app.gt3d.com` (the platform) untouched.
+- Checked after cutover: all 38 sitemap pages and 143 internal link targets
+  answer 200, robots.txt and sitemap served, 3D viewer and videos work,
+  platform sign-in answers 200, MX and the fixed SPF resolve publicly.
+
+**Rollback** (until the Google side is deleted): in Cloudflare DNS, remove
+the two Pages custom domains and set `gt3d.com` and `www` to A
+34.117.48.237, DNS only.
+
+**Delete after 2026-11-26** if nothing has needed a rollback: the Google
+HTTPS load balancer and its certificate at 34.117.48.237, bucket
+`gt3d-website-2026-web`, and Cloud DNS zone `gt3d-public-zone` (project
+`gt3d-website-2026`). `deploy-gcs.ps1` is obsolete from now on — running it
+updates a bucket nobody is served from.
 
 ## Order of work
 
